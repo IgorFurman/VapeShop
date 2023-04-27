@@ -10,16 +10,13 @@ import { ShopContextProvider } from "./context/shop-context.js";
 function App() {
   return (
     <div className="App">
-      <ShopContextProvider>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Shop />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </Router>
-      </ShopContextProvider>
+     <Router>
+      <Navbar />
+      <Routes>
+        <Route path= "/" element={<Shop />} />
+        <Route path= "/cart" element={<Cart />} />
+      </Routes>
+     </Router>
     </div>
   );
 }
