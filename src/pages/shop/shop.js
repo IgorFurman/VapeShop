@@ -1,12 +1,19 @@
-import React from "react";
+import React from 'react';
+import { PRODUCTS } from '../../products';
+import {Product} from './product'
+import './shop.css'
 
 export const Shop = () => {
-  return <section className="shop">
-    <div className="shopTitle">
-        <h1>MassiveCloud</h1>
-    </div>
-    <div className="products">
-        
-    </div>
-  </section>
+	return (
+		<section className='shop'>
+			<div className='shopTitle'>
+				<h1>MassiveCloud</h1>
+			</div>
+			<div className='products'>
+				{PRODUCTS.map((product) => (
+					<Product data={product} />
+				))}
+			</div>
+		</section>
+	);
 };
