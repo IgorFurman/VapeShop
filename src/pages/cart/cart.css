@@ -1,8 +1,10 @@
+
 .cart {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: calc(100vh - 160px);
   }
   
   .cartItem {
@@ -31,7 +33,7 @@
     font-weight: bolder;
   }
   
-  .checkout button {
+  .checkout button, .empty-cart-btn {
     width: 150px;
     height: 50px;
     background-color: rgb(19, 19, 19);
@@ -40,5 +42,11 @@
     border-radius: 8px;
     margin: 10px;
     cursor: pointer;
+    transition: background-color .3s;
   }
+
+  .checkout button:hover,  .empty-cart-btn:hover {
+    background-color: rgb(65, 62, 62);
+  }
+
   
