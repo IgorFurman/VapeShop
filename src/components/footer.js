@@ -58,7 +58,7 @@ export const Footer = () => {
 						</div>
 					</div>
 					<div className='com' data-aos='fade-up'>
-						<h3>Znajdź nas</h3>
+						<h3>Lokalizacja</h3>
 						<ul>
 							<li>
                             <a href='#'><GrMap style={iconStyle}/><br/>
