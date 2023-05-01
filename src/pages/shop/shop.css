@@ -1,79 +1,89 @@
+.shop {
+	margin-bottom: 50px;
+}
 .shopTitle {
 	margin-top: 100px;
 	text-align: center;
-	font-size: 40px;
-}
-.products {
-	width: 100%;
-	height: auto;
+	font-size: 24px;
+  }
+  
+  .products {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 80px;
+	gap: 20px;
 	place-items: center;
-}
-
-.product {
+  }
+  
+  .product {
 	border-radius: 15px;
 	padding: 20px 0;
 	width: 300px;
-	height: 380px;
+	height: 320px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.product img {
-	max-width: 100%;
-	height: 100%;
-}
-
-.product .product-descriptioniption {
-	text-align: center;
-}
-
-.product:hover {
-	transition: 0.3s ease-in;
 	cursor: pointer;
-}
-
-.addToCartBttn {
+  }
+  
+  .product img {
+	width: 200px;
+	height: 200px;
+  }
+  
+  .product .product-description {
+	text-align: center;
+	margin-bottom: auto;
+  }
+  
+  .product:hover .product-description {
+	font-weight: bold;
+  }
+  
+  .addToCartBttn {
 	background-color: transparent;
 	border: 2px solid rgb(19, 19, 19);
 	min-width: 100px;
 	padding: 5px 10px;
 	border-radius: 15px;
-}
-
-.addToCartBttn:hover {
+  }
+  
+  .addToCartBttn:hover {
 	background-color: rgb(19, 19, 19);
 	color: white;
 	cursor: pointer;
-}
-.product-details {
-	text-decoration: none;
-	color:rgb(19, 19, 19);
-	margin-top: 20px;
-}
-@media (max-width: 992px) {
+  }
+  
+  
+  @media (min-width: 578px) {
 	.products {
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	  grid-template-columns: repeat(2, 1fr);
 	}
+  
 	.product {
-		width: 200px;
-		height: 350px;
-		margin: 50px;
+	  width: 300px;
+	  height: 350px;
 	}
-}
-@media (max-width: 578px) {
+  }
+  
+  @media (min-width: 992px) {
+	.shopTitle {
+	  font-size: 40px;
+	}
+  
+	.products {
+	  grid-template-columns: repeat(3, 1fr);
+	  gap: 80px;
+	}
+	
+  
 	.product {
+	  width: 330px;
+	  height: 420px;
+	}
+	.product img {
 		width: 300px;
-		height: 350px;
-		margin: 50px;
-
-	}
-	.products {
-		grid-template-columns: 1fr;
-	}
-}
+		height: 300px;
+	  }
+  }
+  

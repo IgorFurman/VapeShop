@@ -1,37 +1,61 @@
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { ShopContext } from '../../../context/shop-context';
-import { PRODUCTS } from '../../../products';
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ShopContext } from "../../../context/shop-context";
+import { PRODUCTS } from "../../../products";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
-import './product-details.css';
+import "./product-details.css";
 
 export const ProductDetails = () => {
-	const { id } = useParams();
-	const { addToCart, cartItems } = useContext(ShopContext);
-	const product = PRODUCTS.find((product) => product.id === Number(id));
+  const { id } = useParams();
+  const { addToCart, cartItems } = useContext(ShopContext);
+  const product = PRODUCTS.find((product) => product.id === Number(id));
 
-	if (!product) {
-		return <div>Produkt nie znaleziony</div>;
-	}
+  const [zoomIn, setZoomIn] = useState();
+  const [zoomOut, setZoomOut] = useState();
+  const [resetTransform, setResetTransform] = useState();
 
-	const { productName, price, productImage, description, availability } =
-		product;
-	const cartItemAmount = cartItems[id];
+  if (!product) {
+    return <div>Produkt nie znaleziony</div>;
+  }
 
-	return (
-		<section className='details'>
-			<div className='details-img'>
-				<img src={productImage} alt={productName} />
-			</div>
-			<div className='details-description'>
-				<h2>{productName}</h2>
-				<p className='details-description-text'>{description}</p>
-				<p className='details-price'>Cena: <b>{price}zł</b></p>
-				<p className='details-availability'>Dostępna ilość: {availability}</p>
-				<button className='details-addToCartBttn' onClick={() => addToCart(id)}>
-					Dodaj do koszyka {cartItemAmount > 0 && <>({cartItemAmount})</>}
-				</button>
-			</div>
-		</section>
-	);
+  const {
+    productName,
+    price,
+    productImage,
+    description,
+    availability,
+  } = product;
+  const cartItemAmount = cartItems[id];
+
+  return (
+    <section className="details">
+      <div className="details-img">
+        <TransformWrapper
+          options={{ disabled: false }}
+          onZoomIn={(e) => setZoomIn(() => e)}
+          onZoomOut={(e) => setZoomOut(() => e)}
+          onResetTransform={(e) => setResetTransform(() => e)}
+        >
+          <TransformComponent>
+            <img src={productImage} alt={productName} />
+          </TransformComponent>
+        </TransformWrapper>
+      </div>
+      <div className="details-description">
+        <h2>{productName}</h2>
+        <p className="details-description-text">{description}</p>
+        <p className="details-price">
+          Cena: <b>{price}zł</b>
+        </p>
+        <p className="details-availability">
+          Dostępna ilość: {availability}
+        </p>
+        <button className="details-addToCartBttn" onClick={() => addToCart(id)}>
+          Dodaj do koszyka{" "}
+          {cartItemAmount > 0 && <>({cartItemAmount})</>}
+        </button>
+      </div>
+    </section>
+  );
 };
