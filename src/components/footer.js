@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link }from 'react-router-dom';
+
 
 import {
 	FaPhoneAlt,
@@ -14,17 +15,38 @@ import { GrMap } from 'react-icons/gr';
 
 import './footer.css';
 
+import LogoFooter from '../assets/icons8-vape-60.png';
+
+const handleScrollToTop = () => {
+	window.scrollTo({
+	  top: 0,
+	  behavior: 'smooth',
+	});
+}
+
+const handleScrollAndRedirect = (path, navigate) => {
+	handleScrollToTop();
+	navigate(path);
+};
+
 export const Footer = () => {
+	const currentYear = new Date().getFullYear();
 	const iconStyle = { color: '#ffffff', fontSize: '30px' };
-	const iconStyleLogo = { color: '#ffffff', fontSize: '70px' };
+
 	return (
 		<>
 			<div className='main-footer'>
 				<div className='logoinfo'>
 					<h2>
-						<GiSmokeBomb style={iconStyleLogo} />
-						MassiveCloud
+						<img src={LogoFooter}></img>
+						BigCloud
 					</h2>
+					<a target='_blank' href='https://icons8.com/icon/PZ8cqf92g6gy/vape'>
+						Vape icon by
+					</a>{' '}
+					<a target='_blank' href='https://icons8.com'>
+						Icons8
+					</a>
 				</div>
 				<div className='contact-details'>
 					<h3>Kontakt</h3>
@@ -39,12 +61,17 @@ export const Footer = () => {
 						</li>
 						<li>
 							<FaWpforms style={iconStyle} />
-							<Link to='/contact'> Wypełnij formularz</Link>
+							<Link to='/contact' onClick={() => {
+	handleScrollAndRedirect('/contact');;
+}}>
+								{' '}
+								Wypełnij formularz
+							</Link>
 						</li>
 					</ul>
 				</div>
 
-				<div className='info'>
+				<div className='social'>
 					<h3>Social Media</h3>
 					<div className='sociallogos'>
 						<div className='logobox'>
@@ -63,7 +90,6 @@ export const Footer = () => {
 				<div className='location'>
 					<h3>Lokalizacja</h3>
 
-					
 					<iframe
 						src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.987791322612!2d20.943115315795822!3d52.20726935446037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecbe0a994fb1f%3A0x25c2000b455ea8ed!2sDelikatesy%20Orange!5e0!3m2!1spl!2spl!4v1682706408043!5m2!1spl!2spl'
 						width='400'
@@ -71,13 +97,12 @@ export const Footer = () => {
 						style={{ border: 'solid 1px #ccc' }}
 						allowfullscreen=''
 						loading='lazy'
-                        title="Google Map - al. Jerozolimskie, 02-236 Warszawa"
+						title='Google Map - al. Jerozolimskie, 02-236 Warszawa'
 					></iframe>
-
 				</div>
 			</div>
 
-			<footer>© Your Copyright 2021 All Rights Reserved</footer>
+			<footer>© {currentYear} BigCloud</footer>
 		</>
 	);
 };
