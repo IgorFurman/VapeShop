@@ -1,18 +1,49 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import { ShoppingCart} from "phosphor-react"
-import './navbar.css'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ShoppingCart } from 'phosphor-react';
+import './navbar.css';
+import { ProductSearch } from './search';
+import { useSpring, animated } from 'react-spring';
 
-import LogoNav from '../assets/icons8-vape-60-white.png'
+import { FaSearch } from 'react-icons/fa';
+import LogoNav from '../assets/icons8-vape-60-white.png';
 
 export const Navbar = () => {
-    return <nav className="navbar">
-        <Link to='/' className="name"><img src={LogoNav}></img>BigCloud</Link>
-						
-        <div className="links">
-            <Link to='/'> Sklep</Link>
-            <Link to='/cart'> <ShoppingCart size={32}/> </Link>
-            
-        </div>
-    </nav>
-}
+	const [isSearchOpen, setIsSearchOpen] = useState(false);
+	const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
+	const IconStyle = { color: 'white', fontSize: '32px', cursor: 'pointer' };
+
+	
+	const searchAnimation = useSpring({
+		opacity: isSearchOpen ? 1 : 0,
+		transform: isSearchOpen ? 'translateY(0)' : 'translateY(-20px)',
+	});
+
+	return (
+		<nav className='navbar'>
+			<div className='navbar-left'>
+				<Link to='/' className='name'>
+					<img src={LogoNav}></img>BigCloud
+				</Link>
+				
+			</div>
+			<div className='navbar-right'>
+            <div className='search'>
+					<FaSearch style={IconStyle} onClick={toggleSearch} />
+					{isSearchOpen && (
+						<animated.div style={searchAnimation}>
+							<ProductSearch />
+						</animated.div>
+					)}
+				</div>
+				<div className='links'>
+					<Link to='/'> Koszyk</Link>
+					<Link to='/cart'>
+						{' '}
+						<ShoppingCart size={32} />{' '}
+					</Link>
+				</div>
+			</div>
+		</nav>
+	);
+};

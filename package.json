@@ -13,6 +13,8 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "react-search-autocomplete": "^8.5.2",
+    "react-spring": "^9.7.1",
     "react-zoom-pan-pinch": "^3.0.7",
     "web-vitals": "^2.1.0"
   },
