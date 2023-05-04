@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { PRODUCTS } from '../../products';
 import { Product } from './product';
 import { ProductDetails } from './product-details/product-details';
+
+import { ShopContext } from '../../context/shop-context';
 import './shop.css';
 
 export const Shop = () => {
+  const { filteredProducts, filterProducts } = useContext(ShopContext);
+
   return (
     <section className='shop'>
       <div className='shopTitle'>
         <h1>BigCloud</h1>
+        
       </div>
       <div className='products'>
         <Routes>
@@ -18,7 +22,7 @@ export const Shop = () => {
             path='/'
             element={
               <>
-                {PRODUCTS.map((product) => (
+                {filteredProducts.map((product) => (
                   <Product key={product.id} data={product} />
                 ))}
               </>
@@ -26,7 +30,7 @@ export const Shop = () => {
           />
           <Route
             path='/products/:id'
-            element={<ProductDetails products={PRODUCTS} />}
+            element={<ProductDetails products={filteredProducts} />}
           />
         </Routes>
       </div>

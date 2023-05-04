@@ -11,12 +11,14 @@ import { Cart } from './pages/cart/cart';
 import { Product } from './pages/shop/product';
 import { ProductDetails } from './pages/shop/product-details/product-details';
 
+
 function App() {
 	return (
 		<div className='App'>
 			<ShopContextProvider>
 				<Router>
 					<Navbar />
+					
 					<Routes>
 						<Route path='/' element={<Shop />} />
 						<Route path='/cart' element={<Cart />} />

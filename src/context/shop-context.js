@@ -13,6 +13,8 @@ const getDefaultCart = () => {
 
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
+  const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -41,6 +43,13 @@ export const ShopContextProvider = (props) => {
     setCartItems(getDefaultCart());
   };
 
+  const filterProducts = (searchTerm) => {
+    const filtered = PRODUCTS.filter((product) =>
+      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
   const contextValue = {
     cartItems,
     addToCart,
@@ -48,6 +57,10 @@ export const ShopContextProvider = (props) => {
     removeFromCart,
     getTotalCartAmount,
     checkout,
+    filteredProducts,
+    filterProducts,
+    searchTerm,
+    setSearchTerm,
   };
 
   return (
