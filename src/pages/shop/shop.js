@@ -8,7 +8,7 @@ import { ShopContext } from '../../context/shop-context';
 import './shop.css';
 
 export const Shop = () => {
-  const { filteredProducts } = useContext(ShopContext);
+  const { filteredProducts, products } = useContext(ShopContext);
 
   return (
     <section className='shop'>

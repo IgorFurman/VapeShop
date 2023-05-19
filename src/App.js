@@ -13,7 +13,9 @@ import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
 import { Product } from './pages/shop/product';
 import { ProductDetails } from './pages/shop/product-details/product-details';
+import { addProductsToFirebase } from './config/firebase-products';
 
+addProductsToFirebase();
 
 function App() {
 	return (

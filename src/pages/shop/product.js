@@ -7,7 +7,7 @@ import './product.css';
 
 export const Product = (props) => {
 	const { id, productName, price, productImage } = props.data;
-	const { addToCart, cartItems, removeFromCart, updateCartItemCount } =
+	const { addToCart, cartItems, removeFromCart, updateCartItemCount,products } =
 		useContext(ShopContext);
 	const cartItemAmount = cartItems[id];
 	const [isModalVisible, setIsModalVisible] = useState(false);
