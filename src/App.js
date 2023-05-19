@@ -2,6 +2,9 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
 
+
+import { AgeCheck } from './components/ageCheck';
+
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
 
@@ -17,7 +20,8 @@ function App() {
 		<div className='App'>
 			<ShopContextProvider>
 				<Router>
-					<Navbar />				
+					<Navbar />	
+					<AgeCheck> /</AgeCheck>			
 					<Routes>
 						<Route path='/' element={<Shop />} />
 						<Route path='/cart' element={<Cart />} />

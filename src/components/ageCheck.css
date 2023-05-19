@@ -1,0 +1,87 @@
+.age-check {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.age-check-datepicker-container {
+  display: flex;
+  justify-content: center; 
+  position: relative; 
+  margin-top: 10px;
+}
+
+.age-check-form {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  width: 30%; 
+  height: 53%;
+  background-color: rgb(244, 236, 236);
+  padding: 20px;
+  border: 6px solid rgb(218, 27, 27);
+  overflow: hidden;
+  margin: auto;
+}
+
+
+
+
+.age-check-submitbtn {
+  margin-top: auto;
+  background-color: transparent;
+  border: 1px solid rgb(19, 19, 19);
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-top: auto;
+  transition: background-color .3s;
+}
+
+.age-check-submitbtn:hover {
+  background-color: rgb(19, 19, 19);
+  color: white;
+  cursor: pointer;
+}
+
+
+
+/* classes from reac-datepicker */
+.react-datepicker__input-container input {
+  width: 60%;
+  height: 27px;
+  border-radius: 15px; 
+}
+
+
+
+/* Style for mobile screens */
+
+
+@media (max-width: 992px) {
+  .age-check-form {
+  
+   width: 50%; 
+  }
+}
+@media (max-width: 768px) {
+  .age-check-form {
+   width: 60%; 
+  }
+}
+
+@media (max-width: 578px) {
+  .age-check-form {
+    width: 70%;
+    height: 56%;
+  }
+}
