@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { ShopContext } from '../context/shop-context';
 import { PRODUCTS } from '../products';
+import { FaTimes } from 'react-icons/fa'
 
-export const ProductSearch = () => {
+export const ProductSearch = ({ setIsSearchOpen }) => {
 	const { searchTerm, setSearchTerm, filterProducts } = useContext(ShopContext);
 	const [suggestions, setSuggestions] = useState([]);
 
@@ -21,16 +22,39 @@ export const ProductSearch = () => {
 		filterProducts(productName);
 	};
 
+	const handleCloseClick = () => {
+		setSearchTerm('');
+		setSuggestions([]);
+		setIsSearchOpen(false); 
+		filterProducts('')
+	};
+
 	return (
 		<div>
 			<form>
-				<input
-					className='navbar-input'
-					type='text'
-					value={searchTerm}
-					onChange={handleInputChange}
-					placeholder='Wpisz nazwę produktu...'
-				/>
+				<div style={{ position: 'relative' }}>
+					<input
+						className='navbar-input'
+						type='text'
+						value={searchTerm}
+						onChange={handleInputChange}
+						placeholder='Wpisz nazwę produktu...'
+					/>
+					{searchTerm && (
+						<FaTimes
+							style={{
+								position: 'absolute',
+								right: '-10px',
+								top: '50%',
+								transform: 'translateY(-50%)',
+								cursor: 'pointer',
+								color: 'black',
+								
+							}}
+							onClick={handleCloseClick}
+						/>
+					)}
+				</div>
 			</form>
 			{suggestions.length > 0 && searchTerm.length > 0 && (
 				<div className='search-suggestions'>

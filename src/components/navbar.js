@@ -13,7 +13,6 @@ export const Navbar = () => {
 	const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 	const IconStyle = { color: 'white', fontSize: '32px', cursor: 'pointer' };
 
-	
 	const searchAnimation = useSpring({
 		opacity: isSearchOpen ? 1 : 0,
 		transform: isSearchOpen ? 'translateY(0)' : 'translateY(-20px)',
@@ -25,19 +24,26 @@ export const Navbar = () => {
 				<Link to='/' className='name'>
 					<img src={LogoNav}></img>BigCloud
 				</Link>
-				
-			</div>
-			<div className='navbar-right'>
-            <div className='search'>
-					<FaSearch style={IconStyle} onClick={toggleSearch} />
+				<div className='search-mobile'>
+					{!isSearchOpen && <FaSearch style={IconStyle} onClick={toggleSearch} />}
 					{isSearchOpen && (
 						<animated.div style={searchAnimation}>
-							<ProductSearch />
+							<ProductSearch setIsSearchOpen={setIsSearchOpen} />
+						</animated.div>
+					)}
+				</div>
+			</div>
+			<div className='navbar-right'>
+				<div className='search-desktop'>
+					{!isSearchOpen && <FaSearch style={IconStyle} onClick={toggleSearch} />}
+					{isSearchOpen && (
+						<animated.div style={searchAnimation}>
+							<ProductSearch setIsSearchOpen={setIsSearchOpen} />
 						</animated.div>
 					)}
 				</div>
 				<div className='links'>
-					<Link to='/'> Koszyk</Link>
+					<Link to='/'>Koszyk</Link>
 					<Link to='/cart'>
 						{' '}
 						<ShoppingCart size={32} />{' '}
@@ -47,3 +53,4 @@ export const Navbar = () => {
 		</nav>
 	);
 };
+

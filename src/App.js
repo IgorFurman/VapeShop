@@ -21,7 +21,7 @@ function App() {
 			<ShopContextProvider>
 				<Router>
 					<Navbar />	
-					<AgeCheck> /</AgeCheck>			
+					<AgeCheck />			
 					<Routes>
 						<Route path='/' element={<Shop />} />
 						<Route path='/cart' element={<Cart />} />

@@ -1,4 +1,4 @@
-/* naprawić style dla mobilnych po dodaniu lupki */
+
 
 .navbar {
 	width: 100%;
@@ -22,7 +22,15 @@
 .search {
 	display: flex;
 }
-.search .navbar-input {
+
+.navbar-left .search-mobile {
+  display: none;
+}
+
+.navbar-right .search-desktop {
+  display: block;
+}
+.navbar-input  {
 	width: 100%;
 	height: 40px;
 	font-size: 22px;
@@ -79,4 +87,22 @@
 .name:hover,
 .links:hover {
 	opacity: 0.8;
+}
+
+
+/* media */
+
+@media (max-width: 578px) {
+  .navbar .navbar-left .name {
+    display: none;
+  }
+
+  .navbar .navbar-left .search-mobile {
+    display: flex;
+		margin-left: 10px;
+  }
+
+  .navbar .navbar-right .search-desktop {
+    display: none;
+  }
 }
