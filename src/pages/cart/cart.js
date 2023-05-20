@@ -4,6 +4,9 @@ import { ShopContext } from '../../context/shop-context';
 import { CartItem } from './cart-item';
 import { useNavigate } from 'react-router-dom';
 
+import { FaMoneyCheckAlt, FaShoppingCart, FaCreditCard } from "react-icons/fa";
+
+
 import './cart.css';
 
 export const Cart = () => {
@@ -26,11 +29,21 @@ export const Cart = () => {
 				})}
 			</div>
 			{totalAmount > 0 ? (
-				<div className='checkout'>
-					<p>Razem do zapłaty: {totalAmount}zł</p>
-					<button onClick={() => navigate('/')}>Kontynuj zakupy</button>
-					<button>Przejdź do płatności</button>
+			<div className='checkout'>
+			<p>Razem do zapłaty: <b>{totalAmount}zł</b></p>
+			<div className='checkout-btns-container'>
+				<div className='checkout-icon-button-box'>
+					
+					<button onClick={() => navigate('/')}>Kontynuj zakupy</button><FaShoppingCart className='checkout-icon'/>
 				</div>
+				<div className='checkout-icon-button-box'>
+					
+					<button>Przejdź do płatności</button><FaMoneyCheckAlt className='checkout-icon'/>
+				</div>
+			</div>
+		</div>
+		
+			
 			) : (
                 <>
 				<h2>Twój koszyk jest pusty</h2>

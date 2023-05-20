@@ -7,14 +7,14 @@ export const CartItem = (props) => {
     useContext(ShopContext);
 
   return (
-    <div className="cartItem">
+    <div className="cart-item">
       <img src={productImage} />
       <div className="description">
         <p>
           <b>{productName}</b>
         </p>
         <p> Cena: {price}zł</p>
-        <div className="countHandler">
+        <div className="count-handler">
           <button onClick={() => removeFromCart(id)}> - </button>
           <input
             value={cartItems[id]}

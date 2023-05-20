@@ -12,6 +12,7 @@ export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
+  console.log(filteredProducts)
 
   const [searchTerm, setSearchTerm] = useState('');
   const getDefaultCart = () => {
@@ -81,12 +82,12 @@ export const ShopContextProvider = (props) => {
     getTotalCartAmount,
     checkout,
     filteredProducts,
-    filteredProducts,
-  setFilteredProducts,
+    setFilteredProducts,
     searchTerm,
     setSearchTerm,
     products,
   };
+  
 
   return (
     <ShopContext.Provider value={contextValue}>

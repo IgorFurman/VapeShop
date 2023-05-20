@@ -8,7 +8,7 @@ import { ShopContext } from '../../context/shop-context';
 import './shop.css';
 
 export const Shop = () => {
-  const { filteredProducts} = useContext(ShopContext);
+  const { filteredProducts } = useContext(ShopContext);
   console.log(filteredProducts);
 
   if (!filteredProducts) {

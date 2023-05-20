@@ -3,7 +3,7 @@ import { ShopContext } from '../context/shop-context';
 import { FaTimes } from 'react-icons/fa'
 
 export const ProductSearch = ({ setIsSearchOpen }) => {
-	const { searchTerm, setSearchTerm, products, filterProducts, setFilteredProducts } = useContext(ShopContext);
+	const { searchTerm, setSearchTerm, products, setFilteredProducts } = useContext(ShopContext);
 
 	const [suggestions, setSuggestions] = useState([]);
 

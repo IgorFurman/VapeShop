@@ -2,12 +2,12 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
 
-
 import { AgeCheck } from './components/ageCheck';
 
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
-
+import {LoginForm} from './pages/login/login'
+import {RegistrationForm} from './pages/login/register/register'
 import { Shop } from './pages/shop/shop';
 import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
@@ -22,9 +22,11 @@ function App() {
 		<div className='App'>
 			<ShopContextProvider>
 				<Router>
-					<Navbar />	
-					<AgeCheck />			
+					<Navbar />
+					<AgeCheck />
 					<Routes>
+						<Route path='/login' element={< LoginForm/>} />
+						<Route path='/register' element={<RegistrationForm/>} />
 						<Route path='/' element={<Shop />} />
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/contact' element={<Contact />} />

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'phosphor-react';
+import { ShoppingCart,  User } from 'phosphor-react';
 import './navbar.css';
-import { ProductSearch } from './search';
+import { ProductSearch, } from './search';
 import { useSpring, animated } from 'react-spring';
+
 
 import { FaSearch } from 'react-icons/fa';
 import LogoNav from '../assets/icons8-vape-60-white.png';
@@ -43,11 +44,12 @@ export const Navbar = () => {
 					)}
 				</div>
 				<div className='links'>
-					<Link to='/'>Koszyk</Link>
-					<Link to='/cart'>
+				
+					<Link className='link' to='/cart'>
 						{' '}
 						<ShoppingCart size={32} />{' '}
 					</Link>
+					<Link className='link' to='/login'> <User size={32} /></Link>
 				</div>
 			</div>
 		</nav>
