@@ -17,9 +17,8 @@ export const Shop = () => {
 
   return (
     <section className='shop'>
-      <div className='shopTitle'>
+      <div className='shop-title'>
         <h1>BigCloud</h1>
-        
       </div>
       <div className='products'>
         <Routes>
@@ -42,4 +41,3 @@ export const Shop = () => {
     </section>
   );
 };
-

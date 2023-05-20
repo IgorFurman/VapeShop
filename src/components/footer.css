@@ -9,13 +9,11 @@ body {
 	font-size: 17px;
 }
 
-main {
-	padding: 20px;
-}
+
 
 .main-footer {
-	background-color: #999999;
-	color: #ffffff;
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
 	display: grid;
 	grid-template-columns: 1fr;
 	margin-top: 20px;

@@ -26,7 +26,7 @@ const handleScrollToTop = () => {
 
 const handleScrollAndRedirect = (path, navigate) => {
 	handleScrollToTop();
-	navigate(path);
+	return <Link to={path} />;
 };
 
 export const Footer = () => {

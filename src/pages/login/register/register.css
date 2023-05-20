@@ -1,0 +1,118 @@
+.register {
+  background: var(--color-background);
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 80%;
+  max-width: 100%;
+  padding: 30px;
+}
+
+.register h2 {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register .register-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.register .register-form div {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin-bottom: 15px;
+}
+
+.register .gender__details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.register .gender__details .category {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.register .register-form label {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: var(--color-tertiary);
+}
+
+.register .register-form input[type='text'],
+.register .register-form input[type='email'],
+.register .register-form input[type='password'] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-tertiary);
+  background: var(--color-background);
+  color: var(--color-primary);
+}
+
+.register .register-form button {
+  padding: 10px 0;
+  border-radius: 5px;
+  border: none;
+  background: var(--color-accent);
+  color: var(--color-background);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  width: 100%;
+}
+
+.register .register-form button:hover {
+  background: var(--color-highlight);
+}
+
+.register .gender__details .category label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px 15px;
+  cursor: pointer;
+  background: var(--color-background);
+  color: var(--color-primary);
+  flex-basis: 20%;
+  box-sizing: border-box;
+}
+
+.register .gender__details .category input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.register .gender__details .category .dot {
+  height: 16px;
+  width: 16px;
+  background-color: var(--color-background);
+  border-radius: 50%;
+  position: absolute;
+  left:-10px;
+  transition: all 0.3s ease;
+}
+
+.register .gender__details .category input[type='radio']:checked ~ .dot {
+  background-color: var(--color-tertiary);
+}
+
+.register .gender__details .category label:hover .dot {
+  background-color: var(--color-tertiary);
+}

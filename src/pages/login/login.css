@@ -37,6 +37,31 @@
   width: 40px;
   cursor: pointer;
 }
+
+
+.login-socials .social-icon {
+  color: #3b5998; 
+}
+
+.login-socials .social-icon:hover {
+  color: #2d4373; 
+}
+
+.login-socials .social-icon:nth-child(2) {
+  color: #db4437; 
+}
+
+.login-socials .social-icon:nth-child(2):hover {
+  color: #c53929; 
+}
+
+.login-socials .social-icon:nth-child(3) {
+  color: #000000; 
+}
+
+.login-socials .social-icon:nth-child(3):hover {
+  color: #222222;
+}
 .login-form h1 {
   margin-bottom: 20px;
 }

@@ -36,7 +36,7 @@ export const LoginForm = () => {
 
   // !!!!!!!! DOKOŃCZYĆ WERYFIKACJE TYMI PLATFORMAMI !!!!!!!!!!===//
 
-  
+
   const handleSignInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
@@ -72,7 +72,7 @@ export const LoginForm = () => {
       <div className='form-container sign-in-container'>
         <form className='login-form' onSubmit={handleSubmit}>
           <h1>Zaloguj się</h1>
-          <span>Zaloguj się na swoje konto</span>
+          
           <input
             type='email'
             value={email}

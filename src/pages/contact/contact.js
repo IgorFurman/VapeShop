@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './contact.css';
-
-import contactImg from '../../assets/form-img.png'
+import { AiOutlineMail } from 'react-icons/ai';
 
 import { app } from '../../config/firebase-config';
 
@@ -11,6 +10,7 @@ export const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [isMessageSent, setIsMessageSent] = useState(false);
 
   const db = getFirestore(app);
 
@@ -24,7 +24,7 @@ export const Contact = () => {
         message: message,
         timestamp: serverTimestamp(),
       });
-      alert("Wiadomość została wysłana!");
+      setIsMessageSent(true);
       setName('');
       setEmail('');
       setMessage('');
@@ -34,10 +34,12 @@ export const Contact = () => {
   };
 
   return (
-    <section className ='contact'>
-      <div className='contact-img'><img src={contactImg} alt="" /></div>
+    <section className='contact'>
+      <div className={`contact-img ${isMessageSent ? 'animate' : ''}`}>
+        <AiOutlineMail size={440} />
+      </div>
       <form className='contact-form' onSubmit={handleSubmit}>
-				<p className='contact-popup'>Wiadomość została wysłana</p>
+        {isMessageSent && <p className='contact-popup'>Wiadomość została wysłana</p>}
         <label className='contact-label'>
           Imię:
           <input
