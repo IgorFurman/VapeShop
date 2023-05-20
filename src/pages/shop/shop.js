@@ -8,7 +8,12 @@ import { ShopContext } from '../../context/shop-context';
 import './shop.css';
 
 export const Shop = () => {
-  const { filteredProducts, products } = useContext(ShopContext);
+  const { filteredProducts} = useContext(ShopContext);
+  console.log(filteredProducts);
+
+  if (!filteredProducts) {
+    return <div>Ładowanie...</div>; 
+  }
 
   return (
     <section className='shop'>
@@ -37,3 +42,4 @@ export const Shop = () => {
     </section>
   );
 };
+

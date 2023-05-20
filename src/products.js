@@ -29,7 +29,7 @@ export const PRODUCTS = [
         id: 3,
         productName: 'VooPoo Drag Nano 2  Pod',
         price: 129.99,
-        productImage: DragNano2,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FDrag-nano-2.png?alt=media&token=e839c5dd-c6a8-4f84-9bd0-2305a29abe0d',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 243,
     },

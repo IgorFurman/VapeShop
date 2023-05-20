@@ -3,17 +3,25 @@ import { ShopContext } from '../context/shop-context';
 import { FaTimes } from 'react-icons/fa'
 
 export const ProductSearch = ({ setIsSearchOpen }) => {
-	const { searchTerm, setSearchTerm, products } = useContext(ShopContext);
+	const { searchTerm, setSearchTerm, products, filterProducts, setFilteredProducts } = useContext(ShopContext);
+
 	const [suggestions, setSuggestions] = useState([]);
 
+	
 	const handleInputChange = (event) => {
 		const value = event.target.value;
 		setSearchTerm(value);
-		const matchingProducts = products.filter((product) =>
-			product.productName.toLowerCase().includes(value.toLowerCase())
-		);
+		const matchingProducts = products.filter((product) => {
+			const words = product.productName.toLowerCase().split(' ');
+			return words.some((word) => word.startsWith(value.toLowerCase()));
+		});
+		console.log(matchingProducts);
 		setSuggestions(matchingProducts);
+		setFilteredProducts(matchingProducts);
+		
 	};
+	
+	
 
 	const handleSuggestionClick = (productName) => {
 		setSearchTerm(productName);
@@ -24,6 +32,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
 		setSearchTerm('');
 		setSuggestions([]);
 		setIsSearchOpen(false); 
+		setFilteredProducts(products)
 	};
 
 	return (
@@ -60,6 +69,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
 							<li
 								key={product.id}
 								onMouseUp={() => handleSuggestionClick(product.productName)}
+								
 							>
 								{product.productName}
 							</li>

@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../../../context/shop-context";
-import { PRODUCTS } from "../../../products";
+
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 import "./product-details.css";
 
 export const ProductDetails = () => {
   const { id } = useParams();
-  const { addToCart, cartItems } = useContext(ShopContext);
-  const product = PRODUCTS.find((product) => product.id === Number(id));
+  const { addToCart, cartItems, products } = useContext(ShopContext);
+  const product = products.find((product) => product.id === Number(id));
 
   const [zoomIn, setZoomIn] = useState();
   const [zoomOut, setZoomOut] = useState();

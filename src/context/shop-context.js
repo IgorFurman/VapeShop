@@ -12,6 +12,7 @@ export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [searchTerm, setSearchTerm] = useState('');
   const getDefaultCart = () => {
     let cart = {};
@@ -26,10 +27,8 @@ export const ShopContextProvider = (props) => {
       try {
         const productSnapshot = await getDocs(productsCollectionRef);
         const productList = productSnapshot.docs.map(doc => doc.data());
-  
-        console.log(productList); 
-  
         setProducts(productList);
+        setFilteredProducts(productList); // 
         let defaultCart = {};
         for (let product of productList) {
             defaultCart[product.id] = 0;
@@ -71,12 +70,8 @@ export const ShopContextProvider = (props) => {
     setCartItems(getDefaultCart());
   };
 
-  const filterProducts = (searchTerm) => {
-    const filtered = products.filter((product) =>
-      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-  };
+  
+  
 
   const contextValue = {
     cartItems,
@@ -86,7 +81,8 @@ export const ShopContextProvider = (props) => {
     getTotalCartAmount,
     checkout,
     filteredProducts,
-    filterProducts,
+    filteredProducts,
+  setFilteredProducts,
     searchTerm,
     setSearchTerm,
     products,
