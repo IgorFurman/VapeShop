@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
 
-import { AgeCheck } from './components/ageCheck';
+import { AgeCheck } from './components/age-check';
 
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
@@ -10,6 +10,7 @@ import { LoginForm } from './pages/user/login/login';
 import { RegistrationForm } from './pages/user/register/register';
 import { User } from './pages/user/user-profile/user-profile';
 import { Shop } from './pages/shop/shop';
+import {LoginModal} from './components/login-modal'
 import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
 import { Product } from './pages/shop/product';
@@ -26,6 +27,8 @@ function App() {
 					<Navbar />
 					<AgeCheck />
 					<Routes>
+						
+						<Route path='/login-modal' element={<LoginModal />} />
 						<Route path='/login' element={<LoginForm />} />
 						<Route path='/register' element={<RegistrationForm />} />
 						<Route path="/profile/:id" element={<User />} />

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ReactDOM from 'react-dom';
 import 'react-datepicker/dist/react-datepicker.css';
-import './ageCheck.css';
+import './age-check.css';
 
 export function AgeCheck({ children }) {
 	const [birthDate, setBirthDate] = useState(null);

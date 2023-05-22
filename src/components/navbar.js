@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,   } from 'react-router-dom';
 import { ShoppingCart,  User } from 'phosphor-react';
 import './navbar.css';
 import { ProductSearch, } from './search';
 import { useSpring, animated } from 'react-spring';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../config/firebase-config';
 
 import { FaSearch } from 'react-icons/fa';
 import LogoNav from '../assets/icons8-vape-60-white.png';
 
 export const Navbar = () => {
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
+	const [user] = useAuthState(auth);
+
 	const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 	const IconStyle = { color: 'white', fontSize: '32px', cursor: 'pointer' };
 
@@ -49,10 +52,9 @@ export const Navbar = () => {
 						{' '}
 						<ShoppingCart size={32} />{' '}
 					</Link>
-					<Link className='link' to='/login'> <User size={32} /></Link>
+					<Link className='link' to={user ? `/profile/${user.uid}` : '/login'}> <User size={32} /></Link>
 				</div>
 			</div>
 		</nav>
 	);
 };
-

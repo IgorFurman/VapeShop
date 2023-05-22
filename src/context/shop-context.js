@@ -1,6 +1,9 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { app } from '../config/firebase-config';
+import { getFirestore, collection, getDocs, doc, setDoc, arrayUnion, arrayRemove, updateDoc } from "firebase/firestore";
+
+import { app, auth } from '../config/firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { createContext, useEffect, useState } from "react";
+import {LoginModal} from '../components/login-modal';
 
 export const ShopContext = createContext(null);
 
@@ -12,9 +15,13 @@ export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
-  console.log(filteredProducts)
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+ ;
 
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [user] = useAuthState(auth);
+
   const getDefaultCart = () => {
     let cart = {};
     for (let i = 1; i < products.length + 1; i++) {
@@ -71,8 +78,43 @@ export const ShopContextProvider = (props) => {
     setCartItems(getDefaultCart());
   };
 
+  const addToFavorites = async (itemId) => {
+    if (user) {
+      const userDocRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userDocRef, {
+            favorites: arrayUnion(itemId)
+        });
+        return "added";
+      } catch (error) {
+        console.error("Error updating favorites: ", error);
+      }
+    } else {
+      handleLoginModal();
+      return "not logged in";
+    }
+  };
+  const removeFromFavorites = async (itemId) => {
+    if (user) {
+      const userDocRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userDocRef, {
+          favorites: arrayRemove(itemId)
+        });
+      } catch (error) {
+        console.error("Error removing from favorites: ", error);
+      }
+    } else {
+      handleLoginModal();
+    }
+  };
   
-  
+const handleLoginModal = () => {
+  setIsLoginModalVisible(true);
+};
+const handleCloseLoginModal = () => {
+  setIsLoginModalVisible(false);
+};
 
   const contextValue = {
     cartItems,
@@ -86,12 +128,15 @@ export const ShopContextProvider = (props) => {
     searchTerm,
     setSearchTerm,
     products,
+    addToFavorites,
+    removeFromFavorites
   };
   
 
   return (
     <ShopContext.Provider value={contextValue}>
       {props.children}
+      <LoginModal isVisible={isLoginModalVisible} closeModal={handleCloseLoginModal} />
     </ShopContext.Provider>
   );
 };

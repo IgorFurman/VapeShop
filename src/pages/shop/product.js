@@ -2,16 +2,23 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { ShopContext } from '../../context/shop-context';
-import {  GrFavorite } from "react-icons/gr"; 
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import './product.css';
 
 export const Product = (props) => {
 	const { id, productName, price, productImage } = props.data;
-	const { addToCart, cartItems, removeFromCart, updateCartItemCount,products } =
-		useContext(ShopContext);
+	const {
+		addToCart,
+		cartItems,
+		removeFromCart,
+		updateCartItemCount,
+		addToFavorites,
+		removeFromFavorites,
+	} = useContext(ShopContext);
 	const cartItemAmount = cartItems[id];
 	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [isFavorite, setIsFavorite] = useState(false);
 
 	const handleAddToCart = () => {
 		addToCart(id);
@@ -20,6 +27,16 @@ export const Product = (props) => {
 
 	const handleCloseModal = () => {
 		setIsModalVisible(false);
+	};
+
+	const handleClick = () => {
+		if (isFavorite) {
+			removeFromFavorites(id);
+			setIsFavorite(false);
+		} else {
+			addToFavorites(id);
+			setIsFavorite(true);
+		}
 	};
 
 	return (
@@ -36,6 +53,9 @@ export const Product = (props) => {
 				</div>
 				<button className='add-to-cart-btn' onClick={handleAddToCart}>
 					Dodaj do koszyka {cartItemAmount > 0 && <>({cartItemAmount})</>}
+				</button>
+				<button className='add-to-fav-btn' onClick={handleClick}>
+					{isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
 				</button>
 			</div>
 			<Modal
