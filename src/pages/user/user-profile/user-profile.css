@@ -1,6 +1,139 @@
 .user {
   min-height: calc(100vh - 160px);
-	display: flex;
-	justify-content: center;
-	text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.box {
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 1em auto;
+  width: 70%;
+  padding: 20px 10px;
+}
+
+.user-data {
+  flex: 1;
+}
+
+.update-user-title {
+  font-size: 1.1rem;
+ 
+  margin: 10px 0;
+}
+
+.user-title
+ {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.user-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 50%;  /* Change the width as needed */
+  background-color: var(--color-tertiary);
+}
+
+.user-info {
+  margin-bottom: 5px;
+}
+
+.user-info-container {
+  text-align: left;
+  margin-left: 30px;
+}
+
+.user-edit-btn,
+.update-user-btn {
+  background-color: transparent;
+  border: 1px solid rgb(19, 19, 19);
+  border-radius: 2px;
+  min-width: 100px;
+  padding: 5px 10px;
+  
+  margin-top: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.user-edit-btn:hover,
+.update-user-btn:hover {
+  background-color: var(--color-tertiary);
+  color: white;
+  cursor: pointer;
+}
+
+.update-user-close {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.update-user-close:hover {
+  background-color: var(--color-tertiary);
+  color: white;
+  cursor: pointer;
+}
+
+.update-user-close:hover {
+  background-color: red;
+}
+
+
+.user-order-story {
+  flex: 1;
+}
+
+.user-favourite {
+  border: 1px solid #ddd;
+}
+
+/* update user */
+
+.update-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-user input {
+  margin-bottom: 0.3em;
+}
+
+/* For larger screens */
+@media screen and (min-width: 768px) {
+
+  .box {
+    max-width:100%;
+    margin: 1em 2em;
+    padding: 0 1em;
+   
+  }
+  .user {
+    flex-direction: row;
+    gap: 1.5em;
+  }
+
+  .user-info-container {
+    margin-left: 0;
+  }
+
+  .user-data,
+  .user-order-story,
+  .user-favourite {
+    flex: 1;
+  }
 }

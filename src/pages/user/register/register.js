@@ -159,7 +159,7 @@ export const RegistrationForm = () => {
               />
             </div>
             <div>
-              <label>Ulica:</label>
+              <label>Ulica i nr domu:</label>
               <input
                 type='text'
                 className='register-input'

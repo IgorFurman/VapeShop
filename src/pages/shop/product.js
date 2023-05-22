@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { ShopContext } from '../../context/shop-context';
+import {  GrFavorite } from "react-icons/gr"; 
 
 import './product.css';
 
