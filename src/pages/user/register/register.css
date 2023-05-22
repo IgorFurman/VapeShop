@@ -1,7 +1,7 @@
 .register {
   background: var(--color-background);
-  height: 100vh;
-  margin: 0 auto;
+  min-height: calc(100vh - 250px);
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +17,7 @@
 .register h2 {
   color: var(--color-primary);
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .register .register-form {
@@ -80,7 +80,9 @@
 .register .register-form button:hover {
   background: var(--color-highlight);
 }
-
+.register .gender__details .category {
+  width: 100%;
+}
 .register .gender__details .category label {
   display: flex;
   align-items: center;
@@ -115,4 +117,22 @@
 
 .register .gender__details .category label:hover .dot {
   background-color: var(--color-tertiary);
+}
+
+.register-success {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+.register-success-icon {
+  margin: 0 auto;
+}
+.register-success-link {
+  display: flex;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-align: center;
+  justify-content: center;
+  margin-top: 10px;
 }

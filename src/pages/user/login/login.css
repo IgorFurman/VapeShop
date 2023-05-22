@@ -91,6 +91,13 @@
 }
 
 
+/* error */
+
+.error-message {
+  margin-bottom: 5px;
+  color: rgb(233, 14, 14);
+}
+
  @media (max-width: 768px) {
   
  }
