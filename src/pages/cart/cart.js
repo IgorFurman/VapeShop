@@ -30,7 +30,9 @@ export const Cart = () => {
 			</div>
 			{totalAmount > 0 ? (
 			<div className='checkout'>
-			<p>Razem do zapłaty: <b>{totalAmount}zł</b></p>
+		<p>Razem do zapłaty: <b>{(Math.round(totalAmount * 100) / 100).toFixed(2)}zł</b></p>
+
+
 			<div className='checkout-btns-container'>
 				<div className='checkout-icon-button-box'>
 					

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 
+import './login-modal.css'
+
 export const LoginModal = ({ isVisible, closeModal }) => {
   return (
     <Modal

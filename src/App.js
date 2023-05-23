@@ -17,7 +17,12 @@ import { Product } from './pages/shop/product';
 import { ProductDetails } from './pages/shop/product-details/product-details';
 import { addProductsToFirebase } from './config/firebase-products';
 
+import Modal from 'react-modal';
+
 addProductsToFirebase();
+
+Modal.setAppElement('#root')
+
 
 function App() {
 	return (

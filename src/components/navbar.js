@@ -22,10 +22,16 @@ export const Navbar = () => {
 		transform: isSearchOpen ? 'translateY(0)' : 'translateY(-20px)',
 	});
 
+
+	const handleLogoClick = (e) => {
+	
+    window.location.href = '/'; // 
+  };
+
 	return (
 		<nav className='navbar'>
 			<div className='navbar-left'>
-				<Link to='/' className='name'>
+			<Link to='/' className='name' onClick={handleLogoClick}>
 					<img src={LogoNav}></img>BigCloud
 				</Link>
 				<div className='search-mobile'>

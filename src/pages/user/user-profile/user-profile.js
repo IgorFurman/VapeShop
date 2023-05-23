@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAuthState,  } from 'react-firebase-hooks/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../../../config/firebase-config';
 import { UpdateUser } from './update-user/update-user';
@@ -19,6 +20,8 @@ export const User = () => {
 
 	const [userOrderHistory, setUserOrderHistory] = useState([]);
   const [userFavourites, setUserFavourites] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -44,7 +47,17 @@ export const User = () => {
 		setIsEditMode(false)
   };
 
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+     navigate('/login')
+    } catch (error) {
+      console.error('Wystąpił błąd podczas wylogowywania.', error);
+    }
+  };
+
 	return (
+    <>
     <section className="user">
       <div className='box user-data'>
         <h2 className="user-title">Dane użytkownika</h2>
@@ -77,7 +90,12 @@ export const User = () => {
         ) : (
       <div></div>
         )}
+         
       </div>
+      
     </section>
+    <div className='user-logut-container'>
+    <button className='user-logout-btn' onClick={handleSignOut}>Wyloguj się</button></div>
+    </>
   );
 };

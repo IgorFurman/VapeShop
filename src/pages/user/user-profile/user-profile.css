@@ -2,7 +2,7 @@
   min-height: calc(100vh - 160px);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   text-align: center;
 }
 
@@ -113,6 +113,32 @@
   margin-bottom: 0.3em;
 }
 
+/* logout  */
+
+.user-logut-container {
+width: 100%;
+display: flex;
+justify-content: center;
+text-align: center;
+}
+.user-logout-btn {
+  
+  margin: 0 auto;
+  background-color: transparent;
+  border: 1px solid rgb(19, 19, 19);
+  max-width: 150px;
+  text-align: center;
+  border-radius: 1px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  transition: background-color .3s;
+  cursor: pointer;
+}
+
+.user-logout-btn:hover {
+background-color: red;
+}
+
 /* For larger screens */
 @media screen and (min-width: 768px) {
 
@@ -136,4 +162,17 @@
   .user-favourite {
     flex: 1;
   }
+  .user-logout-btn {
+    margin: auto;
+    background-color: transparent;
+    border: 1px solid rgb(19, 19, 19);
+    max-width: 250px;
+    text-align: center;
+    border-radius: 1px;
+    padding: 15px 40px;
+    
+    transition: background-color .3s;
+    cursor: pointer;
+  }
 }
+

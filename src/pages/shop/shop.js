@@ -9,7 +9,7 @@ import './shop.css';
 
 export const Shop = () => {
   const { filteredProducts } = useContext(ShopContext);
-  console.log(filteredProducts);
+ ;
 
   if (!filteredProducts) {
     return <div>Ładowanie...</div>; 

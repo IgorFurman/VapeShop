@@ -1,8 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { doc, onSnapshot } from 'firebase/firestore';
+
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { ShopContext } from '../../context/shop-context';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+
+import {LoginModal} from '../../components/login-modal'
 
 import './product.css';
 
@@ -15,9 +19,16 @@ export const Product = (props) => {
 		updateCartItemCount,
 		addToFavorites,
 		removeFromFavorites,
+		isLoggedIn,
+		showLoginModal,
+		closeLoginModal,
+		isLoginModalVisible,
+	
 	} = useContext(ShopContext);
 	const cartItemAmount = cartItems[id];
 	const [isModalVisible, setIsModalVisible] = useState(false);
+	
+
 	const [isFavorite, setIsFavorite] = useState(false);
 
 	const handleAddToCart = () => {
@@ -29,15 +40,24 @@ export const Product = (props) => {
 		setIsModalVisible(false);
 	};
 
-	const handleClick = () => {
-		if (isFavorite) {
-			removeFromFavorites(id);
-			setIsFavorite(false);
+	const handleClickAddToFav = (e) => {
+		if (isLoggedIn) {
+			if (isFavorite) {
+				removeFromFavorites(id);
+				setIsFavorite(false);
+			} else {
+				addToFavorites(id);
+				setIsFavorite(true);
+			}
 		} else {
-			addToFavorites(id);
-			setIsFavorite(true);
+			
+			if (e.target.closest('.add-to-fav-btn')) {
+				showLoginModal();
+			}
 		}
-	};
+	}
+
+
 
 	return (
 		<>
@@ -52,12 +72,13 @@ export const Product = (props) => {
 					<p>{price}zł</p>
 				</div>
 				<button className='add-to-cart-btn' onClick={handleAddToCart}>
-					Dodaj do koszyka {cartItemAmount > 0 && <>({cartItemAmount})</>}
+				Dodaj do koszyka {cartItems[id] > 0 && <>({cartItems[id]})</>}
 				</button>
-				<button className='add-to-fav-btn' onClick={handleClick}>
+				<button className='add-to-fav-btn' onClick={handleClickAddToFav}>
 					{isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
 				</button>
 			</div>
+			<LoginModal isVisible={isLoginModalVisible} closeModal={closeLoginModal}/>
 			<Modal
 				isOpen={isModalVisible}
 				onRequestClose={handleCloseModal}

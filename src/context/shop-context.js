@@ -1,120 +1,263 @@
-import { getFirestore, collection, getDocs, doc, setDoc, arrayUnion, arrayRemove, updateDoc } from "firebase/firestore";
+import {
+	getFirestore,
+	collection,
+	getDocs,
+	doc,
+	setDoc,
+  getDoc,
+	arrayUnion,
+	arrayRemove,
+	updateDoc,
+} from 'firebase/firestore';
 
 import { app, auth } from '../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { createContext, useEffect, useState } from "react";
-import {LoginModal} from '../components/login-modal';
+import { createContext, useEffect, useState } from 'react';
+import { LoginModal } from '../components/login-modal';
 
-export const ShopContext = createContext(null);
+export const ShopContext = createContext();
 
 const db = getFirestore(app);
 
-
-
 export const ShopContextProvider = (props) => {
-  const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState({});
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
- ;
+	const [products, setProducts] = useState([]);
+ 
+	const [filteredProducts, setFilteredProducts] = useState([]);
+	const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+	const [searchTerm, setSearchTerm] = useState('');
 
-  const [searchTerm, setSearchTerm] = useState('');
+	const [user, loading, error] = useAuthState(auth);
 
-  const [user] = useAuthState(auth);
-
-  const getDefaultCart = () => {
+	const getDefaultCart = (products) => {
     let cart = {};
-    for (let i = 1; i < products.length + 1; i++) {
-      cart[i] = 0;
+    for (let product of products) {
+        cart[product.id] = 0;
     }
     return cart;
-  };
-  useEffect(() => {
-    const getProductsFromFirebase = async () => {
-      const productsCollectionRef = collection(db, "products");
-      try {
-        const productSnapshot = await getDocs(productsCollectionRef);
-        const productList = productSnapshot.docs.map(doc => doc.data());
-        setProducts(productList);
-        setFilteredProducts(productList); // 
-        let defaultCart = {};
-        for (let product of productList) {
-            defaultCart[product.id] = 0;
-        }
-        setCartItems(defaultCart);
-      } catch (error) {
-        console.error("Error reading data from Firestore: ", error);
-      }
-    };
+};
 
-    getProductsFromFirebase();
-  }, []);
+const [cartItems, setCartItems] = useState(null);
+
+const getCartFromLocalStorage = async () => {
+    const savedCartItems = localStorage.getItem('cartItems');
+    return savedCartItems ? JSON.parse(savedCartItems) : getDefaultCart(products);
+};
 
 
-  const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = products.find((product) => product.id === Number(item));
-        totalAmount += cartItems[item] * itemInfo.price;
-      }
-    }
-    return totalAmount;
-  };
+useEffect(() => {
+  getProductsFromFirebase().then(productList => {
+      setProducts(productList);
+      setFilteredProducts(productList);
+      getCartFromLocalStorage().then(localCart => {
+          setCartItems(localCart);
+      });
+  });
+  setIsLoading(false);
+}, []);
+
+useEffect(() => {
+ 
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}, [cartItems]);
+
+const getProductsFromFirebase = async () => {
+  const productsCollectionRef = collection(db, 'products');
+  try {
+    const productSnapshot = await getDocs(productsCollectionRef);
+    const productList = productSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
+    setProducts(productList);
+    setFilteredProducts(productList);
+    setCartItems(getDefaultCart(productList));
+    setIsLoading(false);
+  } catch (error) {
+    console.error('Error reading data from Firestore: ', error);
+  }
+};
+
+useEffect(() => {
+  getProductsFromFirebase();
+}, []);
+
+
+	const getTotalCartAmount = () => {
+		let totalAmount = 0;
+		for (const item in cartItems) {
+			if (cartItems[item] > 0) {
+				let itemInfo = products.find((product) => product.id === Number(item));
+				totalAmount += cartItems[item] * itemInfo.price;
+			}
+		}
+		return totalAmount;
+	};
 
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    setCartItems((prevCartItems) => {
+      const newCartItems = { ...prevCartItems };
+      newCartItems[itemId] = (newCartItems[itemId] || 0) + 1;
+      return newCartItems;
+    });
   };
-
+  
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartItems((prevCartItems) => {
+      const newCartItems = { ...prevCartItems };
+      newCartItems[itemId] = (newCartItems[itemId] || 0) - 1;
+      return newCartItems;
+    });
   };
-
+  
   const updateCartItemCount = (newAmount, itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
+    setCartItems((prevCartItems) => {
+      const newCartItems = { ...prevCartItems };
+      newCartItems[itemId] = newAmount;
+      return newCartItems;
+    });
   };
 
-  const checkout = () => {
-    setCartItems(getDefaultCart());
-  };
+	const checkout = () => {
+		setCartItems(getDefaultCart());
+		if (!user) {
+			localStorage.removeItem('cartItems');
+		}
+	};
 
-  const addToFavorites = async (itemId) => {
-    if (user) {
-      const userDocRef = doc(db, "users", user.uid);
-      try {
-        await updateDoc(userDocRef, {
-            favorites: arrayUnion(itemId)
-        });
-        return "added";
-      } catch (error) {
-        console.error("Error updating favorites: ", error);
-      }
-    } else {
-      handleLoginModal();
-      return "not logged in";
+	const addToFavorites = async (itemId) => {
+		if (user) {
+			const userDocRef = doc(db, 'users', user.uid);
+			try {
+				await updateDoc(userDocRef, {
+					favorites: arrayUnion(itemId),
+				});
+				return 'added';
+			} catch (error) {
+				console.error('Error updating favorites: ', error);
+			}
+		} else {
+			handleLoginModal();
+			return 'not logged in';
+		}
+	};
+	const removeFromFavorites = async (itemId) => {
+		if (user) {
+			const userDocRef = doc(db, 'users', user.uid);
+			try {
+				await updateDoc(userDocRef, {
+					favorites: arrayRemove(itemId),
+				});
+			} catch (error) {
+				console.error('Error removing from favorites: ', error);
+			}
+		} else {
+			handleLoginModal();
+		}
+	};
+
+	const handleLoginModal = () => {
+		setIsLoginModalVisible(true);
+	
+	};
+	const handleCloseLoginModal = () => {
+		setIsLoginModalVisible(false);
+	};
+
+	const isLoggedIn = () => {
+		return !!user;
+	};
+
+
+
+	// card items saving
+
+useEffect(() => {
+    if(cartItems) {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-  };
-  const removeFromFavorites = async (itemId) => {
-    if (user) {
-      const userDocRef = doc(db, "users", user.uid);
-      try {
-        await updateDoc(userDocRef, {
-          favorites: arrayRemove(itemId)
-        });
-      } catch (error) {
-        console.error("Error removing from favorites: ", error);
+}, [cartItems]);
+
+
+  function safeParseJSON(json) {
+    try {
+      let parsed = JSON.parse(json);
+      if (parsed && typeof parsed === 'object') {
+        return parsed;
       }
-    } else {
-      handleLoginModal();
+    } catch (e) {}
+    return {};
+  }
+  useEffect(() => {
+    if (!loading && user) {
+      
+      const localCart = safeParseJSON(localStorage.getItem('cartItems')) || {};
+      if (Object.keys(localCart).length) {
+        const newCartItems = { ...cartItems, ...localCart };
+        setCartItems(newCartItems);  
+        updateCartInFirestore(newCartItems);
+        localStorage.removeItem('cartItems');
+      } else {
+      
+        getCartFromFirestore();
+      }
+    } else if (!loading && !user) {
+     
+      const localCart = safeParseJSON(localStorage.getItem('cartItems')) || {};
+      setCartItems({ ...cartItems, ...localCart }); 
+    }
+  }, [user, loading]);
+
+useEffect(() => {
+  const getAndSetDefaultCart = async () => {
+      const productList = await getProductsFromFirebase();
+      setCartItems(getDefaultCart(productList));
+  };
+  getAndSetDefaultCart();
+}, []);
+
+
+
+
+  const getCartFromFirestore = async () => {
+    if (user) {
+      const cartDocRef = doc(db, 'carts', user.uid);
+      try {
+        const cartSnapshot = await getDoc(cartDocRef);
+        if (cartSnapshot.exists()) {
+          setCartItems(cartSnapshot.data());
+        }
+      } catch (error) {
+        console.error('Error reading cart data from Firestore: ', error);
+      }
     }
   };
   
-const handleLoginModal = () => {
-  setIsLoginModalVisible(true);
-};
-const handleCloseLoginModal = () => {
-  setIsLoginModalVisible(false);
-};
+  const updateCartInFirestore = async (cartData) => {
+    if (user) {
+      const cartDocRef = doc(db, 'carts', user.uid);
+      try {
+        await setDoc(cartDocRef, cartData);
+        console.log('Cart data updated in Firestore');
+      } catch (error) {
+        console.error('Error updating cart data in Firestore: ', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getProductsFromFirebase();
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!user) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  }, [cartItems, user]);
+
+ 
+
+  // CONTEXT VALUE 
 
   const contextValue = {
     cartItems,
@@ -128,15 +271,17 @@ const handleCloseLoginModal = () => {
     searchTerm,
     setSearchTerm,
     products,
+    isLoggedIn,
     addToFavorites,
-    removeFromFavorites
-  };
-  
+    removeFromFavorites,
+    handleLoginModal,
+    handleCloseLoginModal,
+    isLoginModalVisible,
+};
 
-  return (
-    <ShopContext.Provider value={contextValue}>
-      {props.children}
-      <LoginModal isVisible={isLoginModalVisible} closeModal={handleCloseLoginModal} />
-    </ShopContext.Provider>
-  );
+	return (
+		<ShopContext.Provider value={contextValue}>
+			{!isLoading ? props.children : <div>Ładowanie...</div>}
+		</ShopContext.Provider>
+	);
 };
