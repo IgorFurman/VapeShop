@@ -78,7 +78,7 @@ export const Product = (props) => {
 					{isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
 				</button>
 			</div>
-			<LoginModal isVisible={isLoginModalVisible} closeModal={closeLoginModal}/>
+			<LoginModal isVisible={isLoginModalVisible} />
 			<Modal
 				isOpen={isModalVisible}
 				onRequestClose={handleCloseModal}
