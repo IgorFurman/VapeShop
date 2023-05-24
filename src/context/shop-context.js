@@ -1,95 +1,97 @@
 import {
-	getFirestore,
-	collection,
-	getDocs,
-	doc,
-	setDoc,
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
   getDoc,
-	arrayUnion,
-	arrayRemove,
-	updateDoc,
+  arrayUnion,
+  arrayRemove,
+  updateDoc,
 } from 'firebase/firestore';
 
 import { app, auth } from '../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createContext, useEffect, useState } from 'react';
 
-
 export const ShopContext = createContext();
 
 const db = getFirestore(app);
 
 export const ShopContextProvider = (props) => {
-	const [products, setProducts] = useState([]);
- 
-	const [filteredProducts, setFilteredProducts] = useState([]);
-	const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
-	const [searchTerm, setSearchTerm] = useState('');
+  const [products, setProducts] = useState([]);
 
-	const [user, loading, error] = useAuthState(auth);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
-	const getDefaultCart = (products) => {
+  const [user, loading, error] = useAuthState(auth);
+
+  const getDefaultCart = () => {
     let cart = {};
-    for (let product of products) {
-        cart[product.id] = 0;
+    for (let i = 1; i < products.length + 1; i++) {
+      cart[i] = 0;
     }
     return cart;
-};
+  };
 
-const [cartItems, setCartItems] = useState(null);
+  const [cartItems, setCartItems] = useState(null);
 
-const getCartFromLocalStorage = async () => {
+  const getCartFromLocalStorage = async () => {
     const savedCartItems = localStorage.getItem('cartItems');
-    return savedCartItems ? JSON.parse(savedCartItems) : getDefaultCart(products);
-};
+    return savedCartItems ? JSON.parse(savedCartItems) : getDefaultCart();
+  };
 
-
-useEffect(() => {
-  getProductsFromFirebase().then(productList => {
+  useEffect(() => {
+    getProductsFromFirebase().then((productList) => {
       setProducts(productList);
       setFilteredProducts(productList);
-      getCartFromLocalStorage().then(localCart => {
-          setCartItems(localCart);
+      getCartFromLocalStorage().then((localCart) => {
+        setCartItems(localCart);
       });
-  });
-  setIsLoading(false);
-}, []);
-
-useEffect(() => {
- 
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-}, [cartItems]);
-
-const getProductsFromFirebase = async () => {
-  const productsCollectionRef = collection(db, 'products');
-  try {
-    const productSnapshot = await getDocs(productsCollectionRef);
-    const productList = productSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}));
-    setProducts(productList);
-    setFilteredProducts(productList);
-    setCartItems(getDefaultCart(productList));
+    });
     setIsLoading(false);
-  } catch (error) {
-    console.error('Error reading data from Firestore: ', error);
-  }
-};
+  }, []);
 
-useEffect(() => {
-  getProductsFromFirebase();
-}, []);
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
+  const getProductsFromFirebase = async () => {
+    const productsCollectionRef = collection(db, 'products');
+    try {
+      const productSnapshot = await getDocs(productsCollectionRef);
+      const productList = productSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return productList;
+    } catch (error) {
+      console.error('Error reading data from Firestore: ', error);
+      return [];
+    }
+  };
 
-	const getTotalCartAmount = () => {
-		let totalAmount = 0;
-		for (const item in cartItems) {
-			if (cartItems[item] > 0) {
-				let itemInfo = products.find((product) => product.id === Number(item));
-				totalAmount += cartItems[item] * itemInfo.price;
-			}
-		}
-		return totalAmount;
-	};
+  useEffect(() => {
+    getProductsFromFirebase().then((productList) => {
+      setProducts(productList);
+      setFilteredProducts(productList);
+      setCartItems(getDefaultCart());
+      setIsLoading(false);
+    });
+  }, []);
+
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        let itemInfo = products.find((product) => product.id === Number(item));
+        totalAmount += cartItems[item] * itemInfo.price;
+      }
+    }
+    return totalAmount;
+  };
 
   const addToCart = (itemId) => {
     setCartItems((prevCartItems) => {
@@ -98,7 +100,7 @@ useEffect(() => {
       return newCartItems;
     });
   };
-  
+
   const removeFromCart = (itemId) => {
     setCartItems((prevCartItems) => {
       const newCartItems = { ...prevCartItems };
@@ -106,7 +108,7 @@ useEffect(() => {
       return newCartItems;
     });
   };
-  
+
   const updateCartItemCount = (newAmount, itemId) => {
     setCartItems((prevCartItems) => {
       const newCartItems = { ...prevCartItems };
@@ -115,43 +117,44 @@ useEffect(() => {
     });
   };
 
-	const checkout = () => {
-		setCartItems(getDefaultCart());
-		if (!user) {
-			localStorage.removeItem('cartItems');
-		}
-	};
+  const checkout = () => {
+    setCartItems(getDefaultCart());
+    if (!user) {
+      localStorage.removeItem('cartItems');
+    }
+  };
 
-	const addToFavorites = async (itemId) => {
-		if (user) {
-			const userDocRef = doc(db, 'users', user.uid);
-			try {
-				await updateDoc(userDocRef, {
-					favorites: arrayUnion(itemId),
-				});
-				return 'added';
-			} catch (error) {
-				console.error('Error updating favorites: ', error);
-			}
-		} else {
-			handleShowLoginModal();
-			return 'not logged in';
-		}
-	};
-	const removeFromFavorites = async (itemId) => {
-		if (user) {
-			const userDocRef = doc(db, 'users', user.uid);
-			try {
-				await updateDoc(userDocRef, {
-					favorites: arrayRemove(itemId),
-				});
-			} catch (error) {
-				console.error('Error removing from favorites: ', error);
-			}
-		} else {
-			handleShowLoginModal();
-		}
-	};
+  const addToFavorites = async (itemId) => {
+    if (user) {
+      const userDocRef = doc(db, 'users', user.uid);
+      try {
+        await updateDoc(userDocRef, {
+          favorites: arrayUnion(itemId),
+        });
+        return 'added';
+      } catch (error) {
+        console.error('Error updating favorites: ', error);
+      }
+    } else {
+      handleShowLoginModal();
+      return 'not logged in';
+    }
+  };
+
+  const removeFromFavorites = async (itemId) => {
+    if (user) {
+      const userDocRef = doc(db, 'users', user.uid);
+      try {
+        await updateDoc(userDocRef, {
+          favorites: arrayRemove(itemId),
+        });
+      } catch (error) {
+        console.error('Error removing from favorites: ', error);
+      }
+    } else {
+      handleShowLoginModal();
+    }
+  };
 
   const handleShowLoginModal = () => {
     setIsLoginModalVisible(true);
@@ -161,20 +164,15 @@ useEffect(() => {
     setIsLoginModalVisible(false);
   };
 
-	const isLoggedIn = () => {
-		return !!user;
-	};
+  const isLoggedIn = () => {
+    return !!user;
+  };
 
-
-
-	// card items saving
-
-useEffect(() => {
-    if(cartItems) {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  useEffect(() => {
+    if (cartItems) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
-}, [cartItems]);
-
+  }, [cartItems]);
 
   function safeParseJSON(json) {
     try {
@@ -185,36 +183,33 @@ useEffect(() => {
     } catch (e) {}
     return {};
   }
+
   useEffect(() => {
     if (!loading && user) {
-      
-      const localCart = safeParseJSON(localStorage.getItem('cartItems')) || {};
+      const localCart =
+        safeParseJSON(localStorage.getItem('cartItems')) || {};
       if (Object.keys(localCart).length) {
         const newCartItems = { ...cartItems, ...localCart };
-        setCartItems(newCartItems);  
+        setCartItems(newCartItems);
         updateCartInFirestore(newCartItems);
         localStorage.removeItem('cartItems');
       } else {
-      
         getCartFromFirestore();
       }
     } else if (!loading && !user) {
-     
-      const localCart = safeParseJSON(localStorage.getItem('cartItems')) || {};
-      setCartItems({ ...cartItems, ...localCart }); 
+      const localCart =
+        safeParseJSON(localStorage.getItem('cartItems')) || {};
+      setCartItems({ ...cartItems, ...localCart });
     }
   }, [user, loading]);
 
-useEffect(() => {
-  const getAndSetDefaultCart = async () => {
+  useEffect(() => {
+    const getAndSetDefaultCart = async () => {
       const productList = await getProductsFromFirebase();
-      setCartItems(getDefaultCart(productList));
-  };
-  getAndSetDefaultCart();
-}, []);
-
-
-
+      setCartItems(getDefaultCart());
+    };
+    getAndSetDefaultCart();
+  }, []);
 
   const getCartFromFirestore = async () => {
     if (user) {
@@ -229,7 +224,7 @@ useEffect(() => {
       }
     }
   };
-  
+
   const updateCartInFirestore = async (cartData) => {
     if (user) {
       const cartDocRef = doc(db, 'carts', user.uid);
@@ -255,9 +250,7 @@ useEffect(() => {
     }
   }, [cartItems, user]);
 
- 
-
-  // CONTEXT VALUE 
+  // CONTEXT VALUE
 
   const contextValue = {
     cartItems,
@@ -274,15 +267,15 @@ useEffect(() => {
     isLoggedIn,
     addToFavorites,
     removeFromFavorites,
-    showLoginModal: handleShowLoginModal, 
-    closeLoginModal: handleCloseLoginModal, 
+    showLoginModal: handleShowLoginModal,
+    closeLoginModal: handleCloseLoginModal,
     isLoginModalVisible,
     auth,
   };
 
-	return (
-		<ShopContext.Provider value={contextValue}>
-			{!isLoading ? props.children : <div>Ładowanie...</div>}
-		</ShopContext.Provider>
-	);
+  return (
+    <ShopContext.Provider value={contextValue}>
+      {!isLoading ? props.children : <div>Ładowanie...</div>}
+    </ShopContext.Provider>
+  );
 };

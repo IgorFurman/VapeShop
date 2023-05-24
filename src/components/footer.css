@@ -26,12 +26,14 @@ body {
 	font-size: 30px;
 	font-weight: 500;
 	margin-bottom: 10px;
+	color: #ffffffcc;
 }
 
 .main-footer h3 {
 	font-size: 25px;
 	font-weight: 500;
 	margin-bottom: 10px;
+	color: #ffffffcc;
 }
 
 .main-footer ul {
@@ -115,6 +117,60 @@ footer a {
 	color: #ffffff;
 	text-decoration: none;
 }
+
+
+/* newsletter */
+.newsletter-footer {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: center;
+}
+
+.newsletter-heading {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.newsletter-info {
+  font-size: 16px;
+  color: #555555;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.newsletter-form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+	transition: background-color .3s;
+}
+
+.newsletter-form button:hover {
+  background-color: var(--color-tertiary)
+}
+
+.newsletter-success {
+	color: rgb(12, 143, 12);
+}
+
+/*media */
 
 @media (min-width: 578px) {
 	body {
