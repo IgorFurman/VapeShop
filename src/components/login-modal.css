@@ -1,3 +1,14 @@
+
+.login-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+}
+
 .login-popup-box {
   position: fixed;
   top: 50%;
@@ -62,30 +73,21 @@
 
 /* animation */
 
-.fade-enter {
-  opacity: 0;
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
 }
 
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 300ms ease-in;
+.fade-out {
+  animation: fadeOut 0.3s ease-out;
 }
 
-.fade-exit {
-  opacity: 1;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 300ms ease-out;
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
-.login-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.25);
-  z-index: 9999;
-}

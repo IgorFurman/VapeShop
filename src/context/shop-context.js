@@ -13,7 +13,7 @@ import {
 import { app, auth } from '../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createContext, useEffect, useState } from 'react';
-import { LoginModal } from '../components/login-modal';
+
 
 export const ShopContext = createContext();
 
@@ -134,7 +134,7 @@ useEffect(() => {
 				console.error('Error updating favorites: ', error);
 			}
 		} else {
-			handleLoginModal();
+			handleShowLoginModal();
 			return 'not logged in';
 		}
 	};
@@ -149,17 +149,17 @@ useEffect(() => {
 				console.error('Error removing from favorites: ', error);
 			}
 		} else {
-			handleLoginModal();
+			handleShowLoginModal();
 		}
 	};
 
-	const handleLoginModal = () => {
-		setIsLoginModalVisible(true);
-	
-	};
-	const handleCloseLoginModal = () => {
-		setIsLoginModalVisible(false);
-	};
+  const handleShowLoginModal = () => {
+    setIsLoginModalVisible(true);
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsLoginModalVisible(false);
+  };
 
 	const isLoggedIn = () => {
 		return !!user;
@@ -274,10 +274,11 @@ useEffect(() => {
     isLoggedIn,
     addToFavorites,
     removeFromFavorites,
-    handleLoginModal,
-    handleCloseLoginModal,
+    showLoginModal: handleShowLoginModal, 
+    closeLoginModal: handleCloseLoginModal, 
     isLoginModalVisible,
-};
+    auth,
+  };
 
 	return (
 		<ShopContext.Provider value={contextValue}>
