@@ -73,14 +73,7 @@ export const ShopContextProvider = (props) => {
     }
   };
 
-  useEffect(() => {
-    getProductsFromFirebase().then((productList) => {
-      setProducts(productList);
-      setFilteredProducts(productList);
-      setCartItems(getDefaultCart());
-      setIsLoading(false);
-    });
-  }, []);
+
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;

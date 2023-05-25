@@ -1,19 +1,11 @@
-import smokRpm5Pro from './assets/products/smokRpm5Pro.jpg'
-import KITAspireZeroG from './assets/products/KIT Aspire Zero.G.jpg'
-import LostVapeThelmaMiniPodMod from './assets/products/LostVapeThelmaMiniPodMod.jpg'
-import GeekVapeObelisk65 from './assets/products/geekvape-obelisk-65-fc-paris-saint-germain-1.jpg'
-import VooPooDragS from './assets/products/voopoo-drag-s.jpg'
-import DragNano2 from './assets/products/Drag-nano-2.png'
-import VooPooDragSProPodModKit from './assets/products/voopoo-drag-s-pro-4.jpg'
-import AspireFlexusStick from './assets/products/aspire-flexus-stick-silver.jpg'
-import GeekVapeWenaxH1 from './assets/products/Geekvape-Wenax-H1-Pod-Kit.jpg'
+
 
 export const PRODUCTS = [
     {
         id: 1,
         productName: 'SMOK RPM 5 PRO Pod',
         price: 189.99,
-        productImage: smokRpm5Pro,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FsmokRpm5Pro.jpg?alt=media&token=3b90668f-4a8f-44a6-ac0c-99f1b4c223d5',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 43,
     },
@@ -21,7 +13,7 @@ export const PRODUCTS = [
         id: 2,
         productName: 'KIT Aspire Zero.G',
         price: 499.99,
-        productImage: KITAspireZeroG,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FKIT%20Aspire%20Zero.G.jpg?alt=media&token=33c1750d-b6eb-4cfa-81f3-0034b529a4d2',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 73,
     },
@@ -29,7 +21,7 @@ export const PRODUCTS = [
         id: 3,
         productName: 'VooPoo Drag Nano 2  Pod',
         price: 129.99,
-        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FDrag-nano-2.png?alt=media&token=e839c5dd-c6a8-4f84-9bd0-2305a29abe0d',
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FDrag-nano-2.png?alt=media&token=0787da25-6044-4d3f-9a61-14caeaec65e8',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 243,
     },
@@ -37,15 +29,15 @@ export const PRODUCTS = [
         id: 4,
         productName: 'Lost Vape Thelema Mini Pod Mod',
         price: 299.99,
-        productImage: LostVapeThelmaMiniPodMod,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FLostVapeThelmaMiniPodMod.jpg?alt=media&token=17c2a432-e5df-48b5-a2a0-5b843bff65cc',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 434,
     },
     {
         id: 5,
         productName: 'GeekVape Obelisk 65 FC Mod Pod Kit',
-        price: 199.99,
-        productImage: GeekVapeObelisk65,
+        price: 299.99,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Fgeekvape-obelisk-65-fc-paris-saint-germain-1.jpg?alt=media&token=0b746386-d021-4b35-bd7c-ba90591078ac',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 3,
     },
@@ -53,7 +45,7 @@ export const PRODUCTS = [
         id: 6,
         productName: 'VooPoo Drag S Mod Pod',
         price: 189.99,
-        productImage: VooPooDragS,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Fvoopoo-drag-s.jpg?alt=media&token=6e6a794a-5f92-46d0-9726-169d36c74631',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 13,
     },
@@ -61,7 +53,7 @@ export const PRODUCTS = [
         id: 7,
         productName: 'VooPoo Drag S Pro Pod Mod Kit',
         price: 289.99,
-        productImage: VooPooDragSProPodModKit,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Fvoopoo-drag-s-pro-4.jpg?alt=media&token=7d09bcbc-2339-4266-9105-2a501b7240b0',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 23,
     },
@@ -69,7 +61,7 @@ export const PRODUCTS = [
         id: 8,
         productName: 'Aspire Flexus Stick Pod',
         price: 109.99,
-        productImage: AspireFlexusStick,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Faspire-flexus-stick-silver.jpg?alt=media&token=7548ba26-99a3-4a71-a233-a384e45043a5',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 63,
     },
@@ -77,8 +69,48 @@ export const PRODUCTS = [
         id: 9,
         productName: 'GeekVapeWenaxH1',
         price: 99.99,
-        productImage: GeekVapeWenaxH1,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FGeekvape-Wenax-H1-Pod-Kit.jpg?alt=media&token=0df66533-40ac-4706-bc63-4cdf33b18893',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
         availability: 33,
     },
+    {
+        id: 10,
+        productName: 'SMOK Novo 4 Mini',
+        price: 159.99,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FsmokNovo4mini.jpg?alt=media&token=3a94b633-f530-42fd-8c03-74478361a070',
+        description: 'The SMOK Novo 4 Mini offers a compact and sleek design with a built-in 900mAh battery. This device comes with two LP1 Meshed 0.8Ω coils and features a 2ml refillable pod. Ideal for on-the-go vapers looking for a balance between flavor and vapor production.',
+        availability: 56,
+    },
+    {
+        id: 11,
+        productName: 'Aspire Nautilus Prime X',
+        price: 219.99,
+        productImage:'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2F6.png?alt=media&token=23b337ac-3923-4f9b-857e-d41bd9d83eb7',
+        description: 'The Aspire Nautilus Prime X is a pod mod device that features an external 18650 battery and can fire up to 60W. It comes with two pods: the N-pod for Nautilus coils and the B-pod for BP coils. Both have a 4ml e-liquid capacity. This device provides a fully customizable experience.',
+        availability: 22,
+    },
+    {
+        id: 12,
+        productName: 'GeekVape Aegis Legend 2',
+        price: 299.99,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FgeekvapeAegisLegend2.jpg?alt=media&token=ead10a2a-ad5d-4201-ab6d-d2d82ab17c68',
+        description: 'The GeekVape Aegis Legend 2 is a durable and reliable device with a maximum output of 200W. Its tri-proof technology makes it water, dust, and shock resistant. The device comes with a Z Sub-ohm 2021 Tank and offers a balanced vaping experience.',
+        availability: 75,
+    },
+    {
+        id: 13,
+        productName: 'Vaporesso XROS Mini',
+        price: 99.99,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Fvaporesso-xros-mini.jpg?alt=media&token=4e992c66-fdb8-4082-b16a-b3971364ef3d',
+        description: 'The Vaporesso XROS Mini is a sleek, compact pod system with a 1000mAh internal battery. It has a 2ml e-liquid capacity and features a draw-activated mechanism. Ideal for vapers looking for a convenient and easy-to-use device.',
+        availability: 35,
+    },
+    {
+        id: 14,
+        productName: 'Uwell Caliburn G2',
+        price: 119.99,
+        productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Fkit-pod-uwell-caliburn-g2.jpg?alt=media&token=fd19a8b9-4bbb-4e6d-9f81-55207f3e4840',
+        description: 'The Uwell Caliburn G2 pod kit features a 750mAh battery and a 2ml refillable pod. The device offers an adjustable airflow and two different firing modes. Perfect for vapers who enjoy a more personalized vaping experience.',
+        availability: 60,
+    }
 ]
