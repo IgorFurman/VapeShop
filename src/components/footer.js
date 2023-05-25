@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation  } from 'react-router-dom';
 import { app } from '../config/firebase-config';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
@@ -22,12 +22,15 @@ const handleScrollAndRedirect = (path, navigate) => {
   navigate(path);
 };
 
-export const Footer = () => {
+export const Footer = ( ) => {
   const currentYear = new Date().getFullYear();
   const iconStyle = { color: '#ffffff', fontSize: '30px' };
 	const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   
+  const location = useLocation();
+  const pathsToExclude = ['/profile', '/login', '/register', '/contact', '/products'];
+const showNewsletter = !pathsToExclude.some(path => location.pathname.startsWith(path));
 
 
   const db = getFirestore(app);
@@ -50,7 +53,7 @@ export const Footer = () => {
 
   return (
     <>
-      
+      {showNewsletter && (
 			<div className="newsletter-footer">
       <h2 className='newsletter-heading'>Zapisz się na nasz newsletter!</h2>
       <p className='newsletter-info'>Otrzymuj najnowsze informacje o naszych promocjach i nowościach.</p>
@@ -63,7 +66,7 @@ export const Footer = () => {
         </form>
       )}
     </div>
-      
+      )}
 
       <div className="main-footer">
         <div className="logoinfo">

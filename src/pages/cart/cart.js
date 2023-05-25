@@ -20,13 +20,13 @@ export const Cart = () => {
 				<h2>Twój koszyk</h2>
 			</div>
 			<div className='cartItems'>
-				{products.map((product) => {
-					if (cartItems[product.id] !== 0) {
-						return <CartItem data={product} />;
-					} else {
-						return null;
-					}
-				})}
+			{products.map((product) => {
+    if (cartItems[product.id]) {
+        return <CartItem data={product} />;
+    } else {
+        return null;
+    }
+})}
 			</div>
 			{totalAmount > 0 ? (
 			<div className='checkout'>
