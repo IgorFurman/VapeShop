@@ -22,7 +22,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
   const handleSuggestionClick = (productId) => {
     setSearchTerm('');
     setSuggestions([]);
-    navigate(`/products/${productId}`); // Przekierowanie do ProductDetails
+    navigate(`/products/${productId}`); 
   };
 
   const handleCloseClick = () => {
@@ -40,9 +40,9 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
   };
 
   return (
-    <div>
+    <div className='search-containter'>
       <form>
-        <div style={{ position: 'relative' }}>
+        <div >
           <input
             className='navbar-input'
             type='text'

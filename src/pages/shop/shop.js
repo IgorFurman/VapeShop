@@ -1,6 +1,11 @@
 import React, { useContext, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+
+import { Navbar } from '../../components/navbar';
+import { ProductSearch } from '../../components/search'
+
+
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -63,6 +68,7 @@ export const Shop = () => {
 
   return (
     <section className='shop'>
+      <Navbar style={{Zindex:9999}}/>
       <Carousel
         showThumbs={false}
         showStatus={false}

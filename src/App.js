@@ -1,5 +1,11 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useLocation,
+} from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
 
 import { AgeCheck } from './components/age-check';
@@ -10,7 +16,7 @@ import { LoginForm } from './pages/user/login/login';
 import { RegistrationForm } from './pages/user/register/register';
 import { User } from './pages/user/user-profile/user-profile';
 import { Shop } from './pages/shop/shop';
-import {LoginModal} from './components/login-modal'
+import { LoginModal } from './components/login-modal';
 import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
 import { Product } from './pages/shop/product';
@@ -21,33 +27,58 @@ import Modal from 'react-modal';
 
 addProductsToFirebase();
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
+export const NavbarContext = createContext();
+
+export const NavbarProvider = ({ children }) => {
+  const [navbarVisible, setNavbarVisible] = useState(true);
+
+  return (
+    <NavbarContext.Provider value={{ navbarVisible, setNavbarVisible }}>
+      {children}
+    </NavbarContext.Provider>
+  );
+};
 
 function App() {
-	return (
-		<div className='App'>
-			<ShopContextProvider>
-				<Router>
-					<Navbar />
-					<AgeCheck />
-					<Routes>
-						
-						<Route path='/login-modal' element={<LoginModal />} />
-						<Route path='/login' element={<LoginForm />} />
-						<Route path='/register' element={<RegistrationForm />} />
-						<Route path="/profile/:id" element={<User />} />
-
-						<Route path='/' element={<Shop />} />
-						<Route path='/cart' element={<Cart />} />
-						<Route path='/contact' element={<Contact />} />
-						<Route path='/products/:id' element={<ProductDetails />} />
-					</Routes>
-					<Footer />
-				</Router>
-			</ShopContextProvider>
-		</div>
-	);
+  return (
+    <NavbarProvider>
+      <ShopContextProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </ShopContextProvider>
+    </NavbarProvider>
+  );
 }
 
-export default App;
+const AppContent = () => {
+  const location = useLocation();
+  const { navbarVisible, setNavbarVisible } = useContext(NavbarContext);
+
+  useEffect(() => {
+    setNavbarVisible(location.pathname !== '/');
+  }, [location, setNavbarVisible]);
+
+  return (
+    <div className='App'>
+      {navbarVisible && <Navbar />}
+      <AgeCheck />
+      <Routes>
+        <Route path='/login-modal' element={<LoginModal />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/register' element={<RegistrationForm />} />
+        <Route path="/profile/:id" element={<User />} />
+
+        <Route path='/' element={<Shop />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/products/:id' element={<ProductDetails />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
+}
+
+export default App
