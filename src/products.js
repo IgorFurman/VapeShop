@@ -1,12 +1,12 @@
-import smokRpm5Pro from './assets/smokRpm5Pro.jpg'
-import KITAspireZeroG from './assets/KIT Aspire Zero.G.jpg'
-import LostVapeThelmaMiniPodMod from './assets/LostVapeThelmaMiniPodMod.jpg'
-import GeekVapeObelisk65 from './assets/geekvape-obelisk-65-fc-paris-saint-germain-1.jpg'
-import VooPooDragS from './assets/voopoo-drag-s.jpg'
-import DragNano2 from './assets/Drag-nano-2.png'
-import VooPooDragSProPodModKit from './assets/voopoo-drag-s-pro-4.jpg'
-import AspireFlexusStick from './assets/aspire-flexus-stick-silver.jpg'
-import GeekVapeWenaxH1 from './assets/Geekvape-Wenax-H1-Pod-Kit.jpg'
+import smokRpm5Pro from './assets/products/smokRpm5Pro.jpg'
+import KITAspireZeroG from './assets/products/KIT Aspire Zero.G.jpg'
+import LostVapeThelmaMiniPodMod from './assets/products/LostVapeThelmaMiniPodMod.jpg'
+import GeekVapeObelisk65 from './assets/products/geekvape-obelisk-65-fc-paris-saint-germain-1.jpg'
+import VooPooDragS from './assets/products/voopoo-drag-s.jpg'
+import DragNano2 from './assets/products/Drag-nano-2.png'
+import VooPooDragSProPodModKit from './assets/products/voopoo-drag-s-pro-4.jpg'
+import AspireFlexusStick from './assets/products/aspire-flexus-stick-silver.jpg'
+import GeekVapeWenaxH1 from './assets/products/Geekvape-Wenax-H1-Pod-Kit.jpg'
 
 export const PRODUCTS = [
     {

@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { doc, onSnapshot } from 'firebase/firestore';
 
 import { Link } from 'react-router-dom';
-import Modal from 'react-modal';
 import { ShopContext } from '../../context/shop-context';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import { LoginModal } from '../../components/login-modal';
+import { AddToCartModal } from '../../components/add-to-card-modal';
 
-import './product.css';
+import './shop&product.css';
 
 export const Product = (props) => {
 	const { id, productName, price, productImage } = props.data;
@@ -25,9 +25,7 @@ export const Product = (props) => {
 		favorites,
 		auth,
 	} = useContext(ShopContext);
-	const cartItemAmount = cartItems[id];
 	const [isModalVisible, setIsModalVisible] = useState(false);
-
 	const [isFavorite, setIsFavorite] = useState(favorites && favorites[id]);
 
 	const handleAddToCart = () => {
@@ -74,39 +72,17 @@ export const Product = (props) => {
 				</button>
 			</div>
 			<LoginModal isVisible={isLoginModalVisible} closeLoginModal={closeLoginModal} />
-			<Modal
-				isOpen={isModalVisible}
-				onRequestClose={handleCloseModal}
-				className='popup-container'
-			>
-				<div className='popup-box'>
-					<h3 className='popup-message'>
-						{productName} został dodany do koszyka!
-					</h3>
-					<div className='popup-quantity-control'>
-						<img src={productImage} alt={productName} className='popup-image' />
-						<div className='popup-add-remove-container'>
-							<button onClick={() => removeFromCart(id)}> - </button>
-							<input
-								value={cartItems[id]}
-								onChange={(e) =>
-									updateCartItemCount(Number(e.target.value), id)
-								}
-								min='0'
-							/>
-							<button onClick={() => addToCart(id)}> + </button>
-						</div>
-					</div>
-					<div className='popup-buttons'>
-						<button onClick={handleCloseModal} className='popup-button'>
-							Kontynuuj zakupy
-						</button>
-						<Link to='/cart' className='popup-button'>
-							Przejdź do koszyka
-						</Link>
-					</div>
-				</div>
-			</Modal>
+			<AddToCartModal 
+				isModalVisible={isModalVisible} 
+				handleCloseModal={handleCloseModal} 
+				productName={productName} 
+				productImage={productImage} 
+				cartItems={cartItems} 
+				addToCart={addToCart} 
+				removeFromCart={removeFromCart} 
+				updateCartItemCount={updateCartItemCount} 
+				id={id}
+			/>
 		</>
 	);
 };
