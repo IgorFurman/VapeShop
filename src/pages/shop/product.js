@@ -1,4 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
+
+
+
 import { doc, onSnapshot } from 'firebase/firestore';
 
 import { Link } from 'react-router-dom';
@@ -38,6 +41,19 @@ export const Product = (props) => {
     setIsModalVisible(false);
     closeLoginModal();
   };
+
+	const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+	const handleClickLink = () => {
+		setTimeout(() => {
+			handleScrollToTop(); 
+		}, 0);
+	};
 
   const handleClickAddToFav = (e) => {
     if (auth.currentUser) {
@@ -87,7 +103,7 @@ export const Product = (props) => {
   return (
     <>
       <div className='product'>
-        <Link to={`/products/${id}`}>
+        <Link to={`/products/${id}`} onClick={handleClickLink}>
           <img src={productImage} alt={productName} />
         </Link>
         <div className='product-description'>

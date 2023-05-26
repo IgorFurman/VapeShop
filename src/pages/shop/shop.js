@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
+import Select from 'react-select';
 import { Routes, Route } from 'react-router-dom';
 
 import { Navbar } from '../../components/navbar';
@@ -24,7 +25,7 @@ import './shop&product.css';
 export const Shop = () => {
   const [sortMode, setSortMode] = useState("none");
   const { products } = useContext(ShopContext);
-  const productsRef = useRef();
+  const SelectRef = useRef();
   if (!products) {
     return <div>Ładowanie...</div>;
   }
@@ -56,11 +57,18 @@ export const Shop = () => {
     },
   ];
 
+  const options = [
+    { value: 'default', label: 'Sortuj...' },
+    
+    { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
+    { value: 'priceLowToHigh', label: 'Cena: najniższa do najwyższej' },
+    { value: 'alphabetical', label: 'Alfabetycznie' }
+  ];
+  
   const handleScrollToProducts = () => {
-    const offset = window.pageYOffset + productsRef.current.offsetTop;
     window.scrollTo({
       left: 0,
-      top: offset,
+      top: SelectRef.current.offsetTop - 20,
       behavior: 'smooth',
     });
   };
@@ -126,13 +134,27 @@ export const Shop = () => {
           </div>
         ))}
       </Carousel>
-      <select onChange={(e) => setSortMode(e.target.value)}>
-  <option value="none">Bez sortowania</option>
-  <option value="priceHighToLow">Cena: najwyższa do najniższej</option>
-  <option value="priceLowToHigh">Cena: najniższa do najwyższej</option>
-  <option value="alphabetical">Alfabetycznie</option>
-</select>
-      <div className='products' ref={productsRef}>
+      <div className='shop-select-container' ref={SelectRef}>
+      <div className='select-wrapper'>
+  <Select 
+    options={options} 
+    defaultValue={options[0]} 
+    isSearchable={false}
+    onChange={selectedOption => setSortMode(selectedOption.value)} 
+    styles={{
+      control: (base) => ({
+        ...base,
+        width: '100%',
+      }),
+      menu: (base) => ({
+        ...base,
+        width: '100%'
+      })
+    }}
+  />
+  </div>
+</div>
+      <div className='products' >
         <Routes>
           <Route
             path='/'

@@ -36,6 +36,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
     if (event.keyCode === 13) {
       event.preventDefault();
       navigate(`/search-results?term=${searchTerm}`);
+      setSearchTerm('')
     }
   };
 
@@ -51,7 +52,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
             onKeyDown={handleSearch}
             placeholder='Wpisz nazwę produktu...'
           />
-          {searchTerm && (
+       
             <FaTimes
               style={{
                 position: 'absolute',
@@ -63,7 +64,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
               }}
               onClick={handleCloseClick}
             />
-          )}
+         
         </div>
       </form>
       {suggestions.length > 0 && searchTerm.length > 0 && (
