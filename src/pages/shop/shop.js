@@ -1,10 +1,8 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-
 import { Navbar } from '../../components/navbar';
-import { ProductSearch } from '../../components/search'
-
+import { ProductSearch } from '../../components/search';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -24,9 +22,10 @@ import headerImage4 from '../../assets/header-img-4.jpg';
 import './shop&product.css';
 
 export const Shop = () => {
-  const { filteredProducts } = useContext(ShopContext);
+  const [sortMode, setSortMode] = useState("none");
+  const { products } = useContext(ShopContext);
   const productsRef = useRef();
-  if (!filteredProducts) {
+  if (!products) {
     return <div>Ładowanie...</div>;
   }
 
@@ -66,9 +65,27 @@ export const Shop = () => {
     });
   };
 
+  // filter
+ 
+  let sortedProducts = [...products]
+
+  switch (sortMode) {
+    case "priceHighToLow":
+      sortedProducts.sort((a, b) => b.price - a.price);
+      break;
+    case "priceLowToHigh":
+      sortedProducts.sort((a, b) => a.price - b.price);
+      break;
+    case "alphabetical":
+      sortedProducts.sort((a, b) => a.productName.localeCompare(b.productName));
+      break;
+    default:
+      break;
+  }
+
   return (
     <section className='shop'>
-      <Navbar style={{Zindex:9999}}/>
+      <Navbar style={{ Zindex: 9999 }} />
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -88,36 +105,40 @@ export const Shop = () => {
               <p>{slide.text}</p>
               <p>{slide.description}</p>
             </div>
-     
-              <div className='social-media-icons'>
-                <a href='#'>
-                  <FaInstagram />
-                </a>
-                <a href='#'>
-                  <FaFacebook />
-                </a>
-                <a href='#'>
-                  <FaTiktok />
-                </a>
-              </div>
-   
-          
-              <div className='shop-button'>
-                <button onClick={handleScrollToProducts}>
-                  Przejdź do sklepu
-                </button>
-              </div>
-       
+
+            <div className='social-media-icons'>
+              <a href='#'>
+                <FaInstagram />
+              </a>
+              <a href='#'>
+                <FaFacebook />
+              </a>
+              <a href='#'>
+                <FaTiktok />
+              </a>
+            </div>
+
+            <div className='shop-button'>
+              <button onClick={handleScrollToProducts}>
+                Przejdź do sklepu
+              </button>
+            </div>
           </div>
         ))}
       </Carousel>
+      <select onChange={(e) => setSortMode(e.target.value)}>
+  <option value="none">Bez sortowania</option>
+  <option value="priceHighToLow">Cena: najwyższa do najniższej</option>
+  <option value="priceLowToHigh">Cena: najniższa do najwyższej</option>
+  <option value="alphabetical">Alfabetycznie</option>
+</select>
       <div className='products' ref={productsRef}>
         <Routes>
           <Route
             path='/'
             element={
               <>
-                {filteredProducts.map((product) => (
+                {sortedProducts.map((product) => (
                   <Product key={product.id} data={product} />
                 ))}
               </>
@@ -125,7 +146,7 @@ export const Shop = () => {
           />
           <Route
             path='/products/:id'
-            element={<ProductDetails products={filteredProducts} />}
+            element={<ProductDetails products={products} />}
           />
         </Routes>
       </div>

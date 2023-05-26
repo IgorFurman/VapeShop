@@ -20,6 +20,7 @@ import { LoginModal } from './components/login-modal';
 import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
 import { Product } from './pages/shop/product';
+import { SearchResults } from './pages/search-results/search-results';
 import { ProductDetails } from './pages/shop/product-details/product-details';
 import { addProductsToFirebase } from './config/firebase-products';
 
@@ -74,6 +75,7 @@ const AppContent = () => {
         <Route path='/' element={<Shop />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path="search-results" element={<SearchResults />} />
         <Route path='/products/:id' element={<ProductDetails />} />
       </Routes>
       <Footer />
