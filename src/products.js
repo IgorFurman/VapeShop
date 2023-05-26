@@ -67,7 +67,7 @@ export const PRODUCTS = [
     },
     {
         id: 9,
-        productName: 'GeekVapeWenaxH1',
+        productName: 'GeekVape Wenax H1',
         price: 99.99,
         productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FGeekvape-Wenax-H1-Pod-Kit.jpg?alt=media&token=0df66533-40ac-4706-bc63-4cdf33b18893',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',

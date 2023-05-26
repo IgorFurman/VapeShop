@@ -5,18 +5,20 @@ import {
   doc,
   setDoc,
   getDoc,
+  deleteDoc,
   arrayUnion,
   arrayRemove,
   updateDoc,
+  onSnapshot,
 } from 'firebase/firestore';
 
-import { app, auth } from '../config/firebase-config';
+import { app, auth, db } from '../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createContext, useEffect, useState } from 'react';
 
 export const ShopContext = createContext();
 
-const db = getFirestore(app);
+
 
 export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
@@ -25,9 +27,11 @@ export const ShopContextProvider = (props) => {
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [favorites, setFavorites] = useState({});
 
   const [user, loading, error] = useAuthState(auth);
 
+  
   const getDefaultCart = () => {
     let cart = {};
     for (let i = 1; i < products.length + 1; i++) {
@@ -114,38 +118,6 @@ export const ShopContextProvider = (props) => {
     setCartItems(getDefaultCart());
     if (!user) {
       localStorage.removeItem('cartItems');
-    }
-  };
-
-  const addToFavorites = async (itemId) => {
-    if (user) {
-      const userDocRef = doc(db, 'users', user.uid);
-      try {
-        await updateDoc(userDocRef, {
-          favorites: arrayUnion(itemId),
-        });
-        return 'added';
-      } catch (error) {
-        console.error('Error updating favorites: ', error);
-      }
-    } else {
-      handleShowLoginModal();
-      return 'not logged in';
-    }
-  };
-
-  const removeFromFavorites = async (itemId) => {
-    if (user) {
-      const userDocRef = doc(db, 'users', user.uid);
-      try {
-        await updateDoc(userDocRef, {
-          favorites: arrayRemove(itemId),
-        });
-      } catch (error) {
-        console.error('Error removing from favorites: ', error);
-      }
-    } else {
-      handleShowLoginModal();
     }
   };
 
@@ -243,6 +215,37 @@ export const ShopContextProvider = (props) => {
     }
   }, [cartItems, user]);
 
+  // adding to fav 
+
+  useEffect(() => {
+    if (auth.currentUser) {
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      const unsub = onSnapshot(userRef, (doc) => {
+        setFavorites(doc.data().favorites || {});
+      });
+      return () => unsub();
+    }
+  }, [auth]);
+  const addToFavorites = async (productId) => {
+    const userRef = doc(db, "users", auth.currentUser.uid);
+    
+    setFavorites((prevFavorites) => {
+      const newFavorites = { ...prevFavorites, [productId]: true };
+      setDoc(userRef, { favorites: newFavorites }, { merge: true });
+      return newFavorites;
+    });
+  };
+
+  const removeFromFavorites = async (productId) => {
+    const userRef = doc(db, "users", auth.currentUser.uid);
+    
+    setFavorites((prevFavorites) => {
+      const newFavorites = { ...prevFavorites };
+      delete newFavorites[productId];
+      setDoc(userRef, { favorites: newFavorites }, { merge: true });
+      return newFavorites;
+    });
+  };
   // CONTEXT VALUE
 
   const contextValue = {
@@ -258,12 +261,14 @@ export const ShopContextProvider = (props) => {
     setSearchTerm,
     products,
     isLoggedIn,
-    addToFavorites,
-    removeFromFavorites,
     showLoginModal: handleShowLoginModal,
     closeLoginModal: handleCloseLoginModal,
     isLoginModalVisible,
     auth,
+    addToFavorites,
+    removeFromFavorites,
+    favorites,
+    db
   };
 
   return (
@@ -271,4 +276,4 @@ export const ShopContextProvider = (props) => {
       {!isLoading ? props.children : <div>Ładowanie...</div>}
     </ShopContext.Provider>
   );
-};
+  }
