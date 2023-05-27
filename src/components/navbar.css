@@ -1,20 +1,30 @@
-
-
 .navbar {
 	position: relative;
-  width: 100%;
-  height: 80px;
-  background-color: var(--color-tertiary);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	width: 100%;
+	height: 80px;
+	background-color: var(--color-tertiary);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	z-index: 1000;
+}
+
+.navbar .burger-menu {
+	display: none;
 }
 
 .navbar-right {
 	display: flex;
 	align-items: center;
 	gap: 20px;
+	justify-content: flex-end;
+}
+
+.navbar-left {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	justify-content: flex-start;
 }
 
 .navbar-left img {
@@ -26,15 +36,14 @@
 }
 
 .navbar-left .search-mobile {
-  display: none;
+	display: none;
 }
 
 .navbar-right .search-desktop {
-  display: block;
-	transition: opacity .3s,
-	
+	display: block;
+	transition: opacity 0.3s;
 }
-.navbar-input  {
+.navbar-input {
 	width: 100%;
 	height: 40px;
 	font-size: 22px;
@@ -45,7 +54,6 @@
 
 .search-container {
 	position: relative;
-	
 }
 
 .search-suggestions {
@@ -58,29 +66,28 @@
 	background-color: #fff;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	z-index: 1001;
-  }
-  
-  .search-suggestions ul {
-		position: relative;
+}
+
+.search-suggestions ul {
+	position: relative;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	z-index:9999;
-	
-  }
-  
-  .search-suggestions li {
-		position: relative;
+	z-index: 9999;
+}
+
+.search-suggestions li {
+	position: relative;
 	padding: 8px 16px;
 	cursor: pointer;
 	z-index: 9999;
+}
 
-  }
-  
-  .search-suggestions li:hover {
+.search-suggestions li:hover {
 	background-color: #f4f4f4;
-  }
-  
+}
+
+/*  */
 .name {
 	font-size: 32px;
 	color: white;
@@ -88,7 +95,7 @@
 	align-items: end;
 	cursor: pointer;
 	text-decoration: none;
-	transition: opacity .3s,
+	transition: opacity 0.3s;
 }
 
 .links {
@@ -104,7 +111,7 @@
 	font-size: 25px;
 }
 .link {
-	transition: opacity .3s,
+	transition: opacity 0.3s;
 }
 .name:hover,
 .link:hover,
@@ -112,20 +119,44 @@
 	opacity: 0.8;
 }
 
-
 /* media */
 
 @media (max-width: 578px) {
-  .navbar .navbar-left .name {
-    display: none;
-  }
+	.navbar .navbar-left .name {
+		display: none;
+	}
 
-  .navbar .navbar-left .search-mobile {
-    display: flex;
+	.navbar .navbar-left .search-mobile {
+		display: flex;
 		margin-left: 10px;
-  }
+	}
 
-  .navbar .navbar-right .search-desktop {
-    display: none;
-  }
+	.navbar .navbar-right .search-desktop {
+		display: none;
+	}
+
+	.navbar .burger-menu {
+		display: inline-block;
+		margin-right: 10px; /* added margin */
+	}
+
+	.navbar .desktop-only {
+		display: none;
+	}
+	/* FIX BURGER */
+	.burger-menu {
+		position: relative;
+		width: 4px;
+		height: 40px;
+		z-index: 1;
+	}
+	.overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5); 
+		z-index: 1; 
+	}
 }
