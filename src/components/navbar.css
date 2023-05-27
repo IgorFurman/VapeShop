@@ -1,4 +1,5 @@
 .navbar {
+	
 	position: relative;
 	width: 100%;
 	height: 80px;
@@ -7,6 +8,26 @@
 	justify-content: space-between;
 	align-items: center;
 	z-index: 1000;
+}
+
+.navbar-icons-container-all {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+}
+
+.navbar-icons-container-individual  {
+	font-size: 12px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.icon-label {
+	color: var(--color-background);
+	
 }
 
 .navbar .burger-menu {
@@ -46,8 +67,8 @@
 .navbar-input {
 	width: 100%;
 	height: 40px;
-	font-size: 22px;
-	margin-left: 20px;
+	font-size: 18px;
+	margin-right: 20px;
 }
 
 /* SEARCH */
@@ -121,7 +142,7 @@
 
 /* media */
 
-@media (max-width: 578px) {
+@media (max-width: 768px) {
 	.navbar .navbar-left .name {
 		display: none;
 	}
@@ -137,16 +158,27 @@
 
 	.navbar .burger-menu {
 		display: inline-block;
-		margin-right: 10px; /* added margin */
+		margin-right: 10px; 
 	}
 
 	.navbar .desktop-only {
 		display: none;
 	}
+
+	.navbar-input {
+		font-size: 18px;
+		margin-left: 5px;
+	}
+	.search-suggestions {
+		
+		left: 5px;
+	
+		
+	}
 	/* FIX BURGER */
 	.burger-menu {
 		position: relative;
-		width: 4px;
+		width: 40px;
 		height: 40px;
 		z-index: 1;
 	}
@@ -160,3 +192,4 @@
 		z-index: 1; 
 	}
 }
+

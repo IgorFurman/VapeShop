@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ShopContext } from '../context/shop-context';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const ProductSearch = ({ setIsSearchOpen }) => {
   const { searchTerm, setSearchTerm, products, setFilteredProducts } = useContext(ShopContext);
   const [suggestions, setSuggestions] = useState([]);
+  const [isMediaWide, setIsMediaWide] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -40,6 +41,33 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
     }
   };
 
+  const closeButtonStyle = {
+    fontSize: '24px',
+    position: 'absolute',
+    right: isMediaWide ? '0px' : '5px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    cursor: 'pointer',
+    color: 'black',
+  };
+
+  // media queries for close btn 
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    setIsMediaWide(mediaQuery.matches);
+
+    const handleMediaChange = (event) => {
+      setIsMediaWide(event.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaChange);
+    };
+  }, []);
+
   return (
     <div className='search-containter'>
       <form>
@@ -54,14 +82,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
           />
        
             <FaTimes
-              style={{
-                position: 'absolute',
-                right: '-10px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                cursor: 'pointer',
-                color: 'black',
-              }}
+              style={closeButtonStyle}
               onClick={handleCloseClick}
             />
          

@@ -9,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../config/firebase-config';
 
 import { FaSearch, FaBars, FaHome, FaTimes } from 'react-icons/fa';
+import { IoSearchOutline } from 'react-icons/io5';
 import LogoNav from '../assets/icons8-vape-60-white.png';
 
 export const Navbar = () => {
@@ -88,8 +89,8 @@ export const Navbar = () => {
 		top: '10px',
 		right: '10px',
 		padding: '5px',
-
 		fontSize: '32px',
+
 		border: '1px solid var(--color-background)',
 		borderRadius: '50%',
 		cursor: 'pointer',
@@ -124,16 +125,51 @@ export const Navbar = () => {
 					)}
 				</div>
 				<div className='navbar-right'>
-					<div className='search-desktop'>
-						{!isSearchOpen && (
-							<FaSearch style={IconStyle} onClick={toggleSearch} />
-						)}
-						{isSearchOpen && (
-							<animated.div style={searchAnimation}>
-								<ProductSearch setIsSearchOpen={setIsSearchOpen} />
-							</animated.div>
-						)}
-					</div>
+    <div className='navbar-icons-container-all'>
+        <div className='search-desktop'>
+            {!isSearchOpen && (
+                <div className="navbar-icons-container-individual">
+                    <IoSearchOutline 
+                        style={IconStyle} 
+                        onClick={toggleSearch} 
+                        aria-label="Szukaj" 
+                        title="Szukaj"
+                    />
+                    <span className="icon-label">Szukaj</span>
+                </div>
+            )}
+            {isSearchOpen && (
+                <animated.div style={searchAnimation}>
+                    <ProductSearch setIsSearchOpen={setIsSearchOpen} />
+                </animated.div>
+            )}
+        </div>
+        <div className='links'>
+            <Link className='link desktop-only' to='/cart'>
+                <div className="navbar-icons-container-individual">
+                    <ShoppingCart 
+                        style={IconStyle} 
+                        aria-label="Koszyk" 
+                        title="Koszyk"
+                    />
+                    <span className="icon-label">Koszyk</span>
+                </div>
+            </Link>
+            <Link
+                className='link desktop-only'
+                to={user ? `/profile/${user.uid}` : '/login'}
+            >
+                <div className="navbar-icons-container-individual">
+                    <User 
+                        style={IconStyle} 
+                        aria-label="Zaloguj się" 
+                        title="Zaloguj się"
+                    />
+                    <span className="icon-label">Zaloguj się</span>
+                </div>
+            </Link>
+        </div>
+    </div>
 
 					<div className='burger-menu'>
 						{!isOpen && <FaBars style={IconStyle} onClick={toggleMenu} />}
@@ -159,17 +195,6 @@ export const Navbar = () => {
 								<User style={burgerMenuIconStyle} /> Panel użytkownika
 							</a>
 						</Menu>
-					</div>
-					<div className='links'>
-						<Link className='link desktop-only' to='/cart'>
-							<ShoppingCart size={32} />
-						</Link>
-						<Link
-							className='link desktop-only'
-							to={user ? `/profile/${user.uid}` : '/login'}
-						>
-							<User size={32} />
-						</Link>
 					</div>
 				</div>
 			</nav>
