@@ -8,6 +8,7 @@ export const PRODUCTS = [
       availability: 43,
       bestseller: false,
       discount: false,
+      oldPrice: null,
     },
     {
       id: 2,
@@ -18,7 +19,7 @@ export const PRODUCTS = [
       availability: 73,
       bestseller: true,
       discount: true,
-      discountedPrice: 399.99,
+      oldPrice: 549.99,
     },
     {
       id: 3,
@@ -29,7 +30,7 @@ export const PRODUCTS = [
       availability: 243,
       bestseller: false,
       discount: false,
-   
+      oldPrice: null,
     },
     {
       id: 4,
@@ -40,7 +41,7 @@ export const PRODUCTS = [
       availability: 434,
       bestseller: false,
       discount: true,
-      discountedPrice: 259.99
+      oldPrice: 349.99,
     },
     {
       id: 5,
@@ -51,6 +52,7 @@ export const PRODUCTS = [
       availability: 3,
       bestseller: true,
       discount: false,
+      oldPrice: null,
     },
     {
       id: 6,
@@ -60,7 +62,8 @@ export const PRODUCTS = [
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
       availability: 13,
       bestseller: false,
-      discount: false
+      discount: false,
+      oldPrice: null,
     },
     {
       id: 7,
@@ -71,6 +74,7 @@ export const PRODUCTS = [
       availability: 23,
       bestseller: false,
       discount: false,
+      oldPrice: null,
     },
     {
       id: 8,
@@ -80,7 +84,8 @@ export const PRODUCTS = [
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
       availability: 63,
       bestseller: false,
-      discount: false
+      discount: false,
+      oldPrice: null,
     },
     {
       id: 9,
@@ -91,7 +96,7 @@ export const PRODUCTS = [
       availability: 33,
       bestseller: false,
       discount: true,
-      discountedPrice: 89.99,
+      oldPrice: 179.99,
     },
     {
       id: 10,
@@ -102,6 +107,7 @@ export const PRODUCTS = [
       availability: 56,
       bestseller: false,
       discount: false,
+      oldPrice: null,
     },
     {
       id: 11,
@@ -112,7 +118,7 @@ export const PRODUCTS = [
       availability: 22,
       bestseller: true,
       discount: true,
-      discountedPrice: 189.99
+      oldPrice: 389.99,
     },
     {
       id: 12,
@@ -123,6 +129,7 @@ export const PRODUCTS = [
       availability: 75,
       bestseller: false,
       discount: false,
+      oldPrice: null,
     },
     {
       id: 13,
@@ -133,6 +140,7 @@ export const PRODUCTS = [
       availability: 35,
       bestseller: false,
       discount: false,
+      oldPrice: null,
     },
     {
       id: 14,
@@ -143,6 +151,7 @@ export const PRODUCTS = [
       availability: 60,
       bestseller: true,
       discount: true,
-      discountedPrice: 89.99,
-    }
+      oldPrice: 199.99,
+    },
   ];
+  

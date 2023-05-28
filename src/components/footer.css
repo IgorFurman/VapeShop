@@ -156,7 +156,7 @@ footer a {
 .newsletter-footer {
   background-color: #f9f9f9;
   padding: 20px;
-	
+
   text-align: center;
 }
 
@@ -185,23 +185,56 @@ footer a {
   margin-right: 10px;
 }
 
-.newsletter-form button {
-  padding: 10px 20px;
+.newsletter-form-btn {
+  padding: 15px 30px;
   font-size: 16px;
-  background-color: var(--color-secondary);
-  color: #ffffff;
+  color: white;
+  background-color: var(--color-tertiary);
   border: none;
-  border-radius: 4px;
+  border-radius: 30px;
   cursor: pointer;
-	transition: background-color .3s;
+  transition: 0.5s;
+  position: relative;
+  overflow: visible;
+  outline: none;
+ 
 }
 
-.newsletter-form button:hover {
-  background-color: var(--color-tertiary)
+.newsletter-form-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: rgba(224, 228, 233, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
+
+.newsletter-form-btn:hover::before {
+  opacity: 1;
+  animation: bubbleEffect 1s ease-in-out infinite;
+}
+
+@keyframes bubbleEffect {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+
 
 .newsletter-success {
-	color: rgb(12, 143, 12);
+  color: rgb(12, 143, 12);
 }
 
 /*media */
@@ -304,3 +337,8 @@ footer a {
 		}
 	}
   
+
+
+	/*  KEY FRAMES */
+
+	

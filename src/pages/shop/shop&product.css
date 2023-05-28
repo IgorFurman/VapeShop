@@ -82,22 +82,53 @@
 	opacity: 0.5;
 }
 .shop-button {
-	position: absolute;
-	bottom: 10px;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 10;
+  position: relative;
+  overflow: hidden;
 }
 
 .shop-button button {
-	background-color: transparent;
-	border: 2px solid var(--color-background);
-	color: var(--color-background);
-	min-width: 100px;
-	padding: 5px 10px;
-	border-radius: 15px;
-	margin-top: 10px;
+  background-color: transparent;
+  border: 2px solid currentColor;
+  border-radius: 20px;
+  color: var(--color-background);
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 100;
+  padding: 5px 10px;
+  position: relative;
+  text-decoration: none;
+  transition: 0.2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
 	cursor: pointer;
+}
+
+.shop-button button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-tertiary);
+  border-radius: 20px;
+  transform: translate(-100%, 0) rotate(20deg);
+  transform-origin: top left;
+  transition: 0.2s transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.shop-button button:hover::after {
+  transform: translate(0, 0);
+}
+
+.shop-button button:hover {
+  border: 2px solid var(--color-accent);
+  color: var(--color-background);
+
+  will-change: transform;
 }
 
 /* carusel  */
@@ -139,18 +170,17 @@
 	border-radius: 15px;
 	padding: 20px 0;
 	width: 310px;
-	height: 320px;
+	height: 360px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start; 
 	align-items: center;
 	box-shadow: 2px 2px 5px var(--color-tertiary);
 	cursor: pointer;
 	transition: scale 0.3s, font-weight 0.3s;
+	margin-bottom: 20px;
 }
-.products .product:last-of-type {
-  margin-bottom: 20px;
-}
+
 
 .product-link {
   position: relative;
@@ -192,8 +222,12 @@
 
 .product .product-description {
 	text-align: center;
-	margin-bottom: auto;
-	font-size: 18px;
+	margin-bottom: 0;
+	font-size: 16px;
+}
+
+.product .product-description p {
+	margin-bottom: 0;
 }
 
 
@@ -217,7 +251,7 @@
 
 .product-discount-badge {
   position: absolute;
-  top: 10px;
+  top: 15px;
   left:0px;
   background: rgb(253, 28, 28);
   color: white;
@@ -239,19 +273,58 @@
   border-top: 30px solid red;
 }
 .add-to-cart-btn {
-	background-color: transparent;
+	position: absolute;
+	bottom: 0;
+	color: var(--color-primary);
 	border: 2px solid rgb(19, 19, 19);
 	min-width: 100px;
 	padding: 5px 10px;
 	border-radius: 15px;
 	margin-top: 10px;
+	margin-bottom: 15px;
+	cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    overflow: hidden;
+    transition: all 0.5s;
+    z-index: 1;
+    background: transparent;
+}
+
+.add-to-cart-btn:before,
+.add-to-cart-btn:after {
+    content: "";
+    position: absolute;
+		top: -2px;    
+    left: -2px;  
+    width: calc(100% + 4px); 
+    height: calc(100% + 4px); 
+    background: var(--color-tertiary);
+    z-index: -1;
+    transition: transform 0.5s;
+}
+
+.add-to-cart-btn:before {
+    transform: translateX(-200%);
+}
+
+.add-to-cart-btn:after {
+    transform: translateX(200%);
+    transition-delay: 0.2s;
 }
 
 .add-to-cart-btn:hover {
-	background-color: var(--color-tertiary);
 	color: white;
-	cursor: pointer;
 }
+
+.add-to-cart-btn:hover:before,
+.add-to-cart-btn:hover:after {
+	transform: translateX(0);
+}
+
+
+
 
 .add-to-fav-btn {
 	position: absolute;
@@ -274,9 +347,15 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 
+	
+
 	.product {
 		width: 300px;
-		height: 350px;
+		height: 360px;
+	}
+
+	.add-to-cart-btn {
+		font-size: 14px;
 	}
   .social-media-icons {
  
@@ -292,7 +371,7 @@
 		gap: 50px;
 	}
 	.product .product-description {
-		font-size: 19px;
+		font-size: 16px;
 	}
   .social-media-icons {
  
@@ -313,22 +392,22 @@
 	}
 
 	.product {
+		padding: 5px 0;
 		width: 300px;
 		height: 420px;
 	}
 
 	.product img {
 		width: 250px;
-		height: 250px;
+		height: 270px;
 	}
 
 	.product .product-description {
-		font-size: 23px;
+		font-size: 17px;
 	}
 
 	.add-to-cart-btn {
-		padding: 10px 20px;
-		margin-top: 20px;
+		font-size: 16px;
 	}
   .social-media-icons {
  
@@ -337,3 +416,10 @@
    
   }
 }
+
+
+
+
+
+
+

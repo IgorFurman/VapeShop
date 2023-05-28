@@ -2,6 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import { doc, onSnapshot } from 'firebase/firestore';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../context/shop-context';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
@@ -20,7 +23,7 @@ export const Product = (props) => {
 		productImage,
 		bestseller,
 		discount,
-		discountedPrice,
+		oldPrice,
 	} = props.data;
 	const {
 		addToCart,
@@ -36,6 +39,14 @@ export const Product = (props) => {
 		auth,
 		db,
 	} = useContext(ShopContext);
+   // AOS ANIMATION 
+
+useEffect(() => {
+  AOS.init({
+    once: true,
+    duration : 1000
+  });
+}, []);
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [isFavorite, setIsFavorite] = useState(favorites && favorites[id]);
 
@@ -76,19 +87,17 @@ export const Product = (props) => {
 		}
 	};
 
-	const calculateDiscountPercentage = (originalPrice, discountedPrice) => {
-		const discount = originalPrice - discountedPrice;
-		const discountPercentage = (discount / originalPrice) * 100;
-
-		return Math.round(discountPercentage);
-	};
+  const calculateDiscountPercentage = (originalPrice, currentPrice) => {
+    const discount = originalPrice - currentPrice;
+    const discountPercentage = (discount / originalPrice) * 100;
+  
+    return Math.round(discountPercentage);
+  };
 
 	useEffect(() => {
 		let unsubscribe;
 
-		console.log('auth:', auth);
-		console.log('db:', db);
-		console.log('favorites:', favorites);
+		
 
 		if (auth.currentUser && db) {
 			unsubscribe = onSnapshot(
@@ -116,7 +125,7 @@ export const Product = (props) => {
 
 	return (
 		<>
-			<div className='product'>
+			<div className='product' data-aos-anchor-placement="top-bottom" data-aos="fade-up">
 				<Link
 					to={`/products/${id}`}
 					onClick={handleClickLink}
@@ -126,7 +135,7 @@ export const Product = (props) => {
 
           {discount && (
           <div className='product-discount-badge'>
-            {calculateDiscountPercentage(price, discountedPrice)}%
+            {calculateDiscountPercentage(oldPrice, price)}%
           </div>
         )}
 
@@ -146,15 +155,14 @@ export const Product = (props) => {
 					</p>
 					{discount ? (
 						<>
-           
-							<p className='product-discount-old-price'>{price} zł</p>
-							<p className='product-discount-new-price'>{discountedPrice} zł </p>
+							<p className='product-discount-old-price'>{oldPrice} zł</p>
+							<p className='product-discount-new-price'>{price} zł </p>
 						</>
 					) : (
 						<p>{price} zł</p>
 					)}
 				</div>
-				<button className='add-to-cart-btn' onClick={handleAddToCart}>
+				<button className=' add-to-cart-btn' onClick={handleAddToCart}>
 					Dodaj do koszyka{' '}
 					{cartItems && cartItems[id] > 0 && <>({cartItems[id]})</>}
 				</button>

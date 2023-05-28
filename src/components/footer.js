@@ -98,15 +98,16 @@ export const Footer = () => {
 		width: '30px',
 		height: '30px',
 	};
-  const TiktokIcon = () => {
-    return isMobile ? (
-        <img src={TikTokShadowIcon} style={tiktokIconShadowStyle} alt='TikTok' />
-    ) : (
-        isHoveredTiktok ? 
-        <img src={TikTokShadowIcon} style={tiktokIconShadowStyle} alt='TikTok' /> : 
-        <FaTiktok style={tiktokIconShadowStyle} />
-    );
-};
+	const TiktokIcon = () => {
+		return isMobile ? (
+			<img src={TikTokShadowIcon} style={tiktokIconShadowStyle} alt='TikTok' />
+		) : isHoveredTiktok ? (
+			<img src={TikTokShadowIcon} style={tiktokIconShadowStyle} alt='TikTok' />
+		) : (
+			<FaTiktok style={tiktokIconShadowStyle} />
+		);
+	};
+
 
 	return (
 		<>
@@ -129,7 +130,13 @@ export const Footer = () => {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-							<button type='submit'>Zapisz się</button>
+							 <button
+           
+            className='newsletter-form-btn'
+            type='submit'
+          >
+            Zapisz się
+          </button>
 						</form>
 					)}
 				</div>
@@ -233,7 +240,6 @@ export const Footer = () => {
 						src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.987791322612!2d20.943115315795822!3d52.20726935446037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecbe0a994fb1f%3A0x25c2000b455ea8ed!2sDelikatesy%20Orange!5e0!3m2!1spl!2spl!4v1682706408043!5m2!1spl!2spl'
 						width='400'
 						height='300'
-						
 						allowFullScreen=''
 						loading='lazy'
 						title='Google Map - al. Jerozolimskie, 02-236 Warszawa'

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import Select from 'react-select';
 import { Routes, Route } from 'react-router-dom';
 
@@ -7,6 +7,8 @@ import { ProductSearch } from '../../components/search';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+
 
 import { Product } from './product';
 import { ProductDetails } from './product-details/product-details';
@@ -25,6 +27,7 @@ import headerImage4 from '../../assets/header-img-4.jpg';
 import './shop&product.css';
 
 export const Shop = () => {
+ 
   const [sortMode, setSortMode] = useState('none');
   const { products } = useContext(ShopContext);
   const SelectRef = useRef();
@@ -112,6 +115,10 @@ export const Shop = () => {
     },
   ];
 
+
+
+
+  // filter
   const options = [
     { value: 'default', label: 'Sortuj...' },
     { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
@@ -119,7 +126,7 @@ export const Shop = () => {
     { value: 'alphabetical', label: 'Alfabetycznie' },
   ];
 
-  // filter
+
 
   let sortedProducts = [...products];
 
@@ -142,6 +149,7 @@ export const Shop = () => {
   return (
     <section className='shop'>
       <Navbar style={{ zIndex: 9999 }} />
+      
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -242,14 +250,14 @@ export const Shop = () => {
           />
         </div>
       </div>
-      <div className='products'>
+      <div className='products' >
         <Routes>
           <Route
             path='/'
             element={
               <>
                 {sortedProducts.map((product) => (
-                  <Product key={product.id} data={product} />
+                  <Product  key={product.id} data={product} />
                 ))}
               </>
             }

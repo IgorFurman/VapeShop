@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../../../context/shop-context";
 
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
+import  ModalImage  from "react-modal-image"; 
+
 
 import "./product-details.css";
 
@@ -11,9 +13,7 @@ export const ProductDetails = () => {
   const { addToCart, cartItems, products } = useContext(ShopContext);
   const product = products.find((product) => product.id === Number(id));
 
-  const [zoomIn, setZoomIn] = useState();
-  const [zoomOut, setZoomOut] = useState();
-  const [resetTransform, setResetTransform] = useState();
+
 
   if (!product) {
     return <div>Produkt nie znaleziony</div>;
@@ -30,17 +30,12 @@ export const ProductDetails = () => {
 
   return (
     <section className="details">
-      <div className="details-img">
-        <TransformWrapper
-          options={{ disabled: false }}
-          onZoomIn={(e) => setZoomIn(() => e)}
-          onZoomOut={(e) => setZoomOut(() => e)}
-          onResetTransform={(e) => setResetTransform(() => e)}
-        >
-          <TransformComponent>
-            <img src={productImage} alt={productName} />
-          </TransformComponent>
-        </TransformWrapper>
+      <div className="details-img" >
+      <ModalImage
+          small={productImage}
+          large={productImage}
+          alt={productName}
+        />
       </div>
       <div className="details-description">
         <h2>{productName}</h2>
