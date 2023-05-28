@@ -9,7 +9,7 @@ import { ShopContext } from '../../context/shop-context';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import { LoginModal } from '../../components/login-modal';
-import { AddToCartModal } from '../../components/add-to-card-modal';
+import { AddToCartModal } from '../../components/add-to-cart-modal';
 
 import './shop&product.css';
 
@@ -103,8 +103,9 @@ export const Product = (props) => {
   return (
     <>
       <div className='product'>
-        <Link to={`/products/${id}`} onClick={handleClickLink}>
+        <Link to={`/products/${id}`} onClick={handleClickLink} className="product-link">
           <img src={productImage} alt={productName} />
+          <div className="image-hover-text">Szybki podgląd</div>
         </Link>
         <div className='product-description'>
           <p>

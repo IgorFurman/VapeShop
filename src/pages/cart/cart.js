@@ -21,7 +21,7 @@ export const Cart = () => {
 			</div>
 			<div className='cartItems'>
 			{products.map((product) => {
-    if (cartItems[product.id]) {
+    if (cartItems && cartItems[1]) {
         return <CartItem data={product} />;
     } else {
         return null;

@@ -14,6 +14,8 @@ import { ProductDetails } from './product-details/product-details';
 import { ShopContext } from '../../context/shop-context';
 
 import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
+import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
+import { useSpring, animated } from 'react-spring';
 
 import headerImage1 from '../../assets/header-img-1.jpg';
 import headerImage2 from '../../assets/header-img-2.jpg';
@@ -23,48 +25,25 @@ import headerImage4 from '../../assets/header-img-4.jpg';
 import './shop&product.css';
 
 export const Shop = () => {
-  const [sortMode, setSortMode] = useState("none");
+  const [sortMode, setSortMode] = useState('none');
   const { products } = useContext(ShopContext);
   const SelectRef = useRef();
-  if (!products) {
-    return <div>Ładowanie...</div>;
-  }
+  const [isHoveredInstagram, setIsHoveredInstagram] = useState(false);
+  const [isHoveredFacebook, setIsHoveredFacebook] = useState(false);
+  const [isHoveredTiktok, setIsHoveredTiktok] = useState(false);
 
-  const slides = [
-    {
-      image: headerImage1,
-      text: 'Nowa Jakość',
-      description: 'Jesteśmy firmą specjalizującą się w sprzedaży e-papierosów i akcesoriów związanych z wapowaniem. Nasza pasja do zdrowego stylu życia i dążenie do zapewnienia wysokiej jakości produktów sprawiają, że jesteśmy idealnym partnerem dla wszystkich entuzjastów wapowania.',
-      showHeading: true,
-    },
-    {
-      image: headerImage2,
-      text: 'Szybka dostawa',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque lacinia magna vel aliquam. Proin semper ex ante, ac tincidunt turpis tristique ut. Aliquam quis vulputate turpis.',
-      showHeading: false,
-    },
-    {
-      image: headerImage3,
-      text: 'Niskie ceny',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque lacinia magna vel aliquam. Proin semper ex ante, ac tincidunt turpis tristique ut. Aliquam quis vulputate turpis.',
-      showHeading: false,
-    },
-    {
-      image: headerImage4,
-      text: 'Gwarancja jakości',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque lacinia magna vel aliquam. Proin semper ex ante, ac tincidunt turpis tristique ut. Aliquam quis vulputate turpis.',
-      showHeading: false,
-    },
-  ];
+  const darkerInstagram = '#B30D56';
+  const darkerFacebook = '#125CAD';
 
-  const options = [
-    { value: 'default', label: 'Sortuj...' },
-    
-    { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
-    { value: 'priceLowToHigh', label: 'Cena: najniższa do najwyższej' },
-    { value: 'alphabetical', label: 'Alfabetycznie' }
-  ];
-  
+  const instaColorProps = useSpring({
+    color: isHoveredInstagram ? darkerInstagram : '#E1306C',
+  });
+  const facebookColorProps = useSpring({
+    color: isHoveredFacebook ? darkerFacebook : '#1877F2',
+  });
+
+  const iconStyle = { color: '#69C9D0', fontSize: '25px' };
+
   const handleScrollToProducts = () => {
     window.scrollTo({
       left: 0,
@@ -73,19 +52,88 @@ export const Shop = () => {
     });
   };
 
+  const TiktokIcon = () => {
+    const isMobile = window.innerWidth <= 992;
+    const tiktokIconShadowStyle = {
+      fontSize: '30px',
+      width: '25px',
+      height: '25px',
+    };
+
+    return isMobile ? (
+      <img src={TikTokShadowIcon} style={tiktokIconShadowStyle} alt='TikTok' />
+    ) : (
+      <>
+        {isHoveredTiktok ? (
+          <img
+            src={TikTokShadowIcon}
+            style={tiktokIconShadowStyle}
+            alt='TikTok'
+          />
+        ) : (
+          <FaTiktok style={tiktokIconShadowStyle} />
+        )}
+      </>
+    );
+  };
+
+  if (!products) {
+    return <div>Ładowanie...</div>;
+  }
+
+  const slides = [
+    {
+      image: headerImage1,
+      text: 'Nowa Jakość',
+      description:
+        'Jesteśmy firmą specjalizującą się w sprzedaży e-papierosów i akcesoriów związanych z wapowaniem. Nasza pasja do zdrowego stylu życia i dążenie do zapewnienia wysokiej jakości produktów sprawiają, że jesteśmy idealnym partnerem dla wszystkich entuzjastów wapowania.',
+      showHeading: true,
+    },
+    {
+      image: headerImage2,
+      text: 'Szybka dostawa',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque lacinia magna vel aliquam. Proin semper ex ante, ac tincidunt turpis tristique ut. Aliquam quis vulputate turpis.',
+      showHeading: false,
+    },
+    {
+      image: headerImage3,
+      text: 'Niskie ceny',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque lacinia magna vel aliquam. Proin semper ex ante, ac tincidunt turpis tristique ut. Aliquam quis vulputate turpis.',
+      showHeading: false,
+    },
+    {
+      image: headerImage4,
+      text: 'Gwarancja jakości',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque lacinia magna vel aliquam. Proin semper ex ante, ac tincidunt turpis tristique ut. Aliquam quis vulputate turpis.',
+      showHeading: false,
+    },
+  ];
+
+  const options = [
+    { value: 'default', label: 'Sortuj...' },
+    { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
+    { value: 'priceLowToHigh', label: 'Cena: najniższa do najwyższej' },
+    { value: 'alphabetical', label: 'Alfabetycznie' },
+  ];
+
   // filter
- 
-  let sortedProducts = [...products]
+
+  let sortedProducts = [...products];
 
   switch (sortMode) {
-    case "priceHighToLow":
+    case 'priceHighToLow':
       sortedProducts.sort((a, b) => b.price - a.price);
       break;
-    case "priceLowToHigh":
+    case 'priceLowToHigh':
       sortedProducts.sort((a, b) => a.price - b.price);
       break;
-    case "alphabetical":
-      sortedProducts.sort((a, b) => a.productName.localeCompare(b.productName));
+    case 'alphabetical':
+      sortedProducts.sort((a, b) =>
+        a.productName.localeCompare(b.productName)
+      );
       break;
     default:
       break;
@@ -93,7 +141,7 @@ export const Shop = () => {
 
   return (
     <section className='shop'>
-      <Navbar style={{ Zindex: 9999 }} />
+      <Navbar style={{ zIndex: 9999 }} />
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -115,14 +163,52 @@ export const Shop = () => {
             </div>
 
             <div className='social-media-icons'>
-              <a href='#'>
-                <FaInstagram />
+              <a
+                href='#'
+                onMouseEnter={() => setIsHoveredInstagram(true)}
+                onMouseLeave={() => setIsHoveredInstagram(false)}
+              >
+                <animated.div
+                  style={{
+                    ...iconStyle,
+                    ...instaColorProps,
+                    transition: 'transform 0.3s ease-in-out',
+                    transform: isHoveredInstagram ? 'scale(1.2)' : 'scale(1)',
+                  }}
+                >
+                  <FaInstagram />
+                </animated.div>
               </a>
-              <a href='#'>
-                <FaFacebook />
+              <a
+                href='#'
+                onMouseEnter={() => setIsHoveredFacebook(true)}
+                onMouseLeave={() => setIsHoveredFacebook(false)}
+              >
+                <animated.div
+                  style={{
+                    ...iconStyle,
+                    ...facebookColorProps,
+                    transition: 'transform 0.3s ease-in-out',
+                    transform: isHoveredFacebook ? 'scale(1.2)' : 'scale(1)',
+                  }}
+                >
+                  <FaFacebook />
+                </animated.div>
               </a>
-              <a href='#'>
-                <FaTiktok />
+              <a
+                href='#'
+                onMouseEnter={() => setIsHoveredTiktok(true)}
+                onMouseLeave={() => setIsHoveredTiktok(false)}
+              >
+                <animated.div
+                  style={{
+                    ...iconStyle,
+                    transition: 'transform 0.3s ease-in-out',
+                    transform: isHoveredTiktok ? 'scale(1.2)' : 'scale(1)',
+                  }}
+                >
+                  <TiktokIcon />
+                </animated.div>
               </a>
             </div>
 
@@ -135,26 +221,28 @@ export const Shop = () => {
         ))}
       </Carousel>
       <div className='shop-select-container' ref={SelectRef}>
-      <div className='select-wrapper'>
-  <Select 
-    options={options} 
-    defaultValue={options[0]} 
-    isSearchable={false}
-    onChange={selectedOption => setSortMode(selectedOption.value)} 
-    styles={{
-      control: (base) => ({
-        ...base,
-        width: '100%',
-      }),
-      menu: (base) => ({
-        ...base,
-        width: '100%'
-      })
-    }}
-  />
-  </div>
-</div>
-      <div className='products' >
+        <div className='select-wrapper'>
+          <Select
+            options={options}
+            defaultValue={options[0]}
+            isSearchable={false}
+            onChange={(selectedOption) =>
+              setSortMode(selectedOption.value)
+            }
+            styles={{
+              control: (base) => ({
+                ...base,
+                width: '100%',
+              }),
+              menu: (base) => ({
+                ...base,
+                width: '100%',
+              }),
+            }}
+          />
+        </div>
+      </div>
+      <div className='products'>
         <Routes>
           <Route
             path='/'

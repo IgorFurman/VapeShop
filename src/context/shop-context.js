@@ -18,20 +18,17 @@ import { createContext, useEffect, useState } from 'react';
 
 export const ShopContext = createContext();
 
-
-
 export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
-
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [favorites, setFavorites] = useState({});
+  const [cartItemCount, setCartItemCount] = useState(0)
 
   const [user, loading, error] = useAuthState(auth);
 
-  
   const getDefaultCart = () => {
     let cart = {};
     for (let i = 1; i < products.length + 1; i++) {
@@ -51,16 +48,16 @@ export const ShopContextProvider = (props) => {
     getProductsFromFirebase().then((productList) => {
       setProducts(productList);
       setFilteredProducts(productList);
-      getCartFromLocalStorage().then((localCart) => {
-        setCartItems(localCart);
-      });
+      initializeCart();
     });
     setIsLoading(false);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+  const initializeCart = async () => {
+    const localCart = await getCartFromLocalStorage();
+    setCartItems(localCart);
+    setCartItemCount(getCartItemCountFromLocalStorage());
+  };
 
   const getProductsFromFirebase = async () => {
     const productsCollectionRef = collection(db, 'products');
@@ -76,8 +73,6 @@ export const ShopContextProvider = (props) => {
       return [];
     }
   };
-
-
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -96,6 +91,8 @@ export const ShopContextProvider = (props) => {
       newCartItems[itemId] = (newCartItems[itemId] || 0) + 1;
       return newCartItems;
     });
+
+    setCartItemCount((prevCount) => prevCount + 1);
   };
 
   const removeFromCart = (itemId) => {
@@ -104,6 +101,8 @@ export const ShopContextProvider = (props) => {
       newCartItems[itemId] = (newCartItems[itemId] || 0) - 1;
       return newCartItems;
     });
+
+    setCartItemCount((prevCount) => prevCount - 1);
   };
 
   const updateCartItemCount = (newAmount, itemId) => {
@@ -112,13 +111,15 @@ export const ShopContextProvider = (props) => {
       newCartItems[itemId] = newAmount;
       return newCartItems;
     });
+
+    setCartItemCount((prevCount) => {
+      const itemCountDiff = newAmount - (cartItems[itemId] || 0);
+      return prevCount + itemCountDiff;
+    });
   };
 
   const checkout = () => {
     setCartItems(getDefaultCart());
-    if (!user) {
-      localStorage.removeItem('cartItems');
-    }
   };
 
   const handleShowLoginModal = () => {
@@ -132,12 +133,6 @@ export const ShopContextProvider = (props) => {
   const isLoggedIn = () => {
     return !!user;
   };
-
-  useEffect(() => {
-    if (cartItems) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    }
-  }, [cartItems]);
 
   function safeParseJSON(json) {
     try {
@@ -157,7 +152,6 @@ export const ShopContextProvider = (props) => {
         const newCartItems = { ...cartItems, ...localCart };
         setCartItems(newCartItems);
         updateCartInFirestore(newCartItems);
-        localStorage.removeItem('cartItems');
       } else {
         getCartFromFirestore();
       }
@@ -167,14 +161,6 @@ export const ShopContextProvider = (props) => {
       setCartItems({ ...cartItems, ...localCart });
     }
   }, [user, loading]);
-
-  useEffect(() => {
-    const getAndSetDefaultCart = async () => {
-      const productList = await getProductsFromFirebase();
-      setCartItems(getDefaultCart());
-    };
-    getAndSetDefaultCart();
-  }, []);
 
   const getCartFromFirestore = async () => {
     if (user) {
@@ -203,19 +189,23 @@ export const ShopContextProvider = (props) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await getProductsFromFirebase();
-    };
-    fetchData();
-  }, []);
+    if (cartItems && Object.keys(cartItems).length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    } else {
+      localStorage.removeItem('cartItems');
+    }
+  }, [cartItems]);
 
   useEffect(() => {
-    if (!user) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    }
-  }, [cartItems, user]);
+    localStorage.setItem('cartItemCount', cartItemCount);
+    console.log(localStorage.getItem('cartItems'))
+  }, [cartItemCount]);
 
-  // adding to fav 
+  const getCartItemCountFromLocalStorage = () => {
+    console.log(localStorage.getItem('cartItems'))
+    const savedCount = localStorage.getItem('cartItemCount');
+    return savedCount ? Number(savedCount) : 0;
+  };
 
   useEffect(() => {
     if (auth.currentUser) {
@@ -226,6 +216,7 @@ export const ShopContextProvider = (props) => {
       return () => unsub();
     }
   }, [auth]);
+
   const addToFavorites = async (productId) => {
     const userRef = doc(db, "users", auth.currentUser.uid);
     
@@ -246,13 +237,15 @@ export const ShopContextProvider = (props) => {
       return newFavorites;
     });
   };
-  // CONTEXT VALUE
+
+  
 
   const contextValue = {
     cartItems,
     addToCart,
     updateCartItemCount,
     removeFromCart,
+    cartItemCount,
     getTotalCartAmount,
     checkout,
     filteredProducts,
@@ -268,7 +261,7 @@ export const ShopContextProvider = (props) => {
     addToFavorites,
     removeFromFavorites,
     favorites,
-    db
+    db,
   };
 
   return (
@@ -276,4 +269,6 @@ export const ShopContextProvider = (props) => {
       {!isLoading ? props.children : <div>Ładowanie...</div>}
     </ShopContext.Provider>
   );
-  }
+};
+
+

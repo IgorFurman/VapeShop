@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
-import './add-to-card-modal.css';
+import './add-to-cart-modal.css';
 
 export const AddToCartModal = ({
 	isModalVisible,

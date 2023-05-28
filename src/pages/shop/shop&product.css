@@ -151,6 +151,29 @@
   margin-bottom: 20px;
 }
 
+.product-link {
+  position: relative;
+  display: inline-block;
+}
+
+.image-hover-text {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.product-link:hover .image-hover-text {
+  display: block;
+}
+
 .product img {
 	width: 200px;
 	height: 200px;
