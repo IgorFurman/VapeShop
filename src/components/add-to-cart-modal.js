@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
@@ -17,6 +17,8 @@ export const AddToCartModal = ({
 }) => {
 
 	const itemCount = cartItems?.[id] || 0;
+
+	
 	
 	return (
 		<Modal
@@ -47,7 +49,8 @@ export const AddToCartModal = ({
 					<button onClick={handleCloseModal} className='popup-button'>
 						Kontynuuj zakupy
 					</button>
-					<Link to='/cart' className='popup-button'>
+					<Link to='/cart' className='popup-button'
+				>
 						Przejdź do koszyka
 					</Link>
 				</div>

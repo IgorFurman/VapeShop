@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { ShopContext } from '../../context/shop-context';
 import { CartItem } from './cart-item';
@@ -14,6 +14,12 @@ export const Cart = () => {
 	const totalAmount = getTotalCartAmount();
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+
 	return (
 		<div className='cart'>
 			<div>
@@ -22,7 +28,7 @@ export const Cart = () => {
 			<div className='cartItems'>
 			{products.map((product) => {
     if (cartItems && cartItems[product.id] && cartItems[product.id] > 0) {
-        return <CartItem data={product} />;
+        return <CartItem key={product.id}data={product} />;
     } else {
         return null;
     }

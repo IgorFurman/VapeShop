@@ -55,7 +55,7 @@ useEffect(() => {
 		setIsModalVisible(true);
 	};
 
-	const handleCloseModal = () => {
+	const handleCloseCartModal = () => {
 		setIsModalVisible(false);
 		closeLoginModal();
 	};
@@ -176,7 +176,7 @@ useEffect(() => {
 			/>
 			<AddToCartModal
 				isModalVisible={isModalVisible}
-				handleCloseModal={handleCloseModal}
+				handleCloseModal={handleCloseCartModal}
 				productName={productName}
 				productImage={productImage}
 				cartItems={cartItems}

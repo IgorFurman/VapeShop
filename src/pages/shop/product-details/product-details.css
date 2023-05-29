@@ -2,9 +2,29 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: calc(100vh - 160px);
+	min-height: calc(100vh - 100px);
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 25px auto;
+}
+
+.details-add-to-fav-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; 
+	margin-left: 20px;
+}
+
+.details-add-to-fav {
+	margin-right: 10px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	font-size: 38px;
+	color: #333;
+	transition: color 0.3s ease;
+	
+	padding: 0;
 }
 
 .details-img {

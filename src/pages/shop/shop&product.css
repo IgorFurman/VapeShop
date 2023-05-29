@@ -162,6 +162,7 @@
 	gap: 30px;
 	place-items: center;
 	justify-content: center;
+	overflow: hidden;
   
 }
 
