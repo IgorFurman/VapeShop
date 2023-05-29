@@ -42,31 +42,81 @@
     line-height: 1.8;
 	margin: 10px 20px;
 }
+
+.product-discount-old-price-details {
+	color: rgb(219, 25, 25);
+  margin-left: 20px; 
+	margin-top: 5px;
+
+}
+
+.product-discount-actual-price-details {
+	color: var(--color-primary);
+  margin-top:0 ;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+
 .details-price {
 	margin: 10px 20px;
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .details-availability {
 	margin: 10px 20px;
 }
 
-.details-addToCartBttn {
-	background-color: transparent;
+.details-add-to-bart-btn {
+	position: relative;
+	color: var(--color-primary);
 	border: 2px solid rgb(19, 19, 19);
 	min-width: 100px;
-    padding: 10px 20px;
-    margin: 10px 20px;
+	padding: 10px 20px;
 	border-radius: 15px;
-    text-align: center;
+	text-align: center;
     align-self: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    overflow: hidden;
+    transition: all 0.5s;
+    z-index: 1;
+    background: transparent;
+		cursor: pointer;
 }
 
-.details-addToCartBttn:hover {
-	background-color: rgb(19, 19, 19);
-	color: white;
-	cursor: pointer;
+.details-add-to-bart-btn:before,
+.details-add-to-bart-btn:after {
+    content: "";
+    position: absolute;
+	top: -2px;    
+    left: -2px;  
+    width: calc(100% + 4px); 
+    height: calc(100% + 4px); 
+    background: var(--color-tertiary);
+    z-index: -1;
+    transition: transform 0.5s;
 }
+
+.details-add-to-bart-btn:before {
+    transform: translateX(-200%);
+}
+
+.details-add-to-bart-btn:after {
+    transform: translateX(200%);
+    transition-delay: 0.2s;
+}
+
+.details-add-to-bart-btn:hover {
+	color: white;
+}
+
+.details-add-to-bart-btn:hover:before,
+.details-add-to-bart-btn:hover:after {
+	transform: translateX(0);
+}
+
 @media (max-width: 578px) {
 	.details {
         flex-direction:column;

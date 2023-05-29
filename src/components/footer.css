@@ -156,7 +156,6 @@ footer a {
 .newsletter-footer {
   background-color: #f9f9f9;
   padding: 20px;
-
   text-align: center;
 }
 
@@ -199,37 +198,13 @@ footer a {
   outline: none;
  
 }
+.newsletter-form-btn:hover {
+ 
+  filter: brightness(2)
 
-.newsletter-form-btn::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  background-color: rgba(224, 228, 233, 0.2);
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+ 
 }
 
-.newsletter-form-btn:hover::before {
-  opacity: 1;
-  animation: bubbleEffect 1s ease-in-out infinite;
-}
-
-@keyframes bubbleEffect {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
 
 
 
@@ -339,6 +314,5 @@ footer a {
   
 
 
-	/*  KEY FRAMES */
 
 	

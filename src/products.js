@@ -3,7 +3,7 @@ export const PRODUCTS = [
       id: 1,
       productName: 'SMOK RPM 5 PRO Pod',
       price: 189.99,
-      productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2FsmokRpm5Pro.jpg?alt=media&token=3b90668f-4a8f-44a6-ac0c-99f1b4c223d5',
+      productImage: 'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2Fpodsmokrpm5probrownleather.jpg?alt=media&token=b54f1004-31d1-4ca8-9ff1-0a7d436e94c3',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, soluta aut cumque voluptatibus deleniti quasi ullam quaerat id, optio ipsam, modi ut veritatis voluptate voluptatem? Eum amet laudantium sint corporis incidunt quis harum! Ad a commodi sint sit doloremque! Reprehenderit.',
       availability: 43,
       bestseller: false,

@@ -25,6 +25,8 @@ export const ProductDetails = () => {
     productImage,
     description,
     availability,
+    discount,
+    oldPrice,
   } = product;
   const cartItemAmount = cartItems[id];
 
@@ -40,13 +42,18 @@ export const ProductDetails = () => {
       <div className="details-description">
         <h2>{productName}</h2>
         <p className="details-description-text">{description}</p>
-        <p className="details-price">
-          Cena: <b>{price}zł</b>
-        </p>
+        {discount ? (
+						<>
+							<p className='product-discount-old-price-details'>Stara cena: {oldPrice} zł</p>
+							<p className='product-discount-actual-price-details'>Nowa cena: {price} zł </p>
+						</>
+					) : (
+						<p className='product-discount-actual-price-details'>Cena: {price} zł</p>
+					)}
         <p className="details-availability">
           Dostępna ilość: {availability}
         </p>
-        <button className="details-addToCartBttn" onClick={() => addToCart(id)}>
+        <button className="details-add-to-bart-btn" onClick={() => addToCart(id)}>
           Dodaj do koszyka{" "}
           {cartItemAmount > 0 && <>({cartItemAmount})</>}
         </button>

@@ -125,7 +125,7 @@
 }
 
 .shop-button button:hover {
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--color-tertiary);
   color: var(--color-background);
 
   will-change: transform;
