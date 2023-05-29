@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/VapeShopbigcloud-ghpahe/static/css/main.b997d6a9.css",
+    "main.js": "/VapeShopbigcloud-ghpahe/static/js/main.2a043317.js",
+    "static/media/header-img-1.jpg": "/VapeShopbigcloud-ghpahe/static/media/header-img-1.650c3898d1ec87b73883.jpg",
+    "static/media/header-img-2.jpg": "/VapeShopbigcloud-ghpahe/static/media/header-img-2.10e15097e09d48c87057.jpg",
+    "static/media/header-img-4.jpg": "/VapeShopbigcloud-ghpahe/static/media/header-img-4.cdf21ea4f327f9824803.jpg",
+    "static/media/header-img-3.jpg": "/VapeShopbigcloud-ghpahe/static/media/header-img-3.a494c9b721a4bd069347.jpg",
+    "static/media/bestseller-icon.png": "/VapeShopbigcloud-ghpahe/static/media/bestseller-icon.26c4011bfa69deab96a4.png",
+    "index.html": "/VapeShopbigcloud-ghpahe/index.html",
+    "main.b997d6a9.css.map": "/VapeShopbigcloud-ghpahe/static/css/main.b997d6a9.css.map",
+    "main.2a043317.js.map": "/VapeShopbigcloud-ghpahe/static/js/main.2a043317.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b997d6a9.css",
+    "static/js/main.2a043317.js"
+  ]
+}
