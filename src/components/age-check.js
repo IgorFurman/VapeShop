@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import 'react-datepicker/dist/react-datepicker.css';
-import './age-check.css';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
+import './age-check.css'
 
 Modal.setAppElement('#root')
 
 export function AgeCheck({ children }) {
-  const [birthDate, setBirthDate] = useState(null);
-  const [verified, setVerified] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
 
   useEffect(() => {
     if (!localStorage.getItem('ageVerified')) {
@@ -18,24 +16,22 @@ export function AgeCheck({ children }) {
     }
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const age = calculateAge(birthDate);
-    if (age >= 18) {
-      setVerified(true);
-      localStorage.setItem('ageVerified', 'true');
-      setModalOpen(false);
-    } else {
-      alert('Musisz mieć co najmniej 18 lat, aby korzystać z tej strony');
-      window.location.href = 'https://www.google.com';
-    }
+  const handleYes = () => {
+    localStorage.setItem('ageVerified', 'true');
+    setModalOpen(false);
   };
 
-  const calculateAge = (birthDate) => {
-    const ageDiffMs = Date.now() - birthDate.getTime();
-    const ageDate = new Date(ageDiffMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  const handleNo = () => {
+    window.location.href = 'https://www.google.com';
   };
+
+  const toggleScrollLock = (isLocked) => {
+		document.body.style.overflow = isLocked ? 'hidden' : 'auto';
+	};
+
+  useEffect(() => {
+		toggleScrollLock(modalOpen);
+	}, [modalOpen]);
 
   return (
     <>
@@ -44,34 +40,20 @@ export function AgeCheck({ children }) {
         onRequestClose={() => setModalOpen(false)}
         contentLabel="Weryfikacja wieku"
         className='age-check'
+        overlayClassName='age-check-overlay'
+        shouldCloseOnOverlayClick={false}
+        style={{overlay: {outline: 'none'}}}
       >
-        <form onSubmit={handleSubmit} className='age-check-form'>
-          <label>
-            Podaj datę swojego urodzenia:
-            <DatePicker
-              selected={birthDate}
-              onChange={(date) => setBirthDate(date)}
-              dateFormat='dd/MM/yyyy'
-              maxDate={new Date()}
-              showYearDropdown
-              yearDropdownItemNumber={100}
-              scrollableYearDropdown
-              isClearable
-              required
-							open={true}
-    popperPlacement="bottom"
-    popperModifiers={[
-        {
-            name: "offset",
-            options: {
-                offset: [0, 2],
-            },
-        },
-    ]}
-            />
-          </label>
-          <button className='age-check-submitbtn' type='submit'>Zatwierdź</button>
-        </form>
+        <div className='age-check-form'>
+          <h2>ABY WEJŚĆ NA TĄ STRONĘ MUSISZ MIEĆ UKOŃCZONE 18 LAT</h2>
+          <p className='age-check-info' >Klikając na przycisk "tak" potwierdzasz, że jesteś osobą pełnoletnią, w przeciwnym wypadku prosimy o opuszczenie strony.</p>
+          <div className='age-check-container-btn-icon'>
+          
+          <button className='age-check-submitbtn' onClick={handleYes}>TAK</button>
+          <FaExclamationTriangle className='age-check-exclamation-icon' />
+          <button className='age-check-submitbtn' onClick={handleNo}>NIE</button>
+          </div>
+        </div>
       </Modal>
       {children}
     </>

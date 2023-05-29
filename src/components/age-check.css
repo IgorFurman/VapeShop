@@ -1,87 +1,78 @@
-.age-check {
+.age-check-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 9999;
-  padding: 20px;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 
-.age-check-datepicker-container {
-  display: flex;
-  justify-content: center; 
-  position: relative; 
-  margin-top: 10px;
-}
+
 
 .age-check-form {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  justify-content: space-around;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-popup);
+  padding: 30px;
+  
+  box-shadow: 0px 0px 46px 16px rgba(66, 68, 90, 1);
+  border-radius: 4px;
   text-align: center;
-  width: 30%; 
-  height: 53%;
-  background-color: rgb(244, 236, 236);
-  padding: 20px;
-  border: 6px solid rgb(218, 27, 27);
-  overflow: hidden;
-  margin: auto;
+  width: 30%;
 }
 
+.age-check-exclamation-icon {
+  font-size: 48px;  
+  color: red;  
+}
 
+.age-check-form h2 {
+  margin-bottom: 20px;
+}
 
+.age-check-form p {
+  margin-bottom: 20px;
+}
 
 .age-check-submitbtn {
-  margin-top: auto;
-  background-color: transparent;
-  border: 1px solid rgb(19, 19, 19);
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin-top: auto;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f00;
+  color: var(--color-background);
+  text-decoration: none;
+  border-radius: 4px;
   transition: background-color .3s;
+ 
 }
 
 .age-check-submitbtn:hover {
-  background-color: rgb(19, 19, 19);
-  color: white;
-  cursor: pointer;
+  background-color: var(--color-primary); 
 }
 
-
-
-/* classes from reac-datepicker */
-.react-datepicker__input-container input {
-  width: 60%;
-  height: 27px;
-  border-radius: 15px; 
+.age-check-container-btn-icon {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
 }
 
-
-
-/* Style for mobile screens */
-
-
-@media (max-width: 992px) {
-  .age-check-form {
-  
-   width: 50%; 
-  }
-}
 @media (max-width: 768px) {
   .age-check-form {
-   width: 60%; 
+    width: 50%;
   }
 }
 
-@media (max-width: 578px) {
+@media (max-width: 587px) {
   .age-check-form {
-    width: 70%;
-    height: 56%;
+    width: 80%;
+  }
+  .age-check-exclamation-icon {
+    font-size: 58px;  
+   
   }
 }
