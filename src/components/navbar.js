@@ -13,12 +13,13 @@ import { IoSearchOutline } from 'react-icons/io5';
 import LogoNav from '../assets/icons8-vape-60-white.png';
 
 import { ShopContext } from '../context/shop-context';
+import { NavbarProvider, NavbarContext } from '../context/navbar-context.js'; 
+
 
 export const Navbar = () => {
 	const { cartItemCount } = useContext(ShopContext);
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-
 
 	const [user] = useAuthState(auth);
 	const navigate = useNavigate();
@@ -60,6 +61,8 @@ export const Navbar = () => {
 	useEffect(() => {
 		toggleScrollLock(isOpen);
 	}, [isOpen]);
+
+	// styles
 
 	const stylesBurgerMenu = {
 		bmMenu: {
@@ -104,6 +107,16 @@ export const Navbar = () => {
 		opacity: isSearchOpen ? 1 : 0,
 		transform: isSearchOpen ? 'translateY(0)' : 'translateY(-20px)',
 	});
+
+
+	// fix loading problem
+	const { navbarVisible, isLoading } = useContext(NavbarContext);
+
+  if (isLoading) {
+    return null; 
+  }
+
+
 	return (
 		<>
 			{isOpen && (
@@ -172,10 +185,10 @@ export const Navbar = () => {
 								<div className='navbar-icons-container-individual'>
 									<User
 										style={IconStyle}
-										aria-label='Zaloguj się'
-										title='Zaloguj się'
+										aria-label={user ? 'Panel użytkownika' : 'Zaloguj się'}
+										title={user ? 'Panel użytkownika' : 'Zaloguj się'}
 									/>
-									<span className='icon-label'>Zaloguj się</span>
+									<span className='icon-label'>{user ? 'Moje konto' : 'Zaloguj się'}</span>
 								</div>
 							</Link>
 						</div>

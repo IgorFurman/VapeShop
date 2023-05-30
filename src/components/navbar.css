@@ -37,7 +37,7 @@
 	position: absolute;
   top: 0;
   right: 0;
-	width: 11px;
+	width: 12px;
 	height: 15px;
 	color: var(--color-primary);
   background: var(--color-background);
@@ -48,12 +48,12 @@
 	position: absolute;
   top: 5px;
   left: 19px;
-	width: 11px;
-	height: 15px;
+	width: 12px;
+	height: 20px;
 	color: var(--color-primary);
   background: var(--color-background);
   border-radius: 50%;
-  padding: 3px;
+  padding: 2px;
 }
 
 .navbar .burger-menu {
@@ -106,8 +106,8 @@
 .search-suggestions {
 	position: absolute;
 	top: 45px;
-	left: 20px;
-	width: 100%;
+	left: 1px;
+	width: 102.3%;
 	max-height: 200px;
 	overflow-y: auto;
 	background-color: #fff;

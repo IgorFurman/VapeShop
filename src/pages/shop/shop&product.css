@@ -163,6 +163,7 @@
 	place-items: center;
 	justify-content: center;
 	overflow: hidden;
+	
   
 }
 
@@ -179,7 +180,7 @@
 	box-shadow: 2px 2px 5px var(--color-tertiary);
 	cursor: pointer;
 	transition: scale 0.3s, font-weight 0.3s;
-	margin-bottom: 20px;
+	margin: 20px auto;
 }
 
 

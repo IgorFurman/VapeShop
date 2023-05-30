@@ -7,6 +7,7 @@ import {
 	useLocation,
 } from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
+import { NavbarProvider, NavbarContext } from './context/navbar-context.js'; 
 
 import { AgeCheck } from './components/age-check';
 
@@ -30,17 +31,7 @@ addProductsToFirebase();
 
 Modal.setAppElement('#root');
 
-export const NavbarContext = createContext();
 
-export const NavbarProvider = ({ children }) => {
-  const [navbarVisible, setNavbarVisible] = useState(true);
-
-  return (
-    <NavbarContext.Provider value={{ navbarVisible, setNavbarVisible }}>
-      {children}
-    </NavbarContext.Provider>
-  );
-};
 
 function App() {
   return (
@@ -56,11 +47,12 @@ function App() {
 
 const AppContent = () => {
   const location = useLocation();
-  const { navbarVisible, setNavbarVisible } = useContext(NavbarContext);
+  const { navbarVisible, setNavbarVisible, setIsLoading, isLoading } = useContext(NavbarContext);
 
   useEffect(() => {
     setNavbarVisible(location.pathname !== '/');
-  }, [location, setNavbarVisible]);
+    setIsLoading(false);
+  }, [location, setNavbarVisible, setIsLoading]);
 
   return (
     <div className='App'>

@@ -14,6 +14,7 @@ import { Product } from './product';
 import { ProductDetails } from './product-details/product-details';
 
 import { ShopContext } from '../../context/shop-context';
+import { NavbarProvider, NavbarContext } from '../../context/navbar-context.js';
 
 import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
