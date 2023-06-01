@@ -33,7 +33,7 @@
 	
 }
 
-.navbar-item-count-card {
+/* .navbar-item-count-card {
 	position: absolute;
   top: 0;
   right: 0;
@@ -54,7 +54,7 @@
   background: var(--color-background);
   border-radius: 50%;
   padding: 2px;
-}
+} */
 
 .navbar .burger-menu {
 	display: none;

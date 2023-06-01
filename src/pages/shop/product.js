@@ -24,6 +24,7 @@ export const Product = (props) => {
 		bestseller,
 		discount,
 		oldPrice,
+		availability,
 	} = props.data;
 	const {
 		addToCart,
@@ -38,6 +39,7 @@ export const Product = (props) => {
 		favorites,
 		auth,
 		db,
+		validateCartItemCount,
 	} = useContext(ShopContext);
    // AOS ANIMATION 
 
@@ -49,10 +51,24 @@ useEffect(() => {
 }, []);
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [isFavorite, setIsFavorite] = useState(favorites && favorites[id]);
+	const [isMaxQuantity, setIsMaxQuantity] = useState(false);
+	const [isMaxQuantityModalVisible, setIsMaxQuantityModalVisible] = useState(false);
 
+	
 	const handleAddToCart = () => {
-		addToCart(id);
+		let newQuantity = (cartItems[id] || 0) + 1;
+		if(newQuantity > availability) {
+			setIsMaxQuantity(true);
+			setIsMaxQuantityModalVisible(true);
+		} else {
+			validateCartItemCount(newQuantity, id);
+			setIsMaxQuantity(false);
+		}
 		setIsModalVisible(true);
+	}
+
+	const handleCloseMaxQuantityModal = () => {
+		setIsMaxQuantityModalVisible(false);
 	};
 
 	const handleCloseCartModal = () => {
@@ -162,7 +178,7 @@ useEffect(() => {
 						<p>{price} zł</p>
 					)}
 				</div>
-				<button className=' add-to-cart-btn' onClick={handleAddToCart}>
+				<button className=' add-to-cart-btn' onClick={handleAddToCart} disabled={isMaxQuantity}>
 					Dodaj do koszyka{' '}
 					{cartItems && cartItems[id] > 0 && <>({cartItems[id]})</>}
 				</button>
@@ -174,17 +190,19 @@ useEffect(() => {
 				isVisible={isLoginModalVisible}
 				closeLoginModal={closeLoginModal}
 			/>
+			
 			<AddToCartModal
-				isModalVisible={isModalVisible}
-				handleCloseModal={handleCloseCartModal}
-				productName={productName}
-				productImage={productImage}
-				cartItems={cartItems}
-				addToCart={addToCart}
-				removeFromCart={removeFromCart}
-				updateCartItemCount={updateCartItemCount}
-				id={id}
-			/>
+  isModalVisible={isModalVisible}
+  handleCloseModal={handleCloseCartModal}
+  productName={productName}
+  productImage={productImage}
+  cartItems={cartItems}
+  addToCart={addToCart}
+  removeFromCart={removeFromCart}
+  updateCartItemCount={updateCartItemCount}
+  id={id}
+  maxQuantityReached={true}
+/>
 		</>
 	);
 };

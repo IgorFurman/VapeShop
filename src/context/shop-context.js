@@ -77,50 +77,94 @@ export const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  const addToCart = async (itemId) => {
+  const addToCart = async (itemId, quantity = 1) => {
+    let newCount;
+    
+    const product = products.find(product => product.id === Number(itemId));
+    const availability = product ? product.availability : 0;
+  
     setCartItems((prevCartItems) => {
-        const newCartItems = { ...prevCartItems };
-        newCartItems[itemId] = (newCartItems[itemId] || 0) + 1;
-
-       
-        updateCartInFirestore(newCartItems);
-
-        return newCartItems;
-    });
-
-    setCartItemCount((prevCount) => prevCount + 1);
-};
-
-const removeFromCart = async (itemId) => {
-  setCartItems((prevCartItems) => {
       const newCartItems = { ...prevCartItems };
-      newCartItems[itemId] = (newCartItems[itemId] || 0) - 1;
+      newCartItems[itemId] = (newCartItems[itemId] || 0) + Number(quantity);
+  
+      if(newCartItems[itemId] > availability){
+        newCartItems[itemId] = availability;
+      }
+  
+      newCount = newCartItems[itemId];
+      updateCartInFirestore(newCartItems);
+  
+      return newCartItems;
+    });
+  
+    setCartItemCount((prevCount) => prevCount + quantity);
+  
+    return newCount;
+  };
 
+  const removeFromCart = async (itemId, quantity = 1) => {
+    let newCount;
+  
+    setCartItems((prevCartItems) => {
+      const newCartItems = { ...prevCartItems };
+      newCartItems[itemId] = (newCartItems[itemId] || 0) - Number(quantity);
+    
+      if (newCartItems[itemId] <= 0) {
+        delete newCartItems[itemId];
+      }
+  
+      newCount = newCartItems[itemId] || 0;
+    
+      updateCartInFirestore(newCartItems);
+    
+      return newCartItems;
+    });
+  
+    setCartItemCount((prevCount) => prevCount - quantity);
+  
+    return newCount;
+  };
+
+  const updateCartItemCount = async (newAmount, itemId) => {
+    let oldAmount = 0;
+    
+    const product = products.find(product => product.id === Number(itemId));
+    const availability = product ? product.availability : 0;
+  
+    setCartItems((prevCartItems) => {
+      oldAmount = prevCartItems[itemId] || 0;
+      const newCartItems = { ...prevCartItems };
+  
+      newCartItems[itemId] = Number(newAmount);
+  
+      if(newCartItems[itemId] > availability){
+        newCartItems[itemId] = availability;
+      }
   
       updateCartInFirestore(newCartItems);
-
+  
       return newCartItems;
-  });
-
-  setCartItemCount((prevCount) => prevCount - 1);
-};
-
-const updateCartItemCount = async (newAmount, itemId) => {
-  setCartItems((prevCartItems) => {
-      const newCartItems = { ...prevCartItems };
-      newCartItems[itemId] = newAmount;
-
-   
-      updateCartInFirestore(newCartItems);
-
-      return newCartItems;
-  });
-
-  setCartItemCount((prevCount) => {
-      const itemCountDiff = newAmount - (cartItems[itemId] || 0);
+    });
+  
+    setCartItemCount((prevCount) => {
+      const itemCountDiff = Number(newAmount) - oldAmount;
       return prevCount + itemCountDiff;
-  });
-};
+    });
+  
+    return newAmount;
+  };
+
+  const clearItemFromCart = (id) => {
+    const newCartItems = { ...cartItems };
+    const count = newCartItems[id];
+    delete newCartItems[id];
+    setCartItems(newCartItems);
+  
+    setCartItemCount(prevCount => prevCount - count);
+  
+ 
+    updateCartInFirestore(newCartItems);
+  };
 
 const checkout = async () => {
   const defaultCart = getDefaultCart();
@@ -129,6 +173,15 @@ const checkout = async () => {
  
   updateCartInFirestore(defaultCart);
 };
+
+const validateCartItemCount = (quantity, id) => {
+  const product = products.find(product => product.id === Number(id));
+  if(product && quantity <= product.availability) {
+    updateCartItemCount(quantity, id);
+  } else if(product) {
+    updateCartItemCount(product.availability, id);
+  }
+}
 
 
   const handleShowLoginModal = () => {
@@ -255,6 +308,8 @@ const checkout = async () => {
     removeFromFavorites,
     favorites,
     db,
+    validateCartItemCount,
+    clearItemFromCart,
   };
 
   return (

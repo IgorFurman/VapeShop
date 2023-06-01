@@ -8,6 +8,7 @@
 }
 
 .cart-item {
+	position:relative;
 	width: auto-fit;
 	height: 250px;
 	display: flex;
@@ -49,6 +50,14 @@
 
 .count-handler button:last-child {
   margin-left: 5px;
+}
+.count-max-info {
+ position: absolute;
+ font-size: 12px;
+ top:0px;
+ left:50%;
+ transform: translateX(-50%);
+ color: rgb(217, 16, 16);
 }
 .checkout {
   

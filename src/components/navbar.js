@@ -171,11 +171,26 @@ export const Navbar = () => {
 									/>
 
 									<span className='icon-label'>Koszyk</span>
-									{cartItemCount > 0 && (
-										<span className='navbar-item-count-card'>
-											{cartItemCount}
-										</span>
-									)}
+									<span 
+     className='navbar-item-count-card'
+		 style={{
+			 position: 'absolute',
+			 top: '0',
+			 right: '0',
+			 color: 'var(--color-primary)',
+			 background: 'var(--color-background)',
+			 padding: '2px',
+			 width: `${Math.min(8 + Math.log10(cartItemCount+1) * 5, 30)}px`,
+			 height: `${Math.min(8 + Math.log10(cartItemCount+1) * 5, 15)}px`,
+			 borderRadius: '50%',
+			 backgroundColor: 'white',
+			 display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+		 }}
+  >
+    {cartItemCount}
+  </span>
 								</div>
 							</Link>
 							<Link
@@ -213,9 +228,27 @@ export const Navbar = () => {
 							>
 								<ShoppingCart style={burgerMenuIconStyle} />
 								{cartItemCount > 0 && (
-									<span className='burger-item-count-card'>
-										{cartItemCount}
-									</span>
+									<span 
+									className='burger-item-count-card' 
+									style={{
+										position: 'absolute',
+										top: '0',
+										left: '16px',
+										color: 'var(--color-primary)',
+										background: 'var(--color-background)',
+										padding: '3px',
+										width: `${Math.min(12 + Math.log10(cartItemCount+1) * 5, 30)}px`,
+										height: `${Math.min(10 + Math.log10(cartItemCount+1) * 5, 15)}px`,
+										borderRadius: '50%',
+										backgroundColor: 'white',
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+									}}
+								>
+									{cartItemCount}
+								</span>
+								
 								)}{' '}
 								Koszyk
 							</a>
