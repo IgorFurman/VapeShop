@@ -37,7 +37,7 @@ export const ShopContextProvider = (props) => {
     return cart;
   };
 
-  const [cartItems, setCartItems] = useState(null);
+  const [cartItems, setCartItems] = useState({});
 
 
 
@@ -155,15 +155,14 @@ export const ShopContextProvider = (props) => {
   };
 
   const clearItemFromCart = (id) => {
-    const newCartItems = { ...cartItems };
-    const count = newCartItems[id];
-    delete newCartItems[id];
-    setCartItems(newCartItems);
-  
-    setCartItemCount(prevCount => prevCount - count);
-  
- 
-    updateCartInFirestore(newCartItems);
+    if (cartItems.hasOwnProperty(id)) {
+      const newCartItems = { ...cartItems };
+      const count = newCartItems[id];
+      delete newCartItems[id];
+      setCartItems(newCartItems);
+      setCartItemCount(prevCount => prevCount - count);
+      updateCartInFirestore(newCartItems);
+    }
   };
 
 const checkout = async () => {

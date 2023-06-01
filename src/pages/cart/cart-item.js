@@ -24,12 +24,13 @@ export const CartItem = (props) => {
   return (
     <div className="cart-item">
       <img src={productImage} />
-      <div className="description">
+      <div className="cart-description">
         <p>
           <b>{productName}</b>
         </p>
         <p> Cena: {price}zł</p>
-        <div className="count-handler">
+        <div className="cart-count-handler">
+          <div className="cart-count-handler-btns">
           <button onClick={() => removeFromCart(id)}> - </button>
           <input
             value={cartItems[id]}
@@ -37,8 +38,9 @@ export const CartItem = (props) => {
             min='0'
           />
           <button onClick={handleAddToCart}> + </button>
-          <button onClick={handleClearItem}>Usuń z koszyka</button>
-          {isMaxQuantity && <p className="count-max-info">Osiągnięto maksymalną liczbę dostępnych produktów</p>}
+          </div>
+          <button className='cart-delete-btn' onClick={handleClearItem}>Usuń z koszyka</button>
+          {isMaxQuantity && <p className="cart-count-max-info">Osiągnięto maksymalną liczbę dostępnych produktów</p>}
         </div>
       </div>
     </div>

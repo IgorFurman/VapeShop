@@ -184,7 +184,8 @@ export const ProductDetails = () => {
 				handleCloseModal={handleCloseCartModal}
 				productName={productName}
 				productImage={productImage}
-				cartItems={cartItems}
+				cartItems={cartItems && cartItems}
+
 				addToCart={addToCart}
 				removeFromCart={removeFromCart}
 				updateCartItemCount={updateCartItemCount}
