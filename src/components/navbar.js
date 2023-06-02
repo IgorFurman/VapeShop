@@ -129,6 +129,11 @@ export const Navbar = () => {
 						<img src={LogoNav} alt='logo' />
 						BigCloud
 					</Link>
+					<Link to='/' className='name-mobile' onClick={handleLogoClick}>
+						<img src={LogoNavMobile} alt='logo' />
+						
+					</Link>
+					
 					{!isOpen && (
 						<div className='search-mobile'>
 							{!isSearchOpen && (

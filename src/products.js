@@ -8,7 +8,7 @@ export const PRODUCTS = [
       availability: 43,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 189.99,
     },
     {
       id: 2,
@@ -30,7 +30,7 @@ export const PRODUCTS = [
       availability: 243,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 129.99,
     },
     {
       id: 4,
@@ -52,7 +52,7 @@ export const PRODUCTS = [
       availability: 3,
       bestseller: true,
       discount: false,
-      oldPrice: null,
+      oldPrice: 299.99,
     },
     {
       id: 6,
@@ -63,7 +63,7 @@ export const PRODUCTS = [
       availability: 13,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 189.99,
     },
     {
       id: 7,
@@ -74,7 +74,7 @@ export const PRODUCTS = [
       availability: 23,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 289.99,
     },
     {
       id: 8,
@@ -85,7 +85,7 @@ export const PRODUCTS = [
       availability: 63,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 109.99,
     },
     {
       id: 9,
@@ -107,7 +107,7 @@ export const PRODUCTS = [
       availability: 56,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 159.99,
     },
     {
       id: 11,
@@ -129,7 +129,7 @@ export const PRODUCTS = [
       availability: 75,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 299.99,
     },
     {
       id: 13,
@@ -140,7 +140,7 @@ export const PRODUCTS = [
       availability: 35,
       bestseller: false,
       discount: false,
-      oldPrice: null,
+      oldPrice: 99.99,
     },
     {
       id: 14,

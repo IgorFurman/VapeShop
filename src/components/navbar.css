@@ -33,29 +33,6 @@
 	
 }
 
-/* .navbar-item-count-card {
-	position: absolute;
-  top: 0;
-  right: 0;
-	width: 12px;
-	height: 15px;
-	color: var(--color-primary);
-  background: var(--color-background);
-  border-radius: 50%;
-  padding: 2px;
-}
-.burger-item-count-card {
-	position: absolute;
-  top: 5px;
-  left: 19px;
-	width: 12px;
-	height: 20px;
-	color: var(--color-primary);
-  background: var(--color-background);
-  border-radius: 50%;
-  padding: 2px;
-} */
-
 .navbar .burger-menu {
 	display: none;
 }
@@ -86,6 +63,9 @@
 	display: none;
 }
 
+.navbar .navbar-left .name-mobile {
+	display: none;
+}
 .navbar-right .search-desktop {
 	display: block;
 	transition: opacity 0.3s;
@@ -173,9 +153,19 @@
 		display: none;
 	}
 
+	.navbar .navbar-left .name-mobile {
+		display: block;
+	
+	}
+	.navbar .navbar-left .name-mobile img {
+	
+		width: 85px;
+		height: 80px;
+	}
+
 	.navbar .navbar-left .search-mobile {
 		display: flex;
-		margin-left: 10px;
+		margin-left: -20px;
 	}
 
 	.navbar .navbar-right .search-desktop {

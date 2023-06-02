@@ -40,6 +40,7 @@ export const Product = (props) => {
 		auth,
 		db,
 		validateCartItemCount,
+		calculateDiscountPercentage,
 	} = useContext(ShopContext);
    // AOS ANIMATION 
 
@@ -103,12 +104,7 @@ useEffect(() => {
 		}
 	};
 
-  const calculateDiscountPercentage = (originalPrice, currentPrice) => {
-    const discount = originalPrice - currentPrice;
-    const discountPercentage = (discount / originalPrice) * 100;
-  
-    return Math.round(discountPercentage);
-  };
+
 
 	useEffect(() => {
 		let unsubscribe;

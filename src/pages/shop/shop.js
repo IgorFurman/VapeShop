@@ -30,7 +30,7 @@ import './shop&product.css';
 export const Shop = () => {
  
   const [sortMode, setSortMode] = useState('none');
-  const { products } = useContext(ShopContext);
+  const { products, calculateDiscountPercentage } = useContext(ShopContext);
   const SelectRef = useRef();
   const [isHoveredInstagram, setIsHoveredInstagram] = useState(false);
   const [isHoveredFacebook, setIsHoveredFacebook] = useState(false);
@@ -55,6 +55,9 @@ export const Shop = () => {
       behavior: 'smooth',
     });
   };
+
+ 
+  
 
   const TiktokIcon = () => {
     const isMobile = window.innerWidth <= 992;
@@ -124,7 +127,9 @@ export const Shop = () => {
     { value: 'default', label: 'Sortuj...' },
     { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
     { value: 'priceLowToHigh', label: 'Cena: najniższa do najwyższej' },
+    { value: 'biggestDiscount', label: 'Od największej promocji' },
     { value: 'alphabetical', label: 'Alfabetycznie' },
+    
   ];
 
 
@@ -143,6 +148,13 @@ export const Shop = () => {
         a.productName.localeCompare(b.productName)
       );
       break;
+      case 'biggestDiscount':
+        sortedProducts.sort((a, b) => {
+            const discountA = calculateDiscountPercentage(a.oldPrice, a.price);
+            const discountB = calculateDiscountPercentage(b.oldPrice, b.price);
+            return discountB - discountA;
+        });
+        break;
     default:
       break;
   }

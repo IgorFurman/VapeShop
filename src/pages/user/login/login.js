@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	signInWithEmailAndPassword,
 	signInWithPopup,
@@ -51,6 +51,11 @@ export const LoginForm = () => {
 			}
 		}
 	};
+
+
+	useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 	// !!!!!!!! DOKOŃCZYĆ WERYFIKACJE TYMI PLATFORMAMI !!!!!!!!!!===//
 

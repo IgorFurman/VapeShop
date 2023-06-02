@@ -237,11 +237,6 @@
 
 
 
-
-.product:hover {
-	scale: 1.05;
-}
-
 .product-discount-old-price {
   color: rgb(219, 25, 25);
   margin-bottom: 0; 
@@ -357,14 +352,11 @@
 		gap: 10px;
 
 	}
-
-	
-
 	.product {
 		width: 300px;
 		height: 360px;
 	
-		margin: 2px auto;
+		margin: 3px auto;
 	}
 
 	.add-to-cart-btn {
@@ -387,6 +379,10 @@
 		padding: 20px 0;
 		margin: 20px auto;
 	}
+	.product:hover {
+		scale: 1.03;
+	}
+	
 	.product .product-description {
 		font-size: 16px;
 	}
@@ -407,19 +403,24 @@
 		grid-template-columns: repeat(3, minmax(300px, clamp(300px, 30%, 400px)));
 		gap: 80px;
 	}
+	.product:hover {
+		scale: 1.02;
+	}
 
 	.product {
 		padding: 5px 0;
 		width: 300px;
 		height: 420px;
+		margin: 10px auto;
 	}
 
-	.product img {
+
+	.products .product img {
 		width: 250px;
 		height: 270px;
 	}
 
-	.product .product-description {
+	.products .product .product-description {
 		font-size: 17px;
 	}
 

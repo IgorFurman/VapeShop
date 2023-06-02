@@ -181,6 +181,16 @@ const validateCartItemCount = (quantity, id) => {
     updateCartItemCount(product.availability, id);
   }
 }
+const calculateDiscountPercentage = (originalPrice, currentPrice) => {
+  if (originalPrice === currentPrice) {
+    return 0;
+  }
+
+  const discount = originalPrice - currentPrice;
+  const discountPercentage = (discount / originalPrice) * 100;
+
+  return Math.round(discountPercentage);
+};
 
 
   const handleShowLoginModal = () => {
@@ -309,6 +319,7 @@ const validateCartItemCount = (quantity, id) => {
     db,
     validateCartItemCount,
     clearItemFromCart,
+    calculateDiscountPercentage,
   };
 
   return (
