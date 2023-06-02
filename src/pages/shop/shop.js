@@ -127,7 +127,8 @@ export const Shop = () => {
     { value: 'default', label: 'Sortuj...' },
     { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
     { value: 'priceLowToHigh', label: 'Cena: najniższa do najwyższej' },
-    { value: 'biggestDiscount', label: 'Od największej promocji' },
+    { value: 'biggestDiscountPercentage', label: 'Promocja: od największej procentowo' },
+    { value: 'biggestDiscountSum', label: 'Promocja: od największej kwotowo' },
     { value: 'alphabetical', label: 'Alfabetycznie' },
     
   ];
@@ -148,10 +149,17 @@ export const Shop = () => {
         a.productName.localeCompare(b.productName)
       );
       break;
-      case 'biggestDiscount':
+      case 'biggestDiscountPercentage': 
         sortedProducts.sort((a, b) => {
             const discountA = calculateDiscountPercentage(a.oldPrice, a.price);
             const discountB = calculateDiscountPercentage(b.oldPrice, b.price);
+            return discountB - discountA;
+        });
+        break;
+      case 'biggestDiscountSum': 
+        sortedProducts.sort((a, b) => {
+            const discountA = a.oldPrice - a.price;
+            const discountB = b.oldPrice - b.price;
             return discountB - discountA;
         });
         break;
