@@ -11,6 +11,7 @@ import { auth } from '../config/firebase-config';
 import { FaSearch, FaBars, FaHome, FaTimes } from 'react-icons/fa';
 import { IoSearchOutline } from 'react-icons/io5';
 import LogoNav from '../assets/icons8-vape-60-white.png';
+import LogoNavMobile from '../assets/Big-cloud-logo-mobile.png';
 
 import { ShopContext } from '../context/shop-context';
 import { NavbarProvider, NavbarContext } from '../context/navbar-context.js'; 
@@ -171,26 +172,28 @@ export const Navbar = () => {
 									/>
 
 									<span className='icon-label'>Koszyk</span>
-									<span 
-     className='navbar-item-count-card'
-		 style={{
-			 position: 'absolute',
-			 top: '0',
-			 right: '0',
-			 color: 'var(--color-primary)',
-			 background: 'var(--color-background)',
-			 padding: '2px',
-			 width: `${Math.min(8 + Math.log10(cartItemCount+1) * 5, 30)}px`,
-			 height: `${Math.min(8 + Math.log10(cartItemCount+1) * 5, 15)}px`,
-			 borderRadius: '50%',
-			 backgroundColor: 'white',
-			 display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-		 }}
+									{cartItemCount > 0 && (
+  <span 
+    className='navbar-item-count-card'
+    style={{
+      position: 'absolute',
+      top: '0',
+      right: '0',
+      color: 'var(--color-primary)',
+      background: 'var(--color-background)',
+      padding: '2px',
+      width: `${Math.min(8 + Math.log10(cartItemCount+1) * 5, 30)}px`,
+      height: `${Math.min(8 + Math.log10(cartItemCount+1) * 5, 15)}px`,
+      borderRadius: '50%',
+      backgroundColor: 'white',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
   >
     {cartItemCount}
   </span>
+)}
 								</div>
 							</Link>
 							<Link

@@ -70,15 +70,16 @@
   padding: 10px 0;
   border-radius: 5px;
   border: none;
-  background: var(--color-accent);
+  background: var(--color-tertiary);
   color: var(--color-background);
   cursor: pointer;
   transition: background 0.2s ease-in-out;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .register .register-form button:hover {
-  background: var(--color-highlight);
+  background: var(--color-secondary);
 }
 .register .gender__details .category {
   width: 100%;
@@ -88,6 +89,7 @@
   align-items: center;
   position: relative;
   padding: 10px 15px;
+  margin-left: 10px;
   cursor: pointer;
   background: var(--color-background);
   color: var(--color-primary);

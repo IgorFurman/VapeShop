@@ -114,6 +114,7 @@ export const RegistrationForm = () => {
                 onChange={handleEmailChange}
                 placeholder='przykład@mail.com'
                 required
+                autoComplete='email'
               />
             </div>
             <div>
@@ -125,6 +126,7 @@ export const RegistrationForm = () => {
                 onChange={handlePasswordChange}
                 placeholder='******'
                 required
+                autoComplete='new-password' 
               />
             </div>
             <div>
@@ -136,6 +138,8 @@ export const RegistrationForm = () => {
                 onChange={handlePasswordRepeatChange}
                 placeholder='******'
                 required
+                
+
               />
             </div>
             <div>
@@ -145,7 +149,8 @@ export const RegistrationForm = () => {
                 className='register-input'
                 value={firstName}
                 onChange={handleFirstNameChange}
-                placeholder='John'
+                placeholder='Jan'
+                autoComplete='given-name'
               />
             </div>
             <div>
@@ -155,7 +160,8 @@ export const RegistrationForm = () => {
                 className='register-input'
                 value={lastName}
                 onChange={handleLastNameChange}
-                placeholder='Doe'
+                placeholder='Kowalski'
+                autoComplete='family-name'
               />
             </div>
             <div>
@@ -166,6 +172,7 @@ export const RegistrationForm = () => {
                 value={street}
                 onChange={handleStreetChange}
                 placeholder='Przykładowa'
+                autoComplete='street-address' 
               />
             </div>
             <div>
@@ -176,6 +183,7 @@ export const RegistrationForm = () => {
                 value={city}
                 onChange={handleCityChange}
                 placeholder='Warszawa'
+                autoComplete='address-level2'
               />
             </div>
             <div>
@@ -186,6 +194,7 @@ export const RegistrationForm = () => {
                 value={postalCode}
                 onChange={handlePostalCodeChange}
                 placeholder='00-000'
+                autoComplete='postal-code'
               />
             </div>
             <div className='gender__details'>
