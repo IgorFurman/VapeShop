@@ -37,13 +37,13 @@ The project is structured into several components and utility functions:
 
 - **The user** contains components and functions related to user information management and authentication
 
- - **LoginForm** component is responsible for rendering the login form and handling user authentication using email and password. It provides inputs for entering the email and password, handles form submission, and displays error messages if authentication fails. Additionally, it supports social login options using Google, Facebook, and Apple accounts. Upon successful login, the user is redirected to their profile page.
+  - **LoginForm** component is responsible for rendering the login form and handling user authentication using email and password. It provides inputs for entering the email and password, handles form submission, and displays error messages if authentication fails. Additionally, it supports social login options using Google, Facebook, and Apple accounts. Upon successful login, the user is redirected to their profile page.
 
- - **RegistrationForm** component is responsible for rendering the registration form and handling user registration. It provides inputs for entering the user's email, password, first name, last name, street address, city, and postal code. It also includes gender selection options. The form validates the password and password repeat fields, creates a new user account using Firebase authentication, and stores additional user data in the Firestore database. Upon successful registration, a success message is displayed with a link to the login page.
+  - **RegistrationForm** component is responsible for rendering the registration form and handling user registration. It provides inputs for entering the user's email, password, first name, last name, street address, city, and postal code. It also includes gender selection options. The form validates the password and password repeat fields, creates a new user account using Firebase authentication, and stores additional user data in the Firestore database. Upon successful registration, a success message is displayed with a link to the login page.
 
- - **UpdateUser** component is responsible for rendering a form that allows the user to update their password and profile information. It provides inputs for entering a new password and fields for updating the user's first name, last name, email, city, street, and postal code. The component communicates with Firebase to update the user's password and profile data.
+  - **UpdateUser** component is responsible for rendering a form that allows the user to update their password and profile information. It provides inputs for entering a new password and fields for updating the user's first name, last name, email, city, street, and postal code. The component communicates with Firebase to update the user's password and profile data.
 
- - **UserProfile** component displays the user's data, including their name, email, address, order history, and favorite products. It also provides the option to edit the user's profile information and log out. The component retrieves the user's data from Firebase and displays it accordingly.
+  - **UserProfile** component displays the user's data, including their name, email, address, order history, and favorite products. It also provides the option to edit the user's profile information and log out. The component retrieves the user's data from Firebase and displays it accordingly.
 
 ## Context
 
