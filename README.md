@@ -1,5 +1,7 @@
 # Big Cloud - e-commerce VapeShop
 
+Check how it works here: https://igorfurman.github.io/VapeShop/
+
 Big Cloud - VapeShop is a fully-featured e-commerce application developed with React. It presents a user-friendly interface for viewing, sorting, and filtering a variety of vaping products. The application includes robust authentication and profile management features, including a login and registration system that integrates with Firebase for secure data management. It also offers an interactive shopping experience with an integrated cart system and product sorting and filtering capabilities. The interface is enriched with responsive navigation and search features, age verification, and interactive product pages with full details, including image rendering and calculation of discount percentages. Additional features include a contact form integrated with Firebase Firestore, a dynamic footer with a Google Maps location display, and a modal for adding products to the shopping cart. Big Cloud VapeShop leverages Context API to manage state throughout the application, ensuring an efficient and seamless user experience.
 
 ## Project Structure
