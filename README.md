@@ -6,20 +6,14 @@ Big Cloud - VapeShop is a fully-featured e-commerce application developed with R
 
 The project is structured into several components and utility functions:
 
-The App component in the code is the entry point of the React application. It sets up the necessary context providers and router for the application. The main component, AppContent, renders the different routes based on the URL path.
 
-The application includes various routes for user authentication and profile management (/login, /register, /profile/:id), shopping functionality (/, /cart, /products/:id), and other pages such as contact and search results.
+- **App** component in the code is the entry point of the React application. It sets up the necessary context providers and router for the application. The main component, AppContent, renders the different routes based on the URL path. The application includes various routes for user authentication and profile management (/login, /register, /profile/:id), shopping functionality (/, /cart, /products/:id), and other pages such as contact and search results.
 
-The App component also includes context providers for the shop context and navbar context, which are used throughout the application to manage state and provide data to components.
+- **Navbar** component is a navigation bar that provides links to different pages, a search functionality, and icons for the shopping cart and user profile. It includes a mobile-friendly burger menu for small screens.
 
-Overall, the App component acts as the container for the entire application, providing the necessary context and routing functionality..
-.
+- **ProductSearch** component is a search bar that suggests matching products as the user types and allows them to navigate to specific product pages.
 
-The Navbar component is a navigation bar that provides links to different pages, a search functionality, and icons for the shopping cart and user profile. It includes a mobile-friendly burger menu for small screens.
-
-- The ProductSearch component is a search bar that suggests matching products as the user types and allows them to navigate to specific product pages.
-
-- **AddToCard** This component represents a modal window for adding products to the shopping cart. It is used to provide feedback to the user when a product is added to the cart.
+- **AddToCard** component represents a modal window for adding products to the shopping cart. It is used to provide feedback to the user when a product is added to the cart.
 
 - **AgeCheck** component is a modal-based age verification component used to restrict access to certain content or features based on age. It prompts the user to confirm their age by clicking "Yes" or "No" buttons. If the user clicks "Yes," the component stores the verification status in local storage, allowing them to access the content. Otherwise, if the user clicks "No," they are redirected to a different website.
 
@@ -41,7 +35,7 @@ The Navbar component is a navigation bar that provides links to different pages,
 
 - **Contact** component represents a contact form where users can send messages. It includes input fields for name, email, and message, as well as a submit button. When the form is submitted, the message is sent to a Firebase Firestore collection called "messages" with the timestamp. An animation is displayed to indicate that the message has been sent successfully. If there is an error during the submission process, an alert is shown with the error message.
 
-- **The user folder** contains components and functions related to user information management and authentication
+- **The user** contains components and functions related to user information management and authentication
 
  - **LoginForm** component is responsible for rendering the login form and handling user authentication using email and password. It provides inputs for entering the email and password, handles form submission, and displays error messages if authentication fails. Additionally, it supports social login options using Google, Facebook, and Apple accounts. Upon successful login, the user is redirected to their profile page.
 
@@ -49,7 +43,7 @@ The Navbar component is a navigation bar that provides links to different pages,
 
  - **UpdateUser** component is responsible for rendering a form that allows the user to update their password and profile information. It provides inputs for entering a new password and fields for updating the user's first name, last name, email, city, street, and postal code. The component communicates with Firebase to update the user's password and profile data.
 
- - **User** component displays the user's data, including their name, email, address, order history, and favorite products. It also provides the option to edit the user's profile information and log out. The component retrieves the user's data from Firebase and displays it accordingly.
+ - **UserProfile** component displays the user's data, including their name, email, address, order history, and favorite products. It also provides the option to edit the user's profile information and log out. The component retrieves the user's data from Firebase and displays it accordingly.
 
 ## Context
 
