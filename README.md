@@ -6,7 +6,7 @@ Big Cloud - VapeShop is a fully-featured e-commerce application developed with R
 
 ## Project Structure
 
-The project is structured into several components and utility functions:
+The project is structured into several reusable components:
 
 
 - **App** component in the code is the entry point of the React application. It sets up the necessary context providers and router for the application. The main component, AppContent, renders the different routes based on the URL path. The application includes various routes for user authentication and profile management (/login, /register, /profile/:id), shopping functionality (/, /cart, /products/:id), and other pages such as contact and search results.
@@ -25,9 +25,13 @@ The project is structured into several components and utility functions:
 
 ## Pages
 
+The project is structured also into several pages:
+
 - **Shop** component is the main page of the online shop. It displays a carousel with promotional images and information, a navigation bar, and a selection dropdown for sorting the products. It also renders the list of products using the Product component and provides routing for individual product details using react-router-dom. The component utilizes the ShopContext to access the product data and perform sorting operations. It includes social media icons and handles hover effects for Instagram, Facebook, and TikTok icons.
 
 - **Product** component represents an individual product displayed in the shop. It renders the product image, name, price, and additional information such as discounts and bestseller badges. Users can add the product to their cart, add it to favorites, and click on it to view more details. The component also handles the login modal and the add-to-cart modal. It communicates with the ShopContext to access cart items, perform cart operations, and manage favorites. Additionally, it calculates and displays discount percentages. The component is animated using the AOS (Animate On Scroll) library.
+
+- **ProductDetails** page is a React component that displays detailed information about a specific product in an online store. The page presents product details such as name, price, image, description, availability, and potential discount. Users can add the product to the cart, increase or decrease the quantity they want to add, and also add the product to their favorites list. This page uses the ShopContext to handle various actions such as adding to the cart or favorites list. Additionally, the page includes login and add-to-cart modals which are displayed in appropriate scenarios.
 
 - **SearchResults** component displays the search results based on the provided search term. It retrieves the filtered products from the ShopContext and renders them as individual Product components. If there are no matching results, a message is displayed indicating that no offers were found for the searched term, along with some suggestions for the user to try again.
 
