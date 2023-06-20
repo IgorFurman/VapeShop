@@ -112,7 +112,7 @@ export const PRODUCTS = [
     {
       id: 11,
       productName: 'Aspire Nautilus Prime X',
-      price: 219.99,
+      price: 259.99,
       productImage:'https://firebasestorage.googleapis.com/v0/b/bigcloud-fffb2.appspot.com/o/products%20images%2F6.png?alt=media&token=23b337ac-3923-4f9b-857e-d41bd9d83eb7',
       description: 'The Aspire Nautilus Prime X is a pod mod device that features an external 18650 battery and can fire up to 60W. It comes with two pods: the N-pod for Nautilus coils and the B-pod for BP coils. Both have a 4ml e-liquid capacity. This device provides a fully customizable experience.',
       availability: 22,

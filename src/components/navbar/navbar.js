@@ -2,20 +2,22 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { fallDown as Menu } from 'react-burger-menu';
 import { ShoppingCart, User } from 'phosphor-react';
-import './navbar.css';
+
 import { ProductSearch } from './search';
 import { useSpring, animated } from 'react-spring';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../config/firebase-config';
+import { auth } from '../../config/firebase-config';
 
 import { FaSearch, FaBars, FaHome, FaTimes } from 'react-icons/fa';
 import { IoSearchOutline } from 'react-icons/io5';
-import LogoNav from '../assets/icons8-vape-60-white.png';
-import LogoNavMobile from '../assets/Big-cloud-logo-mobile.png';
+import LogoNav from '../../assets/logos/icons8-vape-60-white.png';
+import LogoNavMobile from '../../assets/logos/Big-cloud-logo-mobile.png';
 
-import { ShopContext } from '../context/shop-context';
-import { NavbarProvider, NavbarContext } from '../context/navbar-context.js'; 
+import { ShopContext } from '../../context/shop-context';
+import { NavbarProvider, NavbarContext } from '../../context/navbar-context.js'; 
 
+
+import './navbar.css';
 
 export const Navbar = () => {
 	const { cartItemCount } = useContext(ShopContext);
@@ -111,7 +113,7 @@ export const Navbar = () => {
 
 
 	// fix loading problem
-	const { navbarVisible, isLoading } = useContext(NavbarContext);
+	const { isLoading } = useContext(NavbarContext);
 
   if (isLoading) {
     return null; 

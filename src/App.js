@@ -7,17 +7,17 @@ import {
 	useLocation,
 } from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
-import { NavbarProvider, NavbarContext } from './context/navbar-context.js'; 
+import { NavbarProvider, NavbarContext } from './context/navbar-context.js';
 
-import { AgeCheck } from './components/age-check';
+import { AgeCheck } from './components/age-check-modal/age-check';
 
-import { Navbar } from './components/navbar';
-import { Footer } from './components/footer';
+import { Navbar } from './components/navbar/navbar';
+import { Footer } from './components/footer/footer';
 import { LoginForm } from './pages/user/login/login';
 import { RegistrationForm } from './pages/user/register/register';
 import { User } from './pages/user/user-profile/user-profile';
 import { Shop } from './pages/shop/shop';
-import { LoginModal } from './components/login-modal';
+import { LoginModal } from './components/login-modal/login-modal';
 import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
 import { Product } from './pages/shop/product';
@@ -31,48 +31,47 @@ addProductsToFirebase();
 
 Modal.setAppElement('#root');
 
-
-
 function App() {
-  return (
-    <NavbarProvider>
-      <ShopContextProvider>
-        <Router>
-          <AppContent />
-        </Router>
-      </ShopContextProvider>
-    </NavbarProvider>
-  );
+	return (
+		<NavbarProvider>
+			<ShopContextProvider>
+				<Router>
+					<AppContent />
+				</Router>
+			</ShopContextProvider>
+		</NavbarProvider>
+	);
 }
 
 const AppContent = () => {
-  const location = useLocation();
-  const { navbarVisible, setNavbarVisible, setIsLoading, isLoading } = useContext(NavbarContext);
+	const location = useLocation();
+	const { navbarVisible, setNavbarVisible, setIsLoading, isLoading } =
+		useContext(NavbarContext);
 
-  useEffect(() => {
-    setNavbarVisible(location.pathname !== '/');
-    setIsLoading(false);
-  }, [location, setNavbarVisible, setIsLoading]);
+	useEffect(() => {
+		setNavbarVisible(location.pathname !== '/');
+		setIsLoading(false);
+	}, [location, setNavbarVisible, setIsLoading]);
 
-  return (
-    <div className='App'>
-      {navbarVisible && <Navbar />}
-      <AgeCheck />
-      <Routes>
-        <Route path='/login-modal' element={<LoginModal />} />
-        <Route path='/login' element={<LoginForm />} />
-        <Route path='/register' element={<RegistrationForm />} />
-        <Route path="/profile/:id" element={<User />} />
+	return (
+		<div className='App'>
+			{navbarVisible && <Navbar />}
+			<AgeCheck />
+			<Routes>
+				<Route path='/login-modal' element={<LoginModal />} />
+				<Route path='/login' element={<LoginForm />} />
+				<Route path='/register' element={<RegistrationForm />} />
+				<Route path='/profile/:id' element={<User />} />
 
-        <Route path='/' element={<Shop />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path="search-results" element={<SearchResults />} />
-        <Route path='/products/:id' element={<ProductDetails />} />
-      </Routes>
-      <Footer />
-    </div>
-  );
-}
+				<Route path='/' element={<Shop />} />
+				<Route path='/cart' element={<Cart />} />
+				<Route path='/contact' element={<Contact />} />
+				<Route path='search-results' element={<SearchResults />} />
+				<Route path='/products/:id' element={<ProductDetails />} />
+			</Routes>
+			<Footer />
+		</div>
+	);
+};
 
-export default App
+export default App;

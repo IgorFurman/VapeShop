@@ -78,20 +78,16 @@
 	transform-origin: left;
 }
 
-.logoinfo p {
-	color: #6eb981;
-	font-size: 17px;
-	margin-top: 5px;
+.logoinfo-image {
+	margin: 0 auto;
+	justify-content: center;
+	text-align: center;
 }
-.logoinfo img {
-	height: 119px;
-	width: 90px;
-}
-.logoinfo a {
-	text-decoration: none;
-	color: #f1f1f1;
-	font-size: 11px;
-	margin-left: 10px;
+
+.logoinfo-image img {
+	height: auto;
+	width: 60%;
+
 }
 
 .location {
@@ -263,23 +259,13 @@ footer a {
 	  text-decoration: none;
 	}
   
-	.logoinfo p {
-	  color: #6eb981;
-	  font-size: 17px;
-	  margin-top: 5px;
+
+
+	.logoinfo-image img {
+	  height: 51%;
+	  width: 200px;
 	}
-  
-	.logoinfo img {
-	  height: 119px;
-	  width: 90px;
-	}
-  
-	.logoinfo a {
-	  text-decoration: none;
-	  color: #f1f1f1;
-	  font-size: 11px;
-	  margin-left: 10px;
-	}
+
 	
 	.sociallogos {
 	  padding: 20px 0;

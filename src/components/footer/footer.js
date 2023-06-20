@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 import { useMediaQuery } from 'react-responsive';
 
-import { app } from '../config/firebase-config';
+import { app } from '../../config/firebase-config';
 import {
 	getFirestore,
 	collection,
@@ -24,8 +24,8 @@ import { GiSmokeBomb } from 'react-icons/gi';
 import { GrMap } from 'react-icons/gr';
 
 import './footer.css';
-import LogoFooter from '../assets/icons8-vape-60-white.png';
-import TikTokShadowIcon from '../assets/icon/tiktok-color-icon.png';
+import LogoFooter from '../../assets/logos/Big-cloud-logo-mobile.png';
+import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
 
 const handleScrollToTop = () => {
 	window.scrollTo({
@@ -108,7 +108,6 @@ export const Footer = () => {
 		);
 	};
 
-
 	return (
 		<>
 			{showNewsletter && (
@@ -130,13 +129,9 @@ export const Footer = () => {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-							 <button
-           
-            className='newsletter-form-btn'
-            type='submit'
-          >
-            Zapisz się
-          </button>
+							<button className='newsletter-form-btn' type='submit'>
+								Zapisz się
+							</button>
 						</form>
 					)}
 				</div>
@@ -144,16 +139,9 @@ export const Footer = () => {
 
 			<div className='main-footer'>
 				<div className='logoinfo'>
-					<h2>
+					<h2 className='logoinfo-image'>
 						<img src={LogoFooter} alt='BigCloud Logo' />
-						BigCloud
 					</h2>
-					<a target='_blank' href='https://icons8.com/icon/PZ8cqf92g6gy/vape'>
-						Vape icon by
-					</a>{' '}
-					<a target='_blank' href='https://icons8.com'>
-						Icons8
-					</a>
 				</div>
 				<div className='contact-details'>
 					<h3>Kontakt</h3>

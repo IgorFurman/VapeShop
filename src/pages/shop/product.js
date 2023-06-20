@@ -10,8 +10,8 @@ import { ShopContext } from '../../context/shop-context';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import BestSellerIcon from '../../assets/icon/bestseller-icon.png';
 
-import { LoginModal } from '../../components/login-modal';
-import { AddToCartModal } from '../../components/add-to-cart-modal';
+import { LoginModal } from '../../components/login-modal/login-modal';
+import { AddToCartModal } from '../../components/add-to-cart-modal/add-to-cart-modal';
 
 import './shop&product.css';
 

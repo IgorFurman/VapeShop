@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { FaTimes } from 'react-icons/fa';
-import { ShopContext } from '../context/shop-context';
+import { ShopContext } from '../../context/shop-context';
 
 import './login-modal.css';
 

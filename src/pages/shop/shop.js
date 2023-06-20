@@ -2,8 +2,8 @@ import React, { useContext, useRef, useState, useEffect } from 'react';
 import Select from 'react-select';
 import { Routes, Route } from 'react-router-dom';
 
-import { Navbar } from '../../components/navbar';
-import { ProductSearch } from '../../components/search';
+import { Navbar } from '../../components/navbar/navbar';
+import { ProductSearch } from '../../components/navbar/search';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -20,10 +20,10 @@ import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
 import { useSpring, animated } from 'react-spring';
 
-import headerImage1 from '../../assets/header-img-1.jpg';
-import headerImage2 from '../../assets/header-img-2.jpg';
-import headerImage3 from '../../assets/header-img-3.jpg';
-import headerImage4 from '../../assets/header-img-4.jpg';
+import headerImage1 from '../../assets/hero/header-img-1.jpg';
+import headerImage2 from '../../assets/hero/header-img-2.jpg';
+import headerImage3 from '../../assets/hero/header-img-3.jpg';
+import headerImage4 from '../../assets/hero/header-img-4.jpg';
 
 import './shop&product.css';
 

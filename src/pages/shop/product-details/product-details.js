@@ -4,9 +4,9 @@ import { ShopContext } from '../../../context/shop-context';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { doc, onSnapshot } from 'firebase/firestore';
 import ModalImage from 'react-modal-image';
-import { LoginModal } from '../../../components/login-modal';
+import { LoginModal } from '../../../components/login-modal/login-modal';
 
-import { AddToCartModal } from '../../../components/add-to-cart-modal';
+import { AddToCartModal } from '../../../components/add-to-cart-modal/add-to-cart-modal';
 import './product-details.css';
 
 export const ProductDetails = () => {

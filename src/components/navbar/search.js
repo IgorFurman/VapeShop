@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { ShopContext } from '../context/shop-context';
+import { ShopContext } from '../../context/shop-context';
 import { FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
+import './navbar.css';
 
 export const ProductSearch = ({ setIsSearchOpen }) => {
   const { searchTerm, setSearchTerm, products, setFilteredProducts } = useContext(ShopContext);

@@ -3,7 +3,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-import { ShopContext } from '../context/shop-context';
+import { ShopContext } from '../../context/shop-context';
 
 import './add-to-cart-modal.css';
 
