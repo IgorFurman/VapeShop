@@ -15,6 +15,18 @@ export const Cart = () => {
 
 	const navigate = useNavigate();
 
+	const handleScrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	};
+	
+	const handleScrollAndRedirect = (path) => {
+    handleScrollToTop();
+    navigate(path);
+};
+
 	useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -41,8 +53,7 @@ export const Cart = () => {
 
 			<div className='checkout-btns-container'>
 				<div className='checkout-icon-button-box'>
-					
-					<button onClick={() => navigate('/')}>Kontynuj zakupy</button><FaShoppingCart className='checkout-icon'/>
+					<button onClick={() => handleScrollAndRedirect('/')}>Kontynuj zakupy</button><FaShoppingCart className='checkout-icon'/>
 				</div>
 				<div className='checkout-icon-button-box'>
 					
