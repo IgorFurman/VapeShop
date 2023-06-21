@@ -1,5 +1,5 @@
 # Big Cloud - e-commerce VapeShop
-![App Screenshot](https://prnt.sc/lvlWh_uNab5L) 
+![App Screenshot](https://i.imgur.com/5xCliIK.png) 
 
 Check it out live [here](https://igorfurman.github.io/VapeShop/).
 
@@ -15,6 +15,7 @@ Big Cloud - VapeShop is a robust, feature-rich e-commerce application developed 
 * Responsive navigation and dynamic searching
 * Google Maps location display
 * Add to cart modal
+* Add to favorites list while logged management via Firebase
 
 ## 🏗️ Project Structure
 
