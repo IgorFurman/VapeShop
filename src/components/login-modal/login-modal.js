@@ -36,7 +36,7 @@ export const LoginModal = () => {
                 </Link>
                 <FaTimes
                     onClick={closeLoginModal}
-                    size={32}
+                    size={28}
                     className='close-icon'
                 />
             </div>

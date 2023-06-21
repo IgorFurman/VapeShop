@@ -46,7 +46,7 @@ export const ProductSearch = ({ setIsSearchOpen }) => {
   const closeButtonStyle = {
     fontSize: '24px',
     position: 'absolute',
-    right: isMediaWide ? '0px' : '5px',
+    right: isMediaWide ? '0px' : '-5px',
     top: '50%',
     transform: 'translateY(-50%)',
     cursor: 'pointer',
