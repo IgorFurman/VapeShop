@@ -5,14 +5,10 @@ import {
   doc,
   setDoc,
   getDoc,
-  deleteDoc,
-  arrayUnion,
-  arrayRemove,
-  updateDoc,
   onSnapshot,
 } from 'firebase/firestore';
 
-import { app, auth, db } from '../config/firebase-config';
+import  {auth, db } from '../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createContext, useEffect, useState } from 'react';
 
@@ -205,15 +201,6 @@ const calculateDiscountPercentage = (originalPrice, currentPrice) => {
     return !!user;
   };
 
-  function safeParseJSON(json) {
-    try {
-      let parsed = JSON.parse(json);
-      if (parsed && typeof parsed === 'object') {
-        return parsed;
-      }
-    } catch (e) {}
-    return {};
-  }
 
   useEffect(() => {
     if (!loading && user) {
@@ -253,15 +240,7 @@ const calculateDiscountPercentage = (originalPrice, currentPrice) => {
       }
     }
   };
-
-
-  
-
-
-
-
  
-
   useEffect(() => {
     if (auth.currentUser) {
       const userRef = doc(db, "users", auth.currentUser.uid);
