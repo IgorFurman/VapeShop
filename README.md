@@ -12,10 +12,10 @@ Big Cloud - VapeShop is a robust, feature-rich e-commerce application developed 
 * Product sorting and filtering
 * Age verification mechanism
 * Contact form with Firebase Firestore integration
+* Add to favorites list while logged in (management via Firebase)
 * Responsive navigation and dynamic searching
 * Google Maps location display
 * Add to cart modal
-* Add to favorites list while logged management via Firebase
 
 ## 🏗️ Project Structure
 
