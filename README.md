@@ -27,7 +27,7 @@ The project is structured into several reusable components:
 
 The project is structured also into several pages:
 
-- **Shop** component is the main page of the online shop. It displays a carousel with promotional images and information, a navigation bar, and a selection dropdown for sorting the products. It also renders the list of products using the Product component and provides routing for individual product details using react-router-dom. The component utilizes the ShopContext to access the product data and perform sorting operations. It includes social media icons and handles hover effects for Instagram, Facebook, and TikTok icons.
+- **Shop** component is the main page of the online shop. It displays a carousel with promotional images and information, a navigation bar, and a selection dropdown for sorting the products. It also renders the list of products using the Product component and provides routing for individual product details using react-router-dom. The component utilizes the ShopContext to access the product data and perform sorting operations.
 
 - **Product** component represents an individual product displayed in the shop. It renders the product image, name, price, and additional information such as discounts and bestseller badges. Users can add the product to their cart, add it to favorites, and click on it to view more details. The component also handles the login modal and the add-to-cart modal. It communicates with the ShopContext to access cart items, perform cart operations, and manage favorites. Additionally, it calculates and displays discount percentages. The component is animated using the AOS (Animate On Scroll) library.
 
@@ -53,15 +53,13 @@ The project is structured also into several pages:
 
 ## Context
 
-- **NavbarContext** and **NavbarProvider** components are part of the context system in app, providing a context for managing the visibility state of the navbar and a loading state. The NavbarContext allows components within its provider to access and update the navbar visibility and loading status. It fixes the z-index problem caused by prompts of matching products while texting in input
+- **NavbarContext** providing a context for managing the visibility state of the navbar and a loading state. The NavbarContext allows components within its provider to access and update the navbar visibility and loading status. It fixes the z-index problem caused by prompts of matching products while texting in input searchbar.
 
-- **ShopContext** and **ShopContextProvider**  components are part of the context system in this app, providing a context for managing shopping-related data and actions. The ShopContext allows components within its provider to access and update data such as products, cart items, favorites, and search terms. It also provides functions for adding, removing, and updating cart items, as well as handling user authentication and managing the login modal visibility. Additionally, it includes functions for managing favorites and calculating discount percentages.
+- **ShopContext** providing a context for manages the global state for an this app built with React, Firebase and Firestore. It features hooks and methods for handling product data fetching, cart management, search, user authentication and favorites. It leverages react-firebase-hooks for authentication state, and Firestore for storing product, cart and user data. The context value is injected into the component tree to be utilized across the app where needed.
 
 ## Firebase
 
-- **firebase-config** contains the Firebase configuration and initializes the Firebase app using the provided configuration. It also initializes the Firebase authentication and Firestore services.
-
-- **firebase-products** exports a function addProductsToFirebase that adds a collection of products to Firestore. It retrieves the existing products from Firestore and compares them with the products to be added. If a product with the same ID already exists in Firestore, it skips adding it. Otherwise, it adds the product to Firestore using the setDoc function.
+This project uses Firebase as its backend service, providing real-time database, authentication and cloud storage functionalities. It utilizes Firebase Firestore for storing and retrieving product data, user's shopping cart data and favorite products. The Firebase Authentication service is used to handle user registration, login and state tracking. The project is set up to use environment variables for Firebase configuration to ensure secure access to the Firebase project.
 
 ## How to Run
 
