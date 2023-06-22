@@ -1,5 +1,5 @@
 import './App.css';
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
 	HashRouter as Router,
 	Routes,
@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import { ShopContextProvider } from './context/shop-context.js';
 import { NavbarProvider, NavbarContext } from './context/navbar-context.js';
+
+import  ScrollToTop  from './utils/Scroll-to-top.js'
 
 import { AgeCheck } from './components/age-check-modal/age-check';
 
@@ -20,7 +22,6 @@ import { Shop } from './pages/shop/shop';
 import { LoginModal } from './components/login-modal/login-modal';
 import { Contact } from './pages/contact/contact';
 import { Cart } from './pages/cart/cart';
-import { Product } from './pages/shop/product';
 import { SearchResults } from './pages/search-results/search-results';
 import { ProductDetails } from './pages/shop/product-details/product-details';
 import { addProductsToFirebase } from './config/firebase-products';
@@ -36,7 +37,9 @@ function App() {
 		<NavbarProvider>
 			<ShopContextProvider>
 				<Router>
-					<AppContent />
+					<ScrollToTop>
+						<AppContent />
+					</ScrollToTop>
 				</Router>
 			</ShopContextProvider>
 		</NavbarProvider>
@@ -45,7 +48,7 @@ function App() {
 
 const AppContent = () => {
 	const location = useLocation();
-	const { navbarVisible, setNavbarVisible, setIsLoading, isLoading } =
+	const { navbarVisible, setNavbarVisible, setIsLoading } =
 		useContext(NavbarContext);
 
 	useEffect(() => {
