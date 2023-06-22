@@ -1,36 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { ShopContext } from '../../context/shop-context';
 import { CartItem } from './cart-item';
-import { useNavigate } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
-import { FaMoneyCheckAlt, FaShoppingCart, FaCreditCard } from "react-icons/fa";
-
+import { FaMoneyCheckAlt, FaShoppingCart } from 'react-icons/fa';
 
 import './cart.css';
 
 export const Cart = () => {
-	const { cartItems, getTotalCartAmount, checkout, products } = useContext(ShopContext);
+	const { cartItems, getTotalCartAmount, products } = useContext(ShopContext);
 	const totalAmount = getTotalCartAmount();
-
-	const navigate = useNavigate();
-
-	const handleScrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
-	};
-	
-	const handleScrollAndRedirect = (path) => {
-    handleScrollToTop();
-    navigate(path);
-};
-
-	useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
 
 	return (
 		<div className='cart'>
@@ -38,36 +18,45 @@ export const Cart = () => {
 				<h2>Twój koszyk</h2>
 			</div>
 			<div className='cartItems'>
-			{products.map((product) => {
-    if (cartItems && cartItems[product.id] && cartItems[product.id] > 0) {
-        return <CartItem key={product.id}data={product} />;
-    } else {
-        return null;
-    }
-})}
+				{products.map((product) => {
+					if (cartItems && cartItems[product.id] && cartItems[product.id] > 0) {
+						return <CartItem key={product.id} data={product} />;
+					} else {
+						return null;
+					}
+				})}
 			</div>
 			{totalAmount > 0 ? (
-			<div className='checkout'>
-		<p>Razem do zapłaty: <b>{(Math.round(totalAmount * 100) / 100).toFixed(2)}zł</b></p>
+				<div className='checkout'>
+					<p>
+						Razem do zapłaty:{' '}
+						<b>{(Math.round(totalAmount * 100) / 100).toFixed(2)}zł</b>
+					</p>
 
-
-			<div className='checkout-btns-container'>
-				<div className='checkout-icon-button-box'>
-					<button onClick={() => handleScrollAndRedirect('/')}>Kontynuj zakupy</button><FaShoppingCart className='checkout-icon'/>
-				</div>
-				<div className='checkout-icon-button-box'>
+					<div className='checkout-btns-container'>
 					
-					<button>Przejdź do płatności</button><FaMoneyCheckAlt className='checkout-icon'/>
+							<Link className='checkout-icon-button-box' to='/'>
+								<button >Kontynuj zakupy</button>
+								<FaShoppingCart className='checkout-icon'/>
+							</Link>
+						
+						<div className='checkout-icon-button-box'>
+							<button>Przejdź do płatności</button>
+							<FaMoneyCheckAlt className='checkout-icon' />
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		
-			
 			) : (
-                <>
-				<h2>Twój koszyk jest pusty</h2>
-                <button className='empty-cart-btn'onClick={() => navigate('/')}>Wybierz coś z naszej oferty!</button>
-                </>
+				<>
+					<h2>Twój koszyk jest pusty</h2>
+					<Link
+					to='/'> <button
+						className='empty-cart-btn'
+					>
+						Wybierz coś z naszej oferty!
+					</button></Link>
+					
+				</>
 			)}
 		</div>
 	);

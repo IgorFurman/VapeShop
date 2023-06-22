@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
 	signInWithEmailAndPassword,
-	signInWithPopup,
-	GoogleAuthProvider,
-	FacebookAuthProvider,
-	OAuthProvider,
 } from 'firebase/auth';
 import { auth } from '../../../config/firebase-config';
 import { Link, useNavigate } from 'react-router-dom';
@@ -53,41 +49,6 @@ export const LoginForm = () => {
 	};
 
 
-	useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-	// !!!!!!!! DOKOŃCZYĆ WERYFIKACJE TYMI PLATFORMAMI !!!!!!!!!!===//
-
-	const handleSignInWithGoogle = async () => {
-		const provider = new GoogleAuthProvider();
-		try {
-			const userCredential = await signInWithPopup(auth, provider);
-			console.log('Zalogowano za pomocą konta Google:', userCredential.user);
-		} catch (error) {
-			setError(error.message);
-		}
-	};
-
-	const handleSignInWithFacebook = async () => {
-		const provider = new FacebookAuthProvider();
-		try {
-			const userCredential = await signInWithPopup(auth, provider);
-			console.log('Zalogowano za pomocą konta Facebook:', userCredential.user);
-		} catch (error) {
-			setError(error.message);
-		}
-	};
-
-	const handleSignInWithApple = async () => {
-		const provider = new OAuthProvider('apple.com');
-		try {
-			const userCredential = await signInWithPopup(auth, provider);
-			console.log('Zalogowano za pomocą konta Apple:', userCredential.user);
-		} catch (error) {
-			setError(error.message);
-		}
-	};
 
 	return (
 		<div className='container'>
@@ -115,13 +76,13 @@ export const LoginForm = () => {
 					<div className='login-socials'>
 						<FaFacebook
 							className='social-icon'
-							onClick={handleSignInWithFacebook}
+						
 						/>
 						<FaGoogle
 							className='social-icon'
-							onClick={handleSignInWithGoogle}
+							
 						/>
-						<FaApple className='social-icon' onClick={handleSignInWithApple} />
+						<FaApple className='social-icon' />
 					</div>
 				</form>
 			</div>

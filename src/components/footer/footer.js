@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useSpring, animated } from 'react-spring';
 import { useMediaQuery } from 'react-responsive';
@@ -20,24 +20,14 @@ import {
 	FaTiktok,
 	FaWpforms,
 } from 'react-icons/fa';
-import { GiSmokeBomb } from 'react-icons/gi';
-import { GrMap } from 'react-icons/gr';
+
 
 import './footer.css';
 import LogoFooter from '../../assets/logos/Big-cloud-logo-mobile.png';
 import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
 
-const handleScrollToTop = () => {
-	window.scrollTo({
-		top: 0,
-		behavior: 'smooth',
-	});
-};
 
-const handleScrollAndRedirect = (path, navigate) => {
-	handleScrollToTop();
-	navigate(path);
-};
+
 
 export const Footer = () => {
 	const currentYear = new Date().getFullYear();
@@ -157,8 +147,7 @@ export const Footer = () => {
 						<li>
 							<FaWpforms style={iconStyle} />
 							<Link
-								to='/contact'
-								onClick={() => handleScrollAndRedirect('/contact')}
+								to = '/contact'
 							>
 								Wypełnij formularz
 							</Link>

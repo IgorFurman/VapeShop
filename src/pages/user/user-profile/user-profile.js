@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+
 import { signOut } from 'firebase/auth';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -25,6 +27,8 @@ export const User = () => {
 
 	const navigate = useNavigate();
 
+	
+	
 	useEffect(() => {
 		if (user) {
 			const unsubscribe = onSnapshot(
@@ -111,20 +115,6 @@ export const User = () => {
 		}
 	};
 
-	const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-	const handleClickLink = () => {
-		setTimeout(() => {
-			handleScrollToTop(); 
-		}, 0);
-	};
-
-
 	return (
 		<>
 			<section className='user'>
@@ -177,7 +167,7 @@ export const User = () => {
 								<div className='user-favourite-name'>
 									<h3>{product.productName}</h3>
 									<Link
-                  onClick={handleClickLink}
+                  
 										className='user-favourite-link'
 										to={`/products/${product.id}`}
 									>

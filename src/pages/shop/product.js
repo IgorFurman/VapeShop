@@ -26,6 +26,7 @@ export const Product = (props) => {
 		oldPrice,
 		availability,
 	} = props.data;
+
 	const {
 		addToCart,
 		cartItems,
@@ -42,7 +43,7 @@ export const Product = (props) => {
 		validateCartItemCount,
 		calculateDiscountPercentage,
 	} = useContext(ShopContext);
-   // AOS ANIMATION 
+
 
 useEffect(() => {
   AOS.init({
@@ -53,14 +54,14 @@ useEffect(() => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [isFavorite, setIsFavorite] = useState(favorites && favorites[id]);
 	const [isMaxQuantity, setIsMaxQuantity] = useState(false);
-	const [isMaxQuantityModalVisible, setIsMaxQuantityModalVisible] = useState(false);
+
 
 	
 	const handleAddToCart = () => {
 		let newQuantity = (cartItems[id] || 0) + 1;
 		if(newQuantity > availability) {
 			setIsMaxQuantity(true);
-			setIsMaxQuantityModalVisible(true);
+	
 		} else {
 			validateCartItemCount(newQuantity, id);
 			setIsMaxQuantity(false);
@@ -68,26 +69,9 @@ useEffect(() => {
 		setIsModalVisible(true);
 	}
 
-	const handleCloseMaxQuantityModal = () => {
-		setIsMaxQuantityModalVisible(false);
-	};
-
 	const handleCloseCartModal = () => {
 		setIsModalVisible(false);
 		closeLoginModal();
-	};
-
-	const handleScrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
-	};
-
-	const handleClickLink = () => {
-		setTimeout(() => {
-			handleScrollToTop();
-		}, 0);
 	};
 
 	const handleClickAddToFav = (e) => {
@@ -140,7 +124,6 @@ useEffect(() => {
 			<div className='product' data-aos-anchor-placement="top-bottom" data-aos="fade-up">
 				<Link
 					to={`/products/${id}`}
-					onClick={handleClickLink}
 					className='product-link'
 				>
 					<img src={productImage} alt={productName} />
@@ -193,7 +176,6 @@ useEffect(() => {
   productName={productName}
   productImage={productImage}
   cartItems={cartItems && cartItems}
-
   addToCart={addToCart}
   removeFromCart={removeFromCart}
   updateCartItemCount={updateCartItemCount}

@@ -10,7 +10,7 @@ import { AddToCartModal } from '../../../components/add-to-cart-modal/add-to-car
 import './product-details.css';
 
 export const ProductDetails = () => {
-  const navigate = useNavigate()
+ 
 	const { id } = useParams();
 	const {
 		addToCart,
@@ -27,9 +27,11 @@ export const ProductDetails = () => {
 		removeFromCart,
 		updateCartItemCount,
     validateCartItemCount,
+	
+		
 	} = useContext(ShopContext);
 
-
+	const navigate = useNavigate()
 	const product = products.find((product) => product.id === Number(id));
 
 	const [isModalVisible, setIsModalVisible] = useState(false);
@@ -185,7 +187,6 @@ export const ProductDetails = () => {
 				productName={productName}
 				productImage={productImage}
 				cartItems={cartItems && cartItems}
-
 				addToCart={addToCart}
 				removeFromCart={removeFromCart}
 				updateCartItemCount={updateCartItemCount}

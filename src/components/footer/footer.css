@@ -239,6 +239,7 @@ footer a {
 	.location iframe {
 	  height: 250px;
 	  width: 270px;
+		margin-right: 20px;
 	}
   
 	.contact-details {
@@ -286,6 +287,7 @@ footer a {
 		.location iframe {
 			height: 200px;
 			width: 220px;
+			margin-right: 0;
 		}
 		
   }

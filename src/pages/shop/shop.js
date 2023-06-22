@@ -1,9 +1,9 @@
-import React, { useContext, useRef, useState, useEffect } from 'react';
+import React, { useContext, useRef, useState} from 'react';
 import Select from 'react-select';
 import { Routes, Route } from 'react-router-dom';
 
 import { Navbar } from '../../components/navbar/navbar';
-import { ProductSearch } from '../../components/navbar/search';
+
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -14,7 +14,7 @@ import { Product } from './product';
 import { ProductDetails } from './product-details/product-details';
 
 import { ShopContext } from '../../context/shop-context';
-import { NavbarProvider, NavbarContext } from '../../context/navbar-context.js';
+
 
 import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
@@ -55,9 +55,6 @@ export const Shop = () => {
       behavior: 'smooth',
     });
   };
-
- 
-  
 
   const TiktokIcon = () => {
     const isMobile = window.innerWidth <= 992;

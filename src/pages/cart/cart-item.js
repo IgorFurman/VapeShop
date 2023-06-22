@@ -7,10 +7,10 @@ export const CartItem = (props) => {
 	const { id, productName, price, productImage, availability } = props.data;
 	const {
 		cartItems,
-		addToCart,
 		removeFromCart,
 		validateCartItemCount,
 		clearItemFromCart,
+		
 	} = useContext(ShopContext);
 
 	const [isMaxQuantity, setIsMaxQuantity] = useState(false);

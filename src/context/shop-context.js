@@ -1,5 +1,4 @@
 import {
-  getFirestore,
   collection,
   getDocs,
   doc,
@@ -7,6 +6,8 @@ import {
   getDoc,
   onSnapshot,
 } from 'firebase/firestore';
+
+
 
 import  {auth, db } from '../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -23,7 +24,7 @@ export const ShopContextProvider = (props) => {
   const [favorites, setFavorites] = useState({});
   const [cartItemCount, setCartItemCount] = useState(0)
 
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading ] = useAuthState(auth);
 
   const getDefaultCart = () => {
     let cart = {};
@@ -272,7 +273,6 @@ const calculateDiscountPercentage = (originalPrice, currentPrice) => {
     });
   };
 
-  
 
   const contextValue = {
     cartItems,
@@ -299,6 +299,7 @@ const calculateDiscountPercentage = (originalPrice, currentPrice) => {
     validateCartItemCount,
     clearItemFromCart,
     calculateDiscountPercentage,
+    
   };
 
   return (
