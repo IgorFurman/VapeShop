@@ -27,11 +27,22 @@
   flex-direction: row;
 }
 
-.register .register-form div {
+.register .register-form .register-form-box{
   display: flex;
   flex-direction: column;
   width: 45%;
   margin-bottom: 15px;
+  
+}
+
+.register .register-form .register-input-error-box {
+display: flex;
+flex-direction: column;
+}
+
+.register .register-form .register-input-error {
+color: var(--color-error);
+
 }
 
 .register .gender__details {
@@ -53,7 +64,7 @@
 .register .register-form label {
   margin-bottom: 5px;
   font-size: 1rem;
-  color: var(--color-tertiary);
+  color: var(--color-primary);
 }
 
 .register .register-form input[type='text'],
