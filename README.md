@@ -44,9 +44,8 @@ To run the project, ensure that you have npm installed. Then, clone the reposito
 
 ```bash
 git clone https://github.com/IgorFurman/VapeShop.git
-cd VapeShop
 npm install
 npm start
-
+```
 
 **Plase remember to pase your own API KEYS into firebase config file**.
