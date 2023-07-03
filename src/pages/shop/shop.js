@@ -20,6 +20,7 @@ import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
 import { useSpring, animated } from 'react-spring';
 
+
 import headerImage1 from '../../assets/hero/header-img-1.webp';
 import headerImage2 from '../../assets/hero/header-img-2.webp';
 import headerImage3 from '../../assets/hero/header-img-3.webp';

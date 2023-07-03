@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, lazy, Suspense } from 'react';
 import {
 	HashRouter as Router,
 	Routes,
@@ -12,21 +12,26 @@ import { NavbarProvider, NavbarContext } from './context/navbar-context.js';
 import  ScrollToTop  from './utils/Scroll-to-top.js'
 
 import { AgeCheck } from './components/age-check-modal/age-check';
+import { LoadingSpinner } from './components/loading-spinner/loading-spinner';
 
-import { Navbar } from './components/navbar/navbar';
-import { Footer } from './components/footer/footer';
-import { LoginForm } from './pages/user/login/login';
-import { RegistrationForm } from './pages/user/register/register';
-import { User } from './pages/user/user-profile/user-profile';
-import { Shop } from './pages/shop/shop';
-import { LoginModal } from './components/login-modal/login-modal';
-import { Contact } from './pages/contact/contact';
-import { Cart } from './pages/cart/cart';
-import { SearchResults } from './pages/search-results/search-results';
-import { ProductDetails } from './pages/shop/product-details/product-details';
+
 import { addProductsToFirebase } from './config/firebase-products';
 
 import Modal from 'react-modal';
+
+const Navbar = lazy(() => import('./components/navbar/navbar').then(module => ({ default: module.Navbar })));
+const Footer = lazy(() => import('./components/footer/footer').then(module => ({ default: module.Footer })));
+const LoginForm = lazy(() => import('./pages/user/login/login').then(module => ({ default: module.LoginForm })));
+const RegistrationForm = lazy(() => import('./pages/user/register/register').then(module => ({ default: module.RegistrationForm })));
+const User = lazy(() => import('./pages/user/user-profile/user-profile').then(module => ({ default: module.User })));
+const Shop = lazy(() => import('./pages/shop/shop').then(module => ({ default: module.Shop })));
+const LoginModal = lazy(() => import('./components/login-modal/login-modal').then(module => ({ default: module.LoginModal })));
+const Contact = lazy(() => import('./pages/contact/contact').then(module => ({ default: module.Contact })));
+const Cart = lazy(() => import('./pages/cart/cart').then(module => ({ default: module.Cart })));
+const SearchResults = lazy(() => import('./pages/search-results/search-results').then(module => ({ default: module.SearchResults })));
+const ProductDetails = lazy(() => import('./pages/shop/product-details/product-details').then(module => ({ default: module.ProductDetails })));
+
+
 
 addProductsToFirebase();
 
@@ -58,21 +63,24 @@ const AppContent = () => {
 
 	return (
 		<div className='App'>
-			{navbarVisible && <Navbar />}
-			<AgeCheck />
-			<Routes>
-				<Route path='/login-modal' element={<LoginModal />} />
-				<Route path='/login' element={<LoginForm />} />
-				<Route path='/register' element={<RegistrationForm />} />
-				<Route path='/profile/:id' element={<User />} />
+			<Suspense fallback={<LoadingSpinner />}>
 
-				<Route path='/' element={<Shop />} />
-				<Route path='/cart' element={<Cart />} />
-				<Route path='/contact' element={<Contact />} />
-				<Route path='search-results' element={<SearchResults />} />
-				<Route path='/products/:id' element={<ProductDetails />} />
-			</Routes>
-			<Footer />
+				{navbarVisible && <Navbar />}
+				<AgeCheck />
+				<Routes>
+					<Route path='/login-modal' element={<LoginModal />} />
+					<Route path='/login' element={<LoginForm />} />
+					<Route path='/register' element={<RegistrationForm />} />
+					<Route path='/profile/:id' element={<User />} />
+
+					<Route path='/' element={<Shop />} />
+					<Route path='/cart' element={<Cart />} />
+					<Route path='/contact' element={<Contact />} />
+					<Route path='search-results' element={<SearchResults />} />
+					<Route path='/products/:id' element={<ProductDetails />} />
+				</Routes>
+				<Footer />
+			</Suspense>
 		</div>
 	);
 };

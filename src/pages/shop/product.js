@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import { doc, onSnapshot } from 'firebase/firestore';
 
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
@@ -128,7 +129,7 @@ useEffect(() => {
 					to={`/products/${id}`}
 					className='product-link'
 				>
-					<img src={productImage} alt={productName} />
+					<LazyLoadImage src={productImage} alt={productName} effect="blur"/>
 
           {discount && (
           <div className='product-discount-badge'>
