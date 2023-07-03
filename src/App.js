@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useContext, useEffect, lazy, Suspense } from 'react';
+import React, { useContext, useLayoutEffect, lazy, Suspense } from 'react';
 import {
 	HashRouter as Router,
 	Routes,
@@ -56,10 +56,10 @@ const AppContent = () => {
 	const { navbarVisible, setNavbarVisible, setIsLoading } =
 		useContext(NavbarContext);
 
-	useEffect(() => {
-		setNavbarVisible(location.pathname !== '/');
-		setIsLoading(false);
-	}, [location, setNavbarVisible, setIsLoading]);
+		useLayoutEffect(() => {
+			setNavbarVisible(location.pathname !== '/' && location.pathname !== '/products/:id');
+			setIsLoading(false);
+		}, [location, setNavbarVisible, setIsLoading]);
 
 	return (
 		<div className='App'>
