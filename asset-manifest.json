@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/VapeShop/static/css/main.ecf75619.css",
-    "main.js": "/VapeShop/static/js/main.b7b173e5.js",
+    "main.js": "/VapeShop/static/js/main.7090abbe.js",
     "static/css/234.8d432a00.chunk.css": "/VapeShop/static/css/234.8d432a00.chunk.css",
     "static/js/234.8a4f6d95.chunk.js": "/VapeShop/static/js/234.8a4f6d95.chunk.js",
     "static/css/163.fdc908dc.chunk.css": "/VapeShop/static/css/163.fdc908dc.chunk.css",
@@ -40,7 +40,7 @@
     "static/media/bestseller-icon.png": "/VapeShop/static/media/bestseller-icon.26c4011bfa69deab96a4.png",
     "index.html": "/VapeShop/index.html",
     "main.ecf75619.css.map": "/VapeShop/static/css/main.ecf75619.css.map",
-    "main.b7b173e5.js.map": "/VapeShop/static/js/main.b7b173e5.js.map",
+    "main.7090abbe.js.map": "/VapeShop/static/js/main.7090abbe.js.map",
     "234.8d432a00.chunk.css.map": "/VapeShop/static/css/234.8d432a00.chunk.css.map",
     "234.8a4f6d95.chunk.js.map": "/VapeShop/static/js/234.8a4f6d95.chunk.js.map",
     "163.fdc908dc.chunk.css.map": "/VapeShop/static/css/163.fdc908dc.chunk.css.map",
@@ -74,6 +74,6 @@
   },
   "entrypoints": [
     "static/css/main.ecf75619.css",
-    "static/js/main.b7b173e5.js"
+    "static/js/main.7090abbe.js"
   ]
 }
