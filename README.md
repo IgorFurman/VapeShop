@@ -40,11 +40,22 @@ The project uses Firebase as its backend service for real-time database, authent
 
 ## 🚀 How to Run
 
-To run the project, ensure that you have npm installed. Then, clone the repository and install the dependencies:
+If you want to try out the project locally, follow these steps:
 
+**Clone the repository**
 ```bash
 git clone https://github.com/IgorFurman/VapeShop.git
+```
+**Navigate to the project directory**
+```bash
+cd <project-directory>
+```
+**Install dependencies**
+```bash
 npm install
+```
+**Run the project**
+```bash
 npm start
 ```
 
