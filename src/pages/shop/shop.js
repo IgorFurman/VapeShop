@@ -20,10 +20,10 @@ import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import TikTokShadowIcon from '../../assets/icon/tiktok-color-icon.png';
 import { useSpring, animated } from 'react-spring';
 
-import headerImage1 from '../../assets/hero/header-img-1.jpg';
-import headerImage2 from '../../assets/hero/header-img-2.jpg';
-import headerImage3 from '../../assets/hero/header-img-3.jpg';
-import headerImage4 from '../../assets/hero/header-img-4.jpg';
+import headerImage1 from '../../assets/hero/header-img-1.webp';
+import headerImage2 from '../../assets/hero/header-img-2.webp';
+import headerImage3 from '../../assets/hero/header-img-3.webp';
+import headerImage4 from '../../assets/hero/header-img-4.webp';
 
 import './shop&product.css';
 
@@ -35,6 +35,8 @@ export const Shop = () => {
   const [isHoveredInstagram, setIsHoveredInstagram] = useState(false);
   const [isHoveredFacebook, setIsHoveredFacebook] = useState(false);
   const [isHoveredTiktok, setIsHoveredTiktok] = useState(false);
+
+  let sortedProducts = [...products];
 
   const darkerInstagram = '#B30D56';
   const darkerFacebook = '#125CAD';
@@ -80,10 +82,10 @@ export const Shop = () => {
       </>
     );
   };
-
   if (!products) {
     return <div>Ładowanie...</div>;
   }
+
 
   const slides = [
     {
@@ -117,9 +119,6 @@ export const Shop = () => {
   ];
 
 
-
-
-  // filter
   const options = [
     { value: 'default', label: 'Sortuj...' },
     { value: 'priceHighToLow', label: 'Cena: najwyższa do najniższej' },
@@ -130,9 +129,6 @@ export const Shop = () => {
     
   ];
 
-
-
-  let sortedProducts = [...products];
 
   switch (sortMode) {
     case 'priceHighToLow':
@@ -167,7 +163,6 @@ export const Shop = () => {
   return (
     <section className='shop'>
       <Navbar style={{ zIndex: 9999 }} />
-      
       <Carousel
         showThumbs={false}
         showStatus={false}
