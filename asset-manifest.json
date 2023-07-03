@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/VapeShop/static/css/main.3d9a8495.css",
-    "main.js": "/VapeShop/static/js/main.5d7cc10b.js",
-    "static/media/header-img-1.jpg": "/VapeShop/static/media/header-img-1.650c3898d1ec87b73883.jpg",
-    "static/media/header-img-2.jpg": "/VapeShop/static/media/header-img-2.10e15097e09d48c87057.jpg",
-    "static/media/header-img-4.jpg": "/VapeShop/static/media/header-img-4.cdf21ea4f327f9824803.jpg",
-    "static/media/header-img-3.jpg": "/VapeShop/static/media/header-img-3.a494c9b721a4bd069347.jpg",
+    "main.js": "/VapeShop/static/js/main.3ab7bc79.js",
+    "static/media/header-img-1.webp": "/VapeShop/static/media/header-img-1.4d259c2357d0910907fe.webp",
+    "static/media/header-img-2.webp": "/VapeShop/static/media/header-img-2.831dffa1cb435696a9af.webp",
+    "static/media/header-img-4.webp": "/VapeShop/static/media/header-img-4.12cf813cf04a98165411.webp",
+    "static/media/header-img-3.webp": "/VapeShop/static/media/header-img-3.3fffe88e4779da75f871.webp",
     "static/media/Big-cloud-logo-mobile.png": "/VapeShop/static/media/Big-cloud-logo-mobile.240de059479c037f4408.png",
     "static/media/bestseller-icon.png": "/VapeShop/static/media/bestseller-icon.26c4011bfa69deab96a4.png",
     "index.html": "/VapeShop/index.html",
     "main.3d9a8495.css.map": "/VapeShop/static/css/main.3d9a8495.css.map",
-    "main.5d7cc10b.js.map": "/VapeShop/static/js/main.5d7cc10b.js.map"
+    "main.3ab7bc79.js.map": "/VapeShop/static/js/main.3ab7bc79.js.map"
   },
   "entrypoints": [
     "static/css/main.3d9a8495.css",
-    "static/js/main.5d7cc10b.js"
+    "static/js/main.3ab7bc79.js"
   ]
 }
