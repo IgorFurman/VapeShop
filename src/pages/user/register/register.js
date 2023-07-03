@@ -19,7 +19,7 @@ export const RegistrationForm = () => {
 	const [postalCode, setPostalCode] = useState('');
 	const [isRegistered, setIsRegistered] = useState(false);
 
-	const [networkError, setNetworkError] = useState(false);
+	const [networkError, setNetworkError] = useState('');
 	const [formErrors, setFormErrors] = useState({});
 
 	const handleEmailChange = (e) => {
@@ -85,7 +85,6 @@ export const RegistrationForm = () => {
 			errors.postalCode =
 				'Nieprawidłowy kod pocztowy. Wymagany format to 00-000.';
 		}
-
 		if (password !== passwordRepeat) {
 			errors.passwordRepeat = 'Hasła nie są zgodne';
 		}
@@ -283,6 +282,9 @@ export const RegistrationForm = () => {
                         )}
                         {formErrors.postalCode && (
                             <li className='register-input-error'>{formErrors.postalCode}</li>
+                        )}
+												 {networkError === '' && (
+												<li className='register-input-error'>{networkError}</li>
                         )}
                         </ol>
                         </div>
